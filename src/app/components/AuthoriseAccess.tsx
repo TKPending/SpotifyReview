@@ -4,17 +4,15 @@ import {
   spotifyAccessToken,
   spotifyVerifier,
 } from "../util/spotifyAuth/spotify";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 const AuthoriseAccess = () => {
-  const [startAuth, setStartAuth] = useState<boolean>(false);
   const router: AppRouterInstance = useRouter();
 
   const handleAuthorisation = async () => {
     try {
-      setStartAuth(true);
       await spotifyVerifier();
     } catch (err) {
       console.log(
@@ -29,10 +27,12 @@ const AuthoriseAccess = () => {
 
     if (token == "") {
       spotifyAccessToken();
+
+      return;
     } else {
       router.push("/review");
     }
-  }, [startAuth]);
+  }, []);
 
   return (
     <div

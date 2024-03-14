@@ -1,6 +1,16 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import AuthoriseAccess from "./components/AuthoriseAccess";
 
 export default function Home() {
+  const router = useRouter();
+  const accessToken: string = sessionStorage.getItem("access_token") || "";
+
+  if (accessToken !== "") {
+    router.push("/review");
+  }
+
   return (
     <div className="h-screen w-full text-white flex flex-col justify-start items-center gap-8 pt-40">
       <h1 className="text-4xl font-bold mb-2">Welcome to <span className="text-green-600">Spotify</span> Review</h1>
