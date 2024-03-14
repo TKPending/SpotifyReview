@@ -1,15 +1,21 @@
 "use client";
 
-import { spotifyAccessToken, spotifyVerifier } from "../util/spotifyAuth/spotify";
+import {
+  spotifyAccessToken,
+  spotifyVerifier,
+} from "../util/spotifyAuth/spotify";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 const AuthoriseAccess = () => {
-    const [startAuth, setStartAuth] = useState<boolean>(false);
+  const [startAuth, setStartAuth] = useState<boolean>(false);
+  const router: AppRouterInstance = useRouter();
 
   const handleAuthorisation = async () => {
     try {
-      await spotifyVerifier();
       setStartAuth(true);
+      await spotifyVerifier();
     } catch (err) {
       console.log(
         "AuthoriseAccess.tsx - Problem doing with code authorisation"
@@ -22,7 +28,9 @@ const AuthoriseAccess = () => {
     const token: string = sessionStorage.getItem("access_token") || "";
 
     if (token == "") {
-        spotifyAccessToken();
+      spotifyAccessToken();
+    } else {
+      router.push("/review");
     }
   }, [startAuth]);
 

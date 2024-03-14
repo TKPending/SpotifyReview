@@ -1,5 +1,4 @@
 import { generateRandomString, sha256, base64encode } from "./spotifyAuthUtil";
-import axios, { AxiosResponse } from "axios";
 
 const clientId: string = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
 const tokenEndpoint: string =
