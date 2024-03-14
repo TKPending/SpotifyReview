@@ -25,7 +25,7 @@ class SpotifyClient {
         }
     };
 
-    public async userDetails(): Promise<{}> {
+    public async userDetails(): Promise<any> {
         const user = await this.getSpotify(userEndpoint);
 
         if (user) {
@@ -42,7 +42,6 @@ class SpotifyClient {
         const favouriteSongs = await this.getSpotify(`${favouriteEndpoint}tracks?time_range=short_term&limit=10`);
 
         if (favouriteSongs) {
-            console.log(favouriteSongs);
             return formatFavouriteSongs(favouriteSongs);
         }
 
