@@ -15,17 +15,17 @@ const FavouriteContainer = ({ title }: Favourites) => {
 
   return (
     <div className="bg-green-600 h-auto rounded-lg p-4">
-      <div className="h-32 w-full">
-        <p>{title}</p>
+      <div className="h-20 w-full p-2">
+        <p className="text-xl font-semibold">{title}</p>
       </div>
 
-      <div className="h-auto">
+      <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4">
         {favourites.map((item: any, index: number) => (
             <div key={index}>
                 {title == "Favourite Artists" ? (
-                    <FavouriteArtist content={item} />
+                    <FavouriteArtist key={index} content={item} />
                 ) : (
-                    <FavouriteSong content={item} />
+                    <FavouriteSong key={index} content={item} />
                 )}
             </div>
         ))}
