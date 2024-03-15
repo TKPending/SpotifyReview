@@ -14,7 +14,6 @@ interface Content {
 
 const ReviewPage = () => {
   const router = useRouter();
-  const [content, setContent] = useState<{}>();
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [contentLoading, setContentLoading] = useState<boolean>(true);
 
@@ -37,21 +36,13 @@ const ReviewPage = () => {
         const favouriteArtists = await SpotifyClient.getFavouriteArtists();
         const recentlyPlayed = await SpotifyClient.getRecentlyPlayed();
 
-        // Check if any of the fetched data objects contain an error key
         if (user && user.error) throw new Error(user.error);
-        if (favouriteSongs && favouriteSongs.error) throw new Error(favouriteSongs.error);
-        if (favouriteArtists && favouriteArtists.error) throw new Error(favouriteArtists.error);
-        if (recentlyPlayed && recentlyPlayed.error) throw new Error(recentlyPlayed.error);
-
-
-        const content: Content = {
-          user,
-          favouriteSongs,
-          favouriteArtists,
-          recentlyPlayed,
-        };
-
-        setContent(content);
+        if (favouriteSongs && favouriteSongs.error)
+          throw new Error(favouriteSongs.error);
+        if (favouriteArtists && favouriteArtists.error)
+          throw new Error(favouriteArtists.error);
+        if (recentlyPlayed && recentlyPlayed.error)
+          throw new Error(recentlyPlayed.error);
 
         sessionStorage.setItem("user", JSON.stringify(user));
         sessionStorage.setItem(
@@ -70,6 +61,7 @@ const ReviewPage = () => {
         setPageLoading(false);
         sessionStorage.setItem("review_stored", "stored");
       } catch (error) {
+        // Need to do error handing
         sessionStorage.removeItem("user");
         sessionStorage.removeItem("favouriteSongs");
         sessionStorage.removeItem("favouriteArtists");
@@ -84,44 +76,27 @@ const ReviewPage = () => {
     const stored = sessionStorage.getItem("review_stored") || "";
 
     if (!stored || "") {
-        fetchData();
-    } else {
-      const user = JSON.parse(sessionStorage.getItem("user") || "");
-      const favouriteSongs = JSON.parse(
-        sessionStorage.getItem("favouriteSongs") || ""
-      );
-      const favouriteArtists = JSON.parse(
-        sessionStorage.getItem("favouriteArtists") || ""
-      );
-      const recentlyPlayed = JSON.parse(
-        sessionStorage.getItem("recentlyPlayed") || ""
-      );
-
-      const storedContent: Content = {
-        user,
-        favouriteSongs,
-        favouriteArtists,
-        recentlyPlayed,
-      };
-      if (JSON.stringify(storedContent) !== JSON.stringify(content)) {
-        setContent(storedContent);
-      }
-
-      setPageLoading(false)
+      fetchData();
     }
-  }),
-    [];
+
+    setPageLoading(false);
+  }, []);
 
   return (
     <div className="overflow-y-scroll h-screen w-screen px-16">
-        {pageLoading ? (
-            <div className="h-screen w-screen bg-white"></div>
-        ) :(
-            <div className="mt-8 w-full h-auto flex justify-center gap-20">
-              <FavouriteContainer title="Favourite Artists" data="" />
-              <FavouriteContainer title="Favourite Songs" data="" />
-            </div>
-        )}
+      {pageLoading ? (
+        <div className="h-screen w-screen bg-white"></div>
+      ) : (
+        <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
+          <div className="h-auto w-full">
+            <FavouriteContainer title="Favourite Artists" />
+          </div>
+
+          <div className="h-auto w-full">
+            <FavouriteContainer title="Favourite Songs" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
