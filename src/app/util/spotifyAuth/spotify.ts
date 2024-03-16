@@ -37,7 +37,7 @@ interface Payload {
   body: URLSearchParams;
 }
 
-export const spotifyAccessToken = async () => {
+export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
   const codeVerifier: string = sessionStorage.getItem("code_verifier") || "";
 
   if (codeVerifier == "") {
@@ -75,7 +75,10 @@ export const spotifyAccessToken = async () => {
 
     if (response.access_token) {
       sessionStorage.setItem("access_token", response.access_token);
-    } 
+      return true;
+    } else {
+      return;
+    }
 
     // TODO: Error handling
   } catch (error) {

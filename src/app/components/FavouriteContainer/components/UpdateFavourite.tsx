@@ -13,7 +13,7 @@ const UpdateFavourite = ({section, setContentLoading}: Props) => {
     const handleUpdate = async () => {
         setContentLoading(true);
         setLoading(true);
-        if (section == "FavouriteArtists") {
+        if (section == "Favourite Artists") {
             const fetchedArtists = await SpotifyClient.getFavouriteArtists();
             if (fetchedArtists && fetchedArtists.error) throw new Error(fetchedArtists.error);
 

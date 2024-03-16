@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import FavouriteContainer from "../components/FavouriteContainer/FavouriteContainer";
 import SpotifyClient from "../util/spotifyClient";
+import { spotifyAccessToken } from "../util/spotifyAuth/spotify";
 
 interface Content {
-  user: any; // Define the types for user, favouriteSongs, favouriteArtists, and recentlyPlayed
+  user: any;
   favouriteSongs: any;
   favouriteArtists: any;
   recentlyPlayed: any;
@@ -16,17 +17,18 @@ const ReviewPage = () => {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [contentLoading, setContentLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const accessToken: string = sessionStorage.getItem("access_token") || "";
 
-    if (accessToken == "") {
+    if (accessToken == "" && error) {
       sessionStorage.removeItem("review_stored");
       sessionStorage.removeItem("access_token");
       sessionStorage.removeItem("code_verifier");
       router.push("/");
     }
-  }, []);
+  }, [error]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,26 +39,14 @@ const ReviewPage = () => {
         const recentlyPlayed = await SpotifyClient.getRecentlyPlayed();
 
         if (user && user.error) throw new Error(user.error);
-        if (favouriteSongs && favouriteSongs.error)
-          throw new Error(favouriteSongs.error);
-        if (favouriteArtists && favouriteArtists.error)
-          throw new Error(favouriteArtists.error);
-        if (recentlyPlayed && recentlyPlayed.error)
-          throw new Error(recentlyPlayed.error);
+        if (favouriteSongs && favouriteSongs.error) throw new Error(favouriteSongs.error);
+        if (favouriteArtists && favouriteArtists.error) throw new Error(favouriteArtists.error);
+        if (recentlyPlayed && recentlyPlayed.error) throw new Error(recentlyPlayed.error);
 
         sessionStorage.setItem("user", JSON.stringify(user));
-        sessionStorage.setItem(
-          "favouriteSongs",
-          JSON.stringify(favouriteSongs)
-        );
-        sessionStorage.setItem(
-          "favouriteArtists",
-          JSON.stringify(favouriteArtists)
-        );
-        sessionStorage.setItem(
-          "recentlyPlayed",
-          JSON.stringify(recentlyPlayed)
-        );
+        sessionStorage.setItem("favouriteSongs",JSON.stringify(favouriteSongs));
+        sessionStorage.setItem("favouriteArtists",JSON.stringify(favouriteArtists));
+        sessionStorage.setItem("recentlyPlayed",JSON.stringify(recentlyPlayed));
 
         setPageLoading(false);
         sessionStorage.setItem("review_stored", "stored");
@@ -68,18 +58,18 @@ const ReviewPage = () => {
         sessionStorage.removeItem("recentlyPlayed");
 
         sessionStorage.setItem("review_stored", "");
-
+        setError(true);
         console.log("Problem with setting content");
       }
     };
 
-    const stored = sessionStorage.getItem("review_stored") || "";
+    const stored = sessionStorage.getItem("review_stored");
 
-    if (!stored || "") {
+    if (!stored) {
       fetchData();
+    } else {
+      setPageLoading(false);
     }
-
-    setPageLoading(false);
   }, []);
 
   return (

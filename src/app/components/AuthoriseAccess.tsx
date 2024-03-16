@@ -22,17 +22,14 @@ const AuthoriseAccess = () => {
     }
   };
 
-  useEffect(() => {
-    const token: string = sessionStorage.getItem("access_token") || "";
+  // useEffect(() => {
+  //   const token: string = sessionStorage.getItem("access_token") || "";
 
-    if (token == "") {
-      spotifyAccessToken();
-
-      return;
-    } else {
-      router.push("/review");
-    }
-  }, []);
+  //   if (token == "") {
+  //     spotifyAccessToken();
+  //     return;
+  //   } 
+  // }, []);
 
   return (
     <div

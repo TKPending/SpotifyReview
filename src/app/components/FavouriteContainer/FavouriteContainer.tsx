@@ -8,7 +8,7 @@ type Favourites = {
 };
 
 const FavouriteContainer = ({ title }: Favourites) => {
-  const [contentLoading, setContentLoading] = useState<boolean>(false);
+  const [contentLoading, setContentLoading] = useState<boolean>(true);
   const favouriteStr =
     title == "Favourite Artists"
       ? sessionStorage.getItem("favouriteArtists")
@@ -16,13 +16,19 @@ const FavouriteContainer = ({ title }: Favourites) => {
 
   const favourites = favouriteStr ? JSON.parse(favouriteStr) : [];
 
+  useEffect(() => {
+    setTimeout(() => {
+      setContentLoading(false);
+    }, 1000);
+  }, [contentLoading]);
+
   return (
     <div className="bg-green-600 h-auto rounded-lg p-4">
       <div className="flex h-20 w-full">
         <div className="flex-1 flex-col gap-4 p-2">
           <p className="text-xl font-semibold">{title}</p>
           <p className="font-semibold">
-            Your top 10 favourite ... of the month
+            Your top 10 favourite {title === "Favourite Artists" ? "artists" : "songs"} of the month
           </p>
         </div>
 

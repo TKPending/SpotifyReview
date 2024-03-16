@@ -21,6 +21,7 @@ const FavouriteSong = ({ content }: Props) => {
       setIsPlaying(!isPlaying);
     }
   };
+  
   return (
     <div className="h-auto bg-black hover:bg-opacity-80 text-white flex align-center p-6 rounded-lg">
       <a className="flex-1 p-4" href={content.artist_href}>

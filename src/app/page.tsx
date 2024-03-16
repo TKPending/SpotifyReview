@@ -1,18 +1,31 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import AuthoriseAccess from "./components/AuthoriseAccess";
+import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
 
 export default function Home() {
+  const [accessToken, setAccessToken] = useState<string | null | undefined>(null)
   const router = useRouter();
-  const accessToken: string = sessionStorage.getItem("access_token") || "";
 
   useEffect(() => {
-    if (accessToken !== "") {
+    const fetchAccessToken = async () => {
+      await spotifyAccessToken();
+      const token = sessionStorage.getItem("access_token");
+      if (token) {
+        setAccessToken(token);
+      } else {
+        console.log("Access token not found");
+      }
+    };
+
+    if (!accessToken) {
+      fetchAccessToken();
+    } else {
       router.push("/review");
     }
-  }, [])
+  }, [accessToken, router]);
 
   return (
     <div className="h-screen w-full text-white flex flex-col justify-start items-center gap-8 pt-40">
