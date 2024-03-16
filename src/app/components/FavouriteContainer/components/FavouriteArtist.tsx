@@ -5,7 +5,7 @@ type Props = {
 const FavouriteArtist = ({ content }: Props) => {
   return (
     <a
-      href={content.artist_href}
+      href={content.artistHref}
       className="h-full p-8 rounded-lg text-white text-xl flex bg-black hover:bg-opacity-80"
     >
       <div className="flex-1 p-4">

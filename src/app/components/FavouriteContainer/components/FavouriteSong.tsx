@@ -22,19 +22,16 @@ const FavouriteSong = ({ content }: Props) => {
     }
   };
   return (
-    <div className="h-32 flex">
-      <a href={content.artist_href}>
-        <p>{content.artist}</p>
+    <div className="h-auto bg-black hover:bg-opacity-80 text-white flex align-center p-6 rounded-lg">
+      <a className="flex-1 p-4" href={content.artist_href}>
+        <p className="text-xl font-semibold">{content.artist}</p>
       </a>
 
-      <p>{content.song_duration}</p>
-
-      <a href={content.song_href} className="flex">
-        <img src={content.song_image} className="h-12 w-12" />
-        <p>{content.song_name}</p>
-      </a>
-
-      <div>
+      {/* <p>{content.song_duration}</p> */}
+      <div className="flex flex-1 flex-col gap-4 items-center justify-center">
+        <a href={content.song_href} className="flex font-semibold">
+          <p>{content.song_name}</p>
+        </a>
         <button
           onClick={handleTogglePlay}
           className={`flex items-center justify-center p-2 rounded-lg cursor-pointer h-8 w-8 text-green-500 hover:bg-green-300 ${
@@ -48,6 +45,10 @@ const FavouriteSong = ({ content }: Props) => {
           )}
         </button>
         <audio ref={audioRef} src={content.song_preview}></audio>
+      </div>
+
+      <div className="flex flex-1 justify-end">
+        <img src={content.song_image} className="h-32 w-32 rounded-lg" />
       </div>
     </div>
   );
