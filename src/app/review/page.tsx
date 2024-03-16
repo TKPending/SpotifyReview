@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import FavouriteContainer from "../components/FavouriteContainer/FavouriteContainer";
-import SpotifyClient from "../util/spotifyClient";
-import { spotifyAccessToken } from "../util/spotifyAuth/spotify";
+import SpotifyClient from "@/app/util/SpotifyClient";
+import RecentlyPlayed from "../components/RecentPlayedContainer/RecentlyPlayed";
 
 interface Content {
   user: any;
@@ -73,20 +73,22 @@ const ReviewPage = () => {
   }, []);
 
   return (
-    <div className="overflow-y-scroll h-screen w-screen px-16">
+    <div className="flex flex-col items-center gap-8 overflow-y-auto h-auto w-screen px-16 py-4">
       {pageLoading ? (
         <div className="h-screen w-screen bg-white"></div>
       ) : (
         <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
-          <div className="h-auto w-full">
+          <div className="w-full">
             <FavouriteContainer title="Favourite Artists" />
           </div>
 
-          <div className="h-auto w-full">
+          <div className="w-full">
             <FavouriteContainer title="Favourite Songs" />
           </div>
         </div>
       )}
+
+      <RecentlyPlayed />
     </div>
   );
 };

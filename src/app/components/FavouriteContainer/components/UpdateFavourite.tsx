@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SpotifyClient from "@/app/util/spotifyClient";
+import SpotifyClient from "@/app/util/SpotifyClient";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {
