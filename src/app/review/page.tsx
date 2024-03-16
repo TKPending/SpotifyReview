@@ -22,7 +22,7 @@ const ReviewPage = () => {
   useEffect(() => {
     const accessToken: string = sessionStorage.getItem("access_token") || "";
 
-    if (accessToken == "" && error) {
+    if (!accessToken) {
       sessionStorage.removeItem("review_stored");
       sessionStorage.removeItem("access_token");
       sessionStorage.removeItem("code_verifier");
