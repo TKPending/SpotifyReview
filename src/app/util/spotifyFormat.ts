@@ -5,6 +5,7 @@ export const formatFavouriteSongs = (favouriteSongs: any) => {
     songs.push({
       artist: song.artists[0].name,
       artist_href: song.artists[0].uri,
+      artist_id: song.artists[0].id,
       song_duration: song.duration_ms,
       song_href: song.uri,
       song_name: song.name,
@@ -21,10 +22,11 @@ export const formatFavouriteArtists = (favouriteArtists: any) => {
 
   for (const artist of favouriteArtists.items) {
     artists.push({
-      genre: artist.genres[0],
+      genre: artist.genres,
       image: artist.images[1].url,
       artist: artist.name,
       artistHref: artist.uri,
+      followers: artist.followers.total,
     });
   }
 
@@ -50,7 +52,8 @@ export const formatRecentlyPlayed = (recentlyPlayed: any) => {
       time_played: timestamp,
       artist: song.track.album.artists[0].name,
       artist_href: song.track.album.artists[0].uri,
-      song_name: song.track.album.name,
+      album_name: song.track.album.album_type == "album" ? song.track.album.name : "",
+      song_name: song.track.name,
       song_href: song.track.album.external_urls.spotify,
       image: song.track.album.images[1].url,
       song_preview: song.track.preview_url,

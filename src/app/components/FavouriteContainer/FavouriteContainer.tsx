@@ -9,6 +9,7 @@ type Favourites = {
 
 const FavouriteContainer = ({ title }: Favourites) => {
   const [contentLoading, setContentLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
   const favouriteStr =
     title == "Favourite Artists"
       ? sessionStorage.getItem("favouriteArtists")
@@ -36,14 +37,25 @@ const FavouriteContainer = ({ title }: Favourites) => {
           <UpdateFavourite
             section={title}
             setContentLoading={setContentLoading}
+            setError={setError}
           />
         </div>
       </div>
 
       <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4">
-        {contentLoading && <div></div>}
+        {contentLoading && (
+          <div className="h-full w-full flex items-center justify-center">
+            <p className="text-black text-4xl font-semibold">Fetching Favourites....</p>
+          </div>
+        )}
 
-        {!contentLoading && (
+        {error && (
+          <div className="h-full w-full flex items-center justify-center text-center">
+            <p className="text-black text-4xl font-semibold">Problem fetching favourite. Re-authorise!</p>
+          </div>
+        )}
+
+        {!contentLoading && !error && (
           <>
             {favourites.map((item: any, index: number) => (
               <div key={index}>

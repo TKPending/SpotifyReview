@@ -5,9 +5,10 @@ import { Dispatch, SetStateAction } from "react";
 type Props = {
     section: string;
     setContentLoading: Dispatch<SetStateAction<boolean>>;
+    setError: Dispatch<SetStateAction<boolean>>;
 }
 
-const UpdateFavourite = ({section, setContentLoading}: Props) => { 
+const UpdateFavourite = ({section, setContentLoading, setError}: Props) => { 
     const [loading, setLoading] = useState(false);
 
     const handleUpdate = async () => {
@@ -15,12 +16,12 @@ const UpdateFavourite = ({section, setContentLoading}: Props) => {
         setLoading(true);
         if (section == "Favourite Artists") {
             const fetchedArtists = await SpotifyClient.getFavouriteArtists();
-            if (fetchedArtists && fetchedArtists.error) throw new Error(fetchedArtists.error);
+            if (fetchedArtists && fetchedArtists.error) setError(true);
 
             sessionStorage.setItem("favouriteArtists", JSON.stringify(fetchedArtists));
         } else {
             const fetchedSongs = await SpotifyClient.getFavouriteSongs();
-            if (fetchedSongs && fetchedSongs.error) throw new Error(fetchedSongs.error);
+            if (fetchedSongs && fetchedSongs.error) setError(true);
 
             sessionStorage.setItem("favouriteSongs", JSON.stringify(fetchedSongs));
         }

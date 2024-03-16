@@ -73,9 +73,11 @@ const ReviewPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-8 overflow-y-auto h-auto w-screen px-16 py-4">
+    <div className="flex flex-col items-center gap-12 overflow-y-auto h-auto w-screen px-16 py-4">
       {pageLoading ? (
-        <div className="h-screen w-screen bg-white"></div>
+        <div className="h-screen w-screen flex justify-center items-center">
+          <p className="text-green-600 text-4xl font-bold">Loading Review</p>
+        </div>
       ) : (
         <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
           <div className="w-full">

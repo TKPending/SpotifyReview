@@ -35,7 +35,11 @@ const RecentlyPlayed = () => {
           </div>
 
           <div className="h-auto">
-            {refresh && <div className="bg-white h-72 w-full"></div>}
+            {refresh && (
+              <div className="flex items-center justify-center h-72 w-full">
+                <p className="text-black text-3xl">Fetching Recent Songs</p>
+              </div>
+            )}
 
             {!refresh && (
               <div className="h-[900px] flex flex-col gap-4 overflow-y-auto">

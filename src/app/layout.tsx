@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} overscroll-y-auto h-auto w-max-screen bg-black`}>
+      <body className={`${inter.className} overscroll-none h-auto w-max-screen bg-black`}>
         <Header />
         {children}
         </body>

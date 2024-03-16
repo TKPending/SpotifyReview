@@ -21,17 +21,24 @@ const FavouriteSong = ({ content }: Props) => {
       setIsPlaying(!isPlaying);
     }
   };
-  
+
+  const durationInSeconds = content.song_duration / 1000;
+  const minutes = Math.floor(durationInSeconds / 60);
+  const seconds = Math.round(durationInSeconds % 60);
+
+
   return (
     <div className="h-auto bg-black hover:bg-opacity-80 text-white flex align-center p-6 rounded-lg">
-      <a className="flex-1 p-4" href={content.artist_href}>
+      <a className="flex-1 flex items-center justify-center gap-6 p-4" href={content.artist_href}>
         <p className="text-xl font-semibold">{content.artist}</p>
+        <img src={content.artist_image} className="h-20 w-20 rounded-full"/>
       </a>
 
       {/* <p>{content.song_duration}</p> */}
-      <div className="flex flex-1 flex-col gap-4 items-center justify-center">
-        <a href={content.song_href} className="flex font-semibold">
+      <div className="flex flex-1 flex-col gap-4 items-center justify-center ml-2">
+        <a href={content.song_href} className="flex flex-col items-center font-semibold">
           <p>{content.song_name}</p>
+          <p>{minutes + ":" + (seconds < 10 ? "0" : "") + seconds}</p>
         </a>
         <button
           onClick={handleTogglePlay}
