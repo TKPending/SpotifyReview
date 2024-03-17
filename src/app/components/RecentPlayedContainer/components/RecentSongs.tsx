@@ -30,7 +30,7 @@ const RecentSongs = ({ song }: Props) => {
       </a>
 
       <div className="flex w-1/3 flex-col gap-2 items-center justify-center">
-        <a href={song.href} className="cursor-pointer hover:text-green-600">{song.song_name}</a>
+        <a href={song.href} className="cursor-pointer font-semibold text-green-600">{song.song_name}</a>
         <button
           onClick={handleTogglePlay}
           className={`flex items-center justify-center p-2 rounded-lg cursor-pointer h-8 w-8 text-green-500 hover:bg-green-300 ${
@@ -51,7 +51,7 @@ const RecentSongs = ({ song }: Props) => {
       </div>
 
       <div className="flex w-1/3 flex-col gap-2 items-center justify-center">
-        <p>Time Played</p>
+        <p className="text-green-600">Time Played</p>
         <p>{song.time_played}</p>
       </div>
     </div>

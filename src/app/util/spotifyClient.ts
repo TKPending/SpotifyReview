@@ -12,7 +12,6 @@ class SpotifyClient {
 
     private async getSpotify(url: string): Promise<{} | any> {
         if (this.accessToken == "" || !this.accessToken) {
-            console.log("Problem with access token. API Call");
             return;
         }
 
@@ -21,7 +20,6 @@ class SpotifyClient {
         if (response.data) {
             return response.data;
         } else {
-            console.log("No response from spotify!");
             return;
         }
     };
@@ -64,8 +62,6 @@ class SpotifyClient {
 
     public async getRecentlyPlayed() {
         const recentlyPlayed = await this.getSpotify(recentlyPlayedEndpoint);
-
-        console.log(recentlyPlayed);
 
         if (recentlyPlayed) {
             return formatRecentlyPlayed(recentlyPlayed);

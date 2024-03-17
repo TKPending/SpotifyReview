@@ -17,7 +17,6 @@ interface Content {
 const ReviewPage = () => {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState<boolean>(true);
-  const [contentLoading, setContentLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -27,6 +26,7 @@ const ReviewPage = () => {
       sessionStorage.removeItem("review_stored");
       sessionStorage.removeItem("access_token");
       sessionStorage.removeItem("code_verifier");
+      sessionStorage.removeItem("refresh_token");
       router.push("/");
     }
   }, [error]);

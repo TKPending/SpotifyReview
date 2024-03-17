@@ -1,24 +1,14 @@
 import RecentSongs from "./components/RecentSongs";
 import { useEffect, useState } from "react";
 import RefreshSongs from "./components/RefreshSongs";
+import RefreshToken from "../RefreshToken";
 
 const RecentlyPlayed = () => {
   const [refresh, setRefresh] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const recentSongsStr = sessionStorage.getItem("recentlyPlayed");
   const recentSongs = recentSongsStr && JSON.parse(recentSongsStr);
-
-  useEffect(() => {
-    if (refresh) {
-      setTimeout(() => {
-        setRefresh(false);
-        if (recentSongs.error) {
-          setError(true);
-        }
-      }, 1000);
-    }
-  }, []);
-
+  
   return (
     <div className="bg-green-600 py-4 h-auto w-3/4 flex gap-4 px-12 rounded-xl">
       <div className="flex flex-col gap-4 w-full">
@@ -30,7 +20,9 @@ const RecentlyPlayed = () => {
             </p>
           </div>
           <div className="flex flex-1 items-center justify-end">
-            <RefreshSongs setRefresh={setRefresh} setError={setError} />
+            {!error ? 
+            <RefreshSongs setRefresh={setRefresh} setError={setError} /> 
+            : <RefreshToken setRefreshToken={setRefresh} />}
           </div>
         </div>
 

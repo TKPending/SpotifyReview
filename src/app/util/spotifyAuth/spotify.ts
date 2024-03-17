@@ -73,8 +73,9 @@ export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
     const body = await fetch(tokenEndpoint, payload);
     const response = await body.json();
 
-    if (response.access_token) {
+    if (response.access_token && response.refresh_token) {
       sessionStorage.setItem("access_token", response.access_token);
+      sessionStorage.setItem("refresh_token", response.refresh_token);
       return true;
     } else {
       return;
@@ -83,7 +84,44 @@ export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
     // TODO: Error handling
   } catch (error) {
     console.log("Problem fetching access token");
-    console.error("Error while fetching access token:", error);
+    console.error(error);
     // TODO: Handle error
   }
 };
+
+export const spotifyRefreshToken = async (): Promise<boolean | undefined> => {
+  const refreshToken = sessionStorage.getItem('refresh_token');
+  if (!refreshToken) {
+    console.log("Problem fetching refreshToken from sessionStorage.");
+    return;
+  }
+
+  const url = "https://accounts.spotify.com/api/token";
+
+   const payload = {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/x-www-form-urlencoded'
+     },
+     body: new URLSearchParams({
+       grant_type: 'refresh_token',
+       refresh_token: refreshToken,
+       client_id: clientId
+     }),
+   }
+
+   try {
+    const body = await fetch(url, payload);
+    const response = await body.json();
+    
+    if (response.access_token && response.refresh_token) {
+      sessionStorage.setItem('access_token', response.access_token);
+      sessionStorage.setItem('refresh_token', response.refresh_token);
+      return true;
+    }
+   } catch (error) {
+      console.log("Problem fetching access & refresh token");
+      console.error(error);
+      return;
+   }
+}

@@ -22,11 +22,7 @@ export default async function GET<T>(
       data: response.data,
     };
   } catch (error) {
-    console.error(error);
-    console.error(
-      `Problem making a request to the Spotify API. Check - ${__filename}`
-    );
-
+    
     return {
       data: null,
       error: error as AxiosError<any>,
