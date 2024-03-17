@@ -11,15 +11,23 @@ const RefreshSongs = ({ setRefresh, setError }: Props) => {
     setRefresh(true);
 
     const fetchedRecentSongs = await SpotifyClient.getRecentlyPlayed();
-    if (fetchedRecentSongs && fetchedRecentSongs.error) setError(true)
+    if (fetchedRecentSongs && fetchedRecentSongs.error) setError(true);
 
-    sessionStorage.setItem("recentlyPlayed", JSON.stringify(fetchedRecentSongs));
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(
+        "recentlyPlayed",
+        JSON.stringify(fetchedRecentSongs)
+      );
+    }
 
     setRefresh(false);
   };
 
   return (
-    <div onClick={handleRefresh} className="text-white cursor-pointer flex items-center justify-center">
+    <div
+      onClick={handleRefresh}
+      className="text-white cursor-pointer flex items-center justify-center"
+    >
       <p className="hover:bg-opacity-80 p-4 bg-black rounded-lg">Refresh</p>
     </div>
   );

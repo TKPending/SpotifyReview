@@ -14,7 +14,9 @@ export const spotifyVerifier = async () => {
   const hashedCode: ArrayBuffer = await sha256(codeVerifier);
   const codeChallenge: string = base64encode(hashedCode);
 
-  sessionStorage.setItem("code_verifier", codeVerifier);
+  if (typeof window !== "undefined") {
+    sessionStorage.setItem("code_verifier", codeVerifier);
+  }
 
   const params: Record<string, string> = {
     response_type: "code",
@@ -38,11 +40,17 @@ interface Payload {
 }
 
 export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
-  const codeVerifier: string = sessionStorage.getItem("code_verifier") || "";
+  let codeVerifier: string;
 
-  if (codeVerifier == "") {
-    console.log("Problem setting up verifier");
-    return; // TODO: Error handling
+  if (typeof window !== "undefined") {
+    codeVerifier = sessionStorage.getItem("code_verifier") || "";
+
+    if (codeVerifier == "") {
+      console.log("Problem setting up verifier");
+      return; // TODO: Error handling
+    }
+  } else {
+    return;
   }
 
   const urlParams: URLSearchParams = new URLSearchParams(
@@ -90,7 +98,13 @@ export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
 };
 
 export const spotifyRefreshToken = async (): Promise<boolean | undefined> => {
-  const refreshToken = sessionStorage.getItem('refresh_token');
+  let refreshToken: string;
+  if (typeof window !== "undefined") {
+    refreshToken = sessionStorage.getItem('refresh_token') || "";
+  } else {
+    return;
+  }
+
   if (!refreshToken) {
     console.log("Problem fetching refreshToken from sessionStorage.");
     return;
@@ -115,8 +129,11 @@ export const spotifyRefreshToken = async (): Promise<boolean | undefined> => {
     const response = await body.json();
     
     if (response.access_token && response.refresh_token) {
-      sessionStorage.setItem('access_token', response.access_token);
-      sessionStorage.setItem('refresh_token', response.refresh_token);
+    
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem('access_token', response.access_token);
+        sessionStorage.setItem('refresh_token', response.refresh_token);
+    }
       return true;
     }
    } catch (error) {

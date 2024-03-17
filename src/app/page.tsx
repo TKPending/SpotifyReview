@@ -13,7 +13,11 @@ export default function Home() {
   useEffect(() => {
     const fetchAccessToken = async () => {
       await spotifyAccessToken();
-      const token = sessionStorage.getItem("access_token");
+      let token;
+
+      if (typeof window !== "undefined") {
+        token = sessionStorage.getItem("access_token");
+      }
       if (token) {
         setAccessToken(token);
       } else {

@@ -6,8 +6,12 @@ import RefreshToken from "../RefreshToken";
 const RecentlyPlayed = () => {
   const [refresh, setRefresh] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const recentSongsStr = sessionStorage.getItem("recentlyPlayed");
-  const recentSongs = recentSongsStr && JSON.parse(recentSongsStr);
+  let recentSongs;
+
+  if (typeof window !== "undefined") {
+    const recentSongsStr = sessionStorage.getItem("recentlyPlayed");
+    recentSongs = recentSongsStr && JSON.parse(recentSongsStr);
+  }
 
   useEffect(() => {
     setTimeout(() => {

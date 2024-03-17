@@ -9,9 +9,9 @@ export interface NextResponse<T = any> {
 export async function GET<T>(
   accessToken: any,
   url: string,
-): Promise<NextResponse<T>> {
+): Promise<any> {
   try {
-    const response: AxiosResponse<T> = await axios({
+    const response = await axios({
       method: "get",
       url,
       headers: {

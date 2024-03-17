@@ -23,10 +23,12 @@ const ReviewPage = () => {
     const accessToken: string = sessionStorage.getItem("access_token") || "";
 
     if (!accessToken) {
-      sessionStorage.removeItem("review_stored");
-      sessionStorage.removeItem("access_token");
-      sessionStorage.removeItem("code_verifier");
-      sessionStorage.removeItem("refresh_token");
+      if (typeof window !== "undefined") {
+        sessionStorage.removeItem("review_stored");
+        sessionStorage.removeItem("access_token");
+        sessionStorage.removeItem("code_verifier");
+        sessionStorage.removeItem("refresh_token");
+      }
       router.push("/");
     }
   }, [error]);
@@ -44,27 +46,35 @@ const ReviewPage = () => {
         if (favouriteArtists && favouriteArtists.error) throw new Error(favouriteArtists.error);
         if (recentlyPlayed && recentlyPlayed.error) throw new Error(recentlyPlayed.error);
 
-        sessionStorage.setItem("user", JSON.stringify(user));
-        sessionStorage.setItem("favouriteSongs",JSON.stringify(favouriteSongs));
-        sessionStorage.setItem("favouriteArtists",JSON.stringify(favouriteArtists));
-        sessionStorage.setItem("recentlyPlayed",JSON.stringify(recentlyPlayed));
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("user", JSON.stringify(user));
+          sessionStorage.setItem("favouriteSongs",JSON.stringify(favouriteSongs));
+          sessionStorage.setItem("favouriteArtists",JSON.stringify(favouriteArtists));
+          sessionStorage.setItem("recentlyPlayed",JSON.stringify(recentlyPlayed));
 
-        setPageLoading(false);
-        sessionStorage.setItem("review_stored", "stored");
+          setPageLoading(false);
+          sessionStorage.setItem("review_stored", "stored");
+        }        
       } catch (error) {
         // Need to do error handing
-        sessionStorage.removeItem("user");
-        sessionStorage.removeItem("favouriteSongs");
-        sessionStorage.removeItem("favouriteArtists");
-        sessionStorage.removeItem("recentlyPlayed");
-
-        sessionStorage.setItem("review_stored", "");
+        if (typeof window !== "undefined") { 
+          sessionStorage.removeItem("user");
+          sessionStorage.removeItem("favouriteSongs");
+          sessionStorage.removeItem("favouriteArtists");
+          sessionStorage.removeItem("recentlyPlayed");
+  
+          sessionStorage.setItem("review_stored", "");
+  
+        }
         setError(true);
         console.log("Problem with setting content");
       }
     };
 
-    const stored = sessionStorage.getItem("review_stored");
+    let stored; 
+    if (typeof window !== "undefined") { 
+      stored = sessionStorage.getItem("review_stored"); 
+    }
 
     if (!stored) {
       fetchData();

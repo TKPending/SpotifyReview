@@ -22,15 +22,6 @@ const AuthoriseAccess = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const token: string = sessionStorage.getItem("access_token") || "";
-
-  //   if (token == "") {
-  //     spotifyAccessToken();
-  //     return;
-  //   } 
-  // }, []);
-
   return (
     <div
       onClick={handleAuthorisation}
