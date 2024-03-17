@@ -20,6 +20,9 @@ const FavouriteContainer = ({ title }: Favourites) => {
   useEffect(() => {
     setTimeout(() => {
       setContentLoading(false);
+      if (favourites.error) {
+        setError(true);
+      }
     }, 1000);
   }, [contentLoading]);
 
@@ -49,7 +52,7 @@ const FavouriteContainer = ({ title }: Favourites) => {
           </div>
         )}
 
-        {error && (
+        {error && favourites.error && (
           <div className="h-full w-full flex items-center justify-center text-center">
             <p className="text-black text-4xl font-semibold">Problem fetching favourite. Re-authorise!</p>
           </div>
@@ -57,7 +60,7 @@ const FavouriteContainer = ({ title }: Favourites) => {
 
         {!contentLoading && !error && (
           <>
-            {favourites.map((item: any, index: number) => (
+            {!favourites.error && favourites.map((item: any, index: number) => (
               <div key={index}>
                 {title == "Favourite Artists" ? (
                   <FavouriteArtist key={index} content={item} />

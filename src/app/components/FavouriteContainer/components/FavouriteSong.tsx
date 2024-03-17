@@ -37,7 +37,7 @@ const FavouriteSong = ({ content }: Props) => {
       {/* <p>{content.song_duration}</p> */}
       <div className="flex flex-1 flex-col gap-4 items-center justify-center ml-2">
         <a href={content.song_href} className="flex flex-col items-center font-semibold">
-          <p>{content.song_name}</p>
+          <p className="text-green-600">{content.song_name}</p>
           <p>{minutes + ":" + (seconds < 10 ? "0" : "") + seconds}</p>
         </a>
         <button
@@ -49,7 +49,7 @@ const FavouriteSong = ({ content }: Props) => {
           {isPlaying ? (
             <FontAwesomeIcon icon={faPause} />
           ) : (
-            <FontAwesomeIcon icon={faPlay} />
+            <FontAwesomeIcon icon={faPlay}/>
           )}
         </button>
         <audio ref={audioRef} src={content.song_preview}></audio>

@@ -3,14 +3,15 @@ import { Dispatch, SetStateAction } from "react";
 
 type Props = {
   setRefresh: Dispatch<SetStateAction<boolean>>;
+  setError: Dispatch<SetStateAction<boolean>>;
 };
 
-const RefreshSongs = ({ setRefresh }: Props) => {
+const RefreshSongs = ({ setRefresh, setError }: Props) => {
   const handleRefresh = async () => {
     setRefresh(true);
 
     const fetchedRecentSongs = await SpotifyClient.getRecentlyPlayed();
-    if (fetchedRecentSongs && fetchedRecentSongs.error) throw new Error(fetchedRecentSongs);
+    if (fetchedRecentSongs && fetchedRecentSongs.error) setError(true)
 
     sessionStorage.setItem("recentlyPlayed", JSON.stringify(fetchedRecentSongs));
 

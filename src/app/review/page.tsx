@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import FavouriteContainer from "../components/FavouriteContainer/FavouriteContainer";
 import SpotifyClient from "@/app/util/SpotifyClient";
 import RecentlyPlayed from "../components/RecentPlayedContainer/RecentlyPlayed";
+import Header from "../components/Header";
 
 interface Content {
   user: any;
@@ -73,7 +74,8 @@ const ReviewPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-12 overflow-y-auto h-auto w-screen px-16 py-4">
+    <div className="pt-20 flex flex-col items-center gap-12 overflow-y-auto h-auto w-screen px-16 py-4">
+      <Header destination="/" text="Need help?" />
       {pageLoading ? (
         <div className="h-screen w-screen flex justify-center items-center">
           <p className="text-green-600 text-4xl font-bold">Loading Review</p>
