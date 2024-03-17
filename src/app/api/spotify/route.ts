@@ -22,7 +22,6 @@ export async function GET<T>(
       data: response.data,
     };
   } catch (error) {
-    
     return {
       data: null,
       error: error as AxiosError<any>,

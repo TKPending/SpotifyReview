@@ -1,4 +1,4 @@
-import { GET, ApiResponse } from "@/app/api/spotify/route";
+import { GET } from "@/app/api/spotify/route";
 import {
   formatFavouriteSongs,
   formatFavouriteArtists,
@@ -21,17 +21,17 @@ class SpotifyClient {
     }
   }
 
-  private async getSpotify(url: string): Promise<{} | any> {
+  private async getSpotify(url: string): Promise<any | null> {
     if (this.accessToken == "" || !this.accessToken) {
-      return;
+      return null;
     }
-
-    const response: ApiResponse<unknown> = await GET(this.accessToken, url);
-
-    if (response.data) {
+  
+    const response = await GET(this.accessToken, url);
+  
+    if (response && response.data) {
       return response.data;
     } else {
-      return;
+      return null;
     }
   }
 
