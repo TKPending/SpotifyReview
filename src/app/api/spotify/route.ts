@@ -8,7 +8,7 @@ export interface ApiResponse<T = any> {
 export async function GET<T>(
   accessToken: any,
   url: string,
-): Promise<ApiResponse<T>> {
+): Promise<ApiResponse<void | AxiosResponse<T>>> {
   try {
     const response: AxiosResponse<T> = await axios({
       method: "get",
@@ -19,7 +19,7 @@ export async function GET<T>(
     });
 
     return {
-      data: response.data,
+      data: response,
     };
   } catch (error) {
     return {
