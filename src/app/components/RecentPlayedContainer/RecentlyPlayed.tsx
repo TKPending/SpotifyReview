@@ -8,6 +8,12 @@ const RecentlyPlayed = () => {
   const [error, setError] = useState<boolean>(false);
   const recentSongsStr = sessionStorage.getItem("recentlyPlayed");
   const recentSongs = recentSongsStr && JSON.parse(recentSongsStr);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRefresh(false);
+    }, 1000)
+  }, []);
   
   return (
     <div className="bg-green-600 py-4 h-auto w-3/4 flex gap-4 px-12 rounded-xl">
@@ -44,7 +50,7 @@ const RecentlyPlayed = () => {
               </div>
             )}
 
-            {!refresh && !error && (
+            {!refresh && (
               <div className="h-[900px] flex flex-col gap-4 overflow-y-auto">
                 {recentSongs.map((song: any, index: number) => (
                   <RecentSongs key={index} song={song} />
