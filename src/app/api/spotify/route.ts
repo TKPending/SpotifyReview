@@ -5,7 +5,7 @@ export interface ApiResponse<T = any> {
   error?: AxiosError<any> | undefined;
 }
 
-export default async function GET<T>(
+export async function GET<T>(
   accessToken: any,
   url: string,
 ): Promise<ApiResponse<T>> {

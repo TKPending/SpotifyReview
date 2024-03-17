@@ -1,4 +1,4 @@
-import GET, { ApiResponse } from "@/app/api/spotify/route";
+import { GET, ApiResponse } from "@/app/api/spotify/route";
 import {
   formatFavouriteSongs,
   formatFavouriteArtists,
