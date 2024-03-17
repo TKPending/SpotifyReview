@@ -1,4 +1,4 @@
-import GET from "../api/route";
+import GET from "../api/spotify/route";
 import { ApiResponse } from "../api/route";
 import { formatFavouriteSongs, formatFavouriteArtists, formatRecentlyPlayed } from "./spotifyFormat";
 
