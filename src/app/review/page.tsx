@@ -20,7 +20,10 @@ const ReviewPage = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    const accessToken: string = sessionStorage.getItem("access_token") || "";
+    let accessToken;
+    if (typeof window !== "undefined") {
+      accessToken = sessionStorage.getItem("access_token") || "";
+    }
 
     if (!accessToken) {
       if (typeof window !== "undefined") {
