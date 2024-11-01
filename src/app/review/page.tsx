@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import FavouriteContainer from "../components/FavouriteContainer/FavouriteContainer";
 import SpotifyClient from "@/app/util/SpotifyClient";
-import RecentlyPlayed from "../components/RecentPlayedContainer/RecentlyPlayed";
 import Header from "../components/Header";
 import LoadingTransitionPage from "@/app/page/LoadingTransitionPage";
-import ReviewLayout from "../layout/ReviewLayout";
+import ReviewLayout from "@/app/layout/ReviewLayout";
 
 interface Content {
   user: any;
@@ -42,7 +40,6 @@ const ReviewPage = () => {
     const fetchData = async () => {
       try {
         const user = await SpotifyClient.userDetails();
-        console.log(user);
         const favouriteSongs = await SpotifyClient.getFavouriteSongs();
         const favouriteArtists = await SpotifyClient.getFavouriteArtists();
         const recentlyPlayed = await SpotifyClient.getRecentlyPlayed();
@@ -62,7 +59,7 @@ const ReviewPage = () => {
           sessionStorage.setItem("review_stored", "stored");
         }        
       } catch (error) {
-        // Need to do error handing
+        // TODO: Need to do error handing
         if (typeof window !== "undefined") { 
           sessionStorage.removeItem("user");
           sessionStorage.removeItem("favouriteSongs");
@@ -90,24 +87,12 @@ const ReviewPage = () => {
   }, []);
 
   return (
-    <div className="pt-20 flex flex-col items-center gap-12 overflow-y-auto h-auto w-screen px-16 py-4">
-      <Header destination="/" text="Need help?" />
+    <div className="max-h-screen h-screen w-screen">
       {pageLoading ? (
         <LoadingTransitionPage />
       ) : (
         <ReviewLayout />
-        // <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
-        //   <div className="w-full">
-        //     <FavouriteContainer title="Favourite Artists" />
-        //   </div>
-
-        //   <div className="w-full">
-        //     <FavouriteContainer title="Favourite Songs" />
-        //   </div>
-        // </div>
       )}
-
-      <RecentlyPlayed />
     </div>
   );
 };

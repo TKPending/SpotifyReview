@@ -8,7 +8,6 @@ type Props = {
 const ReviewContentContainer = ({ optionIndex }: Props) => {
     let content;
 
-    // Determine the content based on the optionIndex
     switch (optionIndex) {
         case 0:
             content = <FavouriteContainer title="Favourite Artists" />;
@@ -25,8 +24,8 @@ const ReviewContentContainer = ({ optionIndex }: Props) => {
     }
 
     return (
-        <div className="w-[80%] h-full">
-            {content}
+        <div className="w-[80%] h-full mx-12 flex items-center justify-center">
+            <div className="p-20 w-full h-full">{content}</div>
         </div>
     );
 };
