@@ -7,6 +7,7 @@ import SpotifyClient from "@/app/util/SpotifyClient";
 import RecentlyPlayed from "../components/RecentPlayedContainer/RecentlyPlayed";
 import Header from "../components/Header";
 import LoadingTransitionPage from "@/app/page/LoadingTransitionPage";
+import ReviewLayout from "../layout/ReviewLayout";
 
 interface Content {
   user: any;
@@ -41,6 +42,7 @@ const ReviewPage = () => {
     const fetchData = async () => {
       try {
         const user = await SpotifyClient.userDetails();
+        console.log(user);
         const favouriteSongs = await SpotifyClient.getFavouriteSongs();
         const favouriteArtists = await SpotifyClient.getFavouriteArtists();
         const recentlyPlayed = await SpotifyClient.getRecentlyPlayed();
@@ -93,15 +95,16 @@ const ReviewPage = () => {
       {pageLoading ? (
         <LoadingTransitionPage />
       ) : (
-        <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
-          <div className="w-full">
-            <FavouriteContainer title="Favourite Artists" />
-          </div>
+        <ReviewLayout />
+        // <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
+        //   <div className="w-full">
+        //     <FavouriteContainer title="Favourite Artists" />
+        //   </div>
 
-          <div className="w-full">
-            <FavouriteContainer title="Favourite Songs" />
-          </div>
-        </div>
+        //   <div className="w-full">
+        //     <FavouriteContainer title="Favourite Songs" />
+        //   </div>
+        // </div>
       )}
 
       <RecentlyPlayed />
