@@ -16,7 +16,7 @@ const AuthoriseAccess = () => {
       await spotifyVerifier();
     } catch (err) {
       console.log(
-        "AuthoriseAccess.tsx - Problem doing with code authorisation"
+        "AuthoriseAccess.tsx - Problem with the code for authentication."
       );
       console.log(err);
     }
@@ -25,7 +25,7 @@ const AuthoriseAccess = () => {
   return (
     <div
       onClick={handleAuthorisation}
-      className="bg-green-600 h-12 w-40 flex items-center justify-center rounded-2xl mt-20 hover:bg-green-500 cursor-pointer"
+      className="bg-green-600 h-12 w-40 flex items-center justify-center rounded-2xl mt-20 hover:bg-green-500 hover:shadow-2xl hover:scale-105 transition duration-200 cursor-pointer"
     >
       <p className="font-semibold">Authorise Access</p>
     </div>
