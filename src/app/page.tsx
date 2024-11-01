@@ -39,8 +39,7 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full text-white flex flex-col justify-center items-center gap-8">
-      <LoadingTransitionPage />
-      {/* <AnimatedBackground />
+      <AnimatedBackground />
       <Header destination="/help" text="Need Help?" />
       <h1 className="text-4xl font-bold mb-2">
         Welcome to <span className="text-green-600">Spotify</span> Review
@@ -57,7 +56,7 @@ export default function Home() {
         </p>
       </div>
 
-      <AuthoriseAccess /> */}
+      <AuthoriseAccess />
     </div>
   );
 }
