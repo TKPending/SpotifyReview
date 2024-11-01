@@ -42,6 +42,7 @@ const ReviewPage = () => {
     const fetchData = async () => {
       try {
         const user = await SpotifyClient.userDetails();
+        console.log(user);
         const favouriteSongs = await SpotifyClient.getFavouriteSongs();
         const favouriteArtists = await SpotifyClient.getFavouriteArtists();
         const recentlyPlayed = await SpotifyClient.getRecentlyPlayed();

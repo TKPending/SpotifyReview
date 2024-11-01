@@ -39,9 +39,11 @@ class SpotifyClient {
     const user = await this.getSpotify(userEndpoint);
 
     if (user) {
+      const userAvatar: string = user.images[0] ? user.images[0].url : "user.png";
       return {
         user: user.display_name,
         url: user.external_urls,
+        userAvatar,
       };
     }
 
