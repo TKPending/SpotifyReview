@@ -6,6 +6,7 @@ import FavouriteContainer from "../components/FavouriteContainer/FavouriteContai
 import SpotifyClient from "@/app/util/SpotifyClient";
 import RecentlyPlayed from "../components/RecentPlayedContainer/RecentlyPlayed";
 import Header from "../components/Header";
+import LoadingTransitionPage from "@/app/page/LoadingTransitionPage";
 
 interface Content {
   user: any;
@@ -90,9 +91,7 @@ const ReviewPage = () => {
     <div className="pt-20 flex flex-col items-center gap-12 overflow-y-auto h-auto w-screen px-16 py-4">
       <Header destination="/" text="Need help?" />
       {pageLoading ? (
-        <div className="h-screen w-screen flex justify-center items-center">
-          <p className="text-green-600 text-4xl font-bold">Loading Review</p>
-        </div>
+        <LoadingTransitionPage />
       ) : (
         <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
           <div className="w-full">

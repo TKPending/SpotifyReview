@@ -7,6 +7,7 @@ import AnimatedBackground from "./components/AnimationContainer/AnimatedBackgrou
 import AuthoriseAccess from "./components/AuthoriseAccess";
 import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
 import Header from "./components/Header";
+import LoadingTransitionPage from "./page/LoadingTransitionPage";
 
 export default function Home() {
   const [accessToken, setAccessToken] = useState<string | null | undefined>(
