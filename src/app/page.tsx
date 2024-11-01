@@ -7,6 +7,7 @@ import AnimatedBackground from "./components/AnimationContainer/AnimatedBackgrou
 import AuthoriseAccess from "./components/AuthoriseAccess";
 import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
 import Header from "./components/Header";
+import LoadingTransitionPage from "./page/LoadingTransitionPage";
 
 export default function Home() {
   const [accessToken, setAccessToken] = useState<string | null | undefined>(
@@ -38,7 +39,8 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full text-white flex flex-col justify-center items-center gap-8">
-      <AnimatedBackground />
+      <LoadingTransitionPage />
+      {/* <AnimatedBackground />
       <Header destination="/help" text="Need Help?" />
       <h1 className="text-4xl font-bold mb-2">
         Welcome to <span className="text-green-600">Spotify</span> Review
@@ -55,7 +57,7 @@ export default function Home() {
         </p>
       </div>
 
-      <AuthoriseAccess />
+      <AuthoriseAccess /> */}
     </div>
   );
 }
