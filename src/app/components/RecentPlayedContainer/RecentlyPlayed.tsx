@@ -26,7 +26,7 @@ const RecentlyPlayed = () => {
           <div className="flex flex-col gap-2 p-4">
             <p className="font-semibold text-3xl text-black">Recently Played Songs</p>
             <p className="font-semibold text-gray-300">
-              40 of your most recently played songs! Click on refresh to update
+              40 Of Your Most Recently Played Songs
             </p>
           </div>
           <div className="flex flex-1 items-center justify-end">

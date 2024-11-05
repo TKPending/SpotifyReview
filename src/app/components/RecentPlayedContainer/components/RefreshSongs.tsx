@@ -28,7 +28,7 @@ const RefreshSongs = ({ setRefresh, setError }: Props) => {
       onClick={handleRefresh}
       className="text-white cursor-pointer flex items-center justify-center"
     >
-      <p className="hover:bg-opacity-80 p-4 bg-black rounded-lg">Refresh</p>
+      <p className="hover:bg-opacity-80 hover:scale-105 transition duration-200 font-semibold p-4 bg-black rounded-lg">Refresh</p>
     </div>
   );
 };
