@@ -1,5 +1,6 @@
 import RecentSongs from "./components/RecentSongs";
 import { useEffect, useState } from "react";
+import Fetching from "../FavouriteContainer/components/Fetching";
 import RefreshSongs from "./components/RefreshSongs";
 import RefreshToken from "../RefreshToken";
 
@@ -51,11 +52,7 @@ const RecentlyPlayed = () => {
         <div className="h-full w-full p-4 overflow-hidden">
           {recentSongs && !recentSongs.error && (
             <div className="h-full w-full">
-              {refresh && !error && (
-                <div className="flex items-center justify-center h-72 w-full">
-                  <p className="text-black text-3xl">Fetching Recent Songs</p>
-                </div>
-              )}
+              {refresh && !error && <Fetching />}
 
               {!refresh && (
                 <div className="h-full py-4 flex flex-col gap-4 overflow-y-auto">
