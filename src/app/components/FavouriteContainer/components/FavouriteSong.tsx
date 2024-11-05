@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { FavouriteSongType } from "@/app/types/FavouritesType";
 
 import { useRef, useState } from "react";
 
 type Props = {
-  content: any;
+  content: FavouriteSongType;
 };
 
 const FavouriteSong = ({ content }: Props) => {
@@ -25,6 +26,8 @@ const FavouriteSong = ({ content }: Props) => {
   const durationInSeconds = content.song_duration / 1000;
   const minutes = Math.floor(durationInSeconds / 60);
   const seconds = Math.round(durationInSeconds % 60);
+
+  console.log(content);
 
 
   return (
