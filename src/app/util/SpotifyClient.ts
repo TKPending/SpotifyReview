@@ -4,6 +4,7 @@ import {
   formatFavouriteArtists,
   formatRecentlyPlayed,
 } from "./spotifyFormat";
+import { FavouriteSongType } from "../types/FavouritesType";
 
 const userEndpoint: string = "https://api.spotify.com/v1/me";
 const favouriteEndpoint: string = "https://api.spotify.com/v1/me/top/";
@@ -56,7 +57,7 @@ class SpotifyClient {
     );
 
     if (favouriteSongs) {
-      const formattedSongs = formatFavouriteSongs(favouriteSongs);
+      const formattedSongs: FavouriteSongType = formatFavouriteSongs(favouriteSongs);
       await this.getArtistImage(formattedSongs);
 
       return formattedSongs;
