@@ -23,7 +23,7 @@ const RecentSongs = ({ song }: Props) => {
   };
 
   return (
-    <div className="flex hover:bg-opacity-80 gap-4 bg-black text-white h-auto px-8 py-4 rounded-xl text-center">
+    <div className="flex hover:opacity-80 gap-4 bg-black text-white h-auto px-8 py-4 rounded-xl text-center">
       <a href={song.aritst_href} className="flex w-1/3 gap-6 items-center justify-center">
         <img src={song.image} className="h-32 w-32 rounded-lg" />
         <p className="flex-wrap w-20">{song.artist}</p>
@@ -33,8 +33,8 @@ const RecentSongs = ({ song }: Props) => {
         <a href={song.href} className="cursor-pointer font-semibold text-green-600">{song.song_name}</a>
         <button
           onClick={handleTogglePlay}
-          className={`flex items-center justify-center p-2 rounded-lg cursor-pointer h-8 w-8 text-green-500 hover:bg-green-300 ${
-            isPlaying ? "bg-green-300" : ""
+          className={`flex items-center justify-center p-2 rounded-lg cursor-pointer h-8 w-8 text-green-500 bg-green-300 bg-opacity-60 transition duration-400 ${
+            isPlaying ? "bg-white bg-opacity-80 rounded-lg transition duration-400" : ""
           }`}
         >
           {isPlaying ? (
@@ -46,7 +46,7 @@ const RecentSongs = ({ song }: Props) => {
         <audio ref={audioRef} src={song.song_preview}></audio>
 
         {song.album_name && (
-          <p className="text-xs"><span className="text-green-600">Album</span> {song.album_name}</p>
+          <p className="text-xs"><span className="text-green-600 font-semibold">Album:</span> {song.album_name}</p>
         )}
       </div>
 
