@@ -3,6 +3,7 @@ import FavouriteArtist from "./components/FavouriteArtist";
 import FavouriteSong from "./components/FavouriteSong";
 import UpdateFavourite from "./components/UpdateFavourite";
 import RefreshToken from "../RefreshToken";
+import Fetching from "./components/Fetching";
 
 type Favourites = {
   title: string;
@@ -42,13 +43,7 @@ const FavouriteContainer = ({ title }: Favourites) => {
       </div>
 
       <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4 p-4">
-        {contentLoading && (
-          <div className="h-full w-full flex items-center justify-center">
-            <p className="text-black text-4xl font-semibold">
-              Fetching Favourites....
-            </p>
-          </div>
-        )}
+        {contentLoading && <Fetching />}
 
         {!refreshToken && (
           <div className="h-full w-full flex items-center justify-center">
