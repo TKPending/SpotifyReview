@@ -55,7 +55,6 @@ class SpotifyClient {
     const favouriteSongs = await this.getSpotify(
       `${favouriteEndpoint}tracks?time_range=short_term&limit=10`
     );
-    console.log(favouriteSongs);
 
     if (favouriteSongs) {
       const formattedSongs: FavouriteSongType = formatFavouriteSongs(favouriteSongs);
