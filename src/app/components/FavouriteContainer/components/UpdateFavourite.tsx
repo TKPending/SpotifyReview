@@ -8,6 +8,8 @@ type Props = {
   setError: Dispatch<SetStateAction<boolean>>;
 };
 
+// Won't need to update favourite songs or artist often
+
 const UpdateFavourite = ({ section, setContentLoading, setError }: Props) => {
   const [loading, setLoading] = useState(false);
 
