@@ -37,15 +37,7 @@ const FavouriteContainer = ({ title }: Favourites) => {
         </div>
 
         <div className="flex-1">
-          {!error ? (
-            <UpdateFavourite
-              section={title}
-              setContentLoading={setContentLoading}
-              setError={setError}
-            />
-          ) : (
-            <RefreshToken setRefreshToken={setRefreshToken} />
-          )}
+          {error && <RefreshToken setRefreshToken={setRefreshToken} />}
         </div>
       </div>
 
@@ -60,7 +52,9 @@ const FavouriteContainer = ({ title }: Favourites) => {
 
         {!refreshToken && (
           <div className="h-full w-full flex items-center justify-center">
-            <p className="text-3xl font-semibold">This page will refresh in 3s. Press update to see your favourites</p>
+            <p className="text-3xl font-semibold">
+              This page will refresh in 3s. Press update to see your favourites
+            </p>
           </div>
         )}
 
