@@ -20,12 +20,12 @@ const RecentlyPlayed = () => {
   }, []);
 
   return (
-    <div className="bg-green-600 py-4 h-full w-full flex gap-4 px-12 rounded-xl overflow-hidden">
+    <div className="bg-green-600 py-4 h-full w-full flex gap-4 p-4 rounded-xl overflow-hidden">
       <div className="flex flex-col gap-4 w-full ">
         <div className="flex h-20 items-center px-4">
-          <div>
-            <p className="font-semibold text-xl">Recently Played Songs</p>
-            <p>
+          <div className="flex flex-col gap-2 p-4">
+            <p className="font-semibold text-3xl text-black">Recently Played Songs</p>
+            <p className="font-semibold text-gray-300">
               40 of your most recently played songs! Click on refresh to update
             </p>
           </div>
@@ -48,7 +48,7 @@ const RecentlyPlayed = () => {
           )}
         </div>
 
-        <div className="h-full w-full py-4 overflow-hidden">
+        <div className="h-full w-full p-4 overflow-hidden">
           {recentSongs && !recentSongs.error && (
             <div className="h-full w-full">
               {refresh && !error && (
