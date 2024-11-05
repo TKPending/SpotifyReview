@@ -7,12 +7,12 @@ const ReviewLayout = () => {
   const handleOptionChange = (optionIndex: number) => {
     setTimeout(() => {
         setOption(optionIndex);
-    }, 2000);
+    }, 100);
   };
 
   return (
     <div className="flex max-h-screen max-w-screen h-screen w-screen ">
-      <UserContainer handleOptionChange={handleOptionChange} />
+      <UserContainer handleOptionChange={handleOptionChange} activeOption={option} />
       <ReviewContentContainer optionIndex={option} />
     </div>
   );

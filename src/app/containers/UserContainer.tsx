@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
 type Props = {
+  activeOption: number;
   handleOptionChange: (option: number) => void;
 };
 
-const UserContainer = ({ handleOptionChange }: Props) => {
+const UserContainer = ({ handleOptionChange, activeOption }: Props) => {
   const [userAvatar, setUserAvatar] = useState<string>("");
   const [username, setUsername] = useState<string>("");
 
@@ -42,7 +43,7 @@ const UserContainer = ({ handleOptionChange }: Props) => {
           <div key={index} className="mt-6">
             <p
               onClick={() => handleOptionChange(index)}
-              className="text-xl font-semibold transition duration-200 cursor-pointer text-green-600 hover:text-gray-300 hover:text-underline"
+              className={`${activeOption === index && "text-white"} text-xl font-semibold transition duration-200 cursor-pointer text-green-600 hover:text-gray-300 hover:text-underline`}
             >
               {option}
             </p>
