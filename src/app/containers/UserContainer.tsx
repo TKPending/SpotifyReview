@@ -27,7 +27,7 @@ const UserContainer = ({ handleOptionChange }: Props) => {
   }, []);
 
   return (
-    <div className="w-[20%] h-full flex flex-col gap-4 mt-[8%]">
+    <div className="flex flex-col items-center gap-4 w-1/5 mt-[4%]">
       <div className="flex flex-col items-center justify-center gap-4">
         <img 
           src={userAvatar} 

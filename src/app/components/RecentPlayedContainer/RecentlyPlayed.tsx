@@ -16,12 +16,12 @@ const RecentlyPlayed = () => {
   useEffect(() => {
     setTimeout(() => {
       setRefresh(false);
-    }, 1000)
+    }, 1000);
   }, []);
-  
+
   return (
-    <div className="bg-green-600 py-4 h-auto w-3/4 flex gap-4 px-12 rounded-xl">
-      <div className="flex flex-col gap-4 w-full">
+    <div className="bg-green-600 py-4 h-full w-full flex gap-4 px-12 rounded-xl overflow-hidden">
+      <div className="flex flex-col gap-4 w-full ">
         <div className="flex h-20 items-center px-4">
           <div>
             <p className="font-semibold text-xl">Recently Played Songs</p>
@@ -30,9 +30,11 @@ const RecentlyPlayed = () => {
             </p>
           </div>
           <div className="flex flex-1 items-center justify-end">
-            {!error ? 
-            <RefreshSongs setRefresh={setRefresh} setError={setError} /> 
-            : <RefreshToken setRefreshToken={setRefresh} />}
+            {!error ? (
+              <RefreshSongs setRefresh={setRefresh} setError={setError} />
+            ) : (
+              <RefreshToken setRefreshToken={setRefresh} />
+            )}
           </div>
         </div>
 
@@ -46,23 +48,25 @@ const RecentlyPlayed = () => {
           )}
         </div>
 
-        {recentSongs && !recentSongs.error && (
-          <div className="h-auto">
-            {refresh && !error && (
-              <div className="flex items-center justify-center h-72 w-full">
-                <p className="text-black text-3xl">Fetching Recent Songs</p>
-              </div>
-            )}
+        <div className="h-full w-full py-4 overflow-hidden">
+          {recentSongs && !recentSongs.error && (
+            <div className="h-full w-full">
+              {refresh && !error && (
+                <div className="flex items-center justify-center h-72 w-full">
+                  <p className="text-black text-3xl">Fetching Recent Songs</p>
+                </div>
+              )}
 
-            {!refresh && (
-              <div className="h-[900px] flex flex-col gap-4 overflow-y-auto">
-                {recentSongs.map((song: any, index: number) => (
-                  <RecentSongs key={index} song={song} />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+              {!refresh && (
+                <div className="h-full py-4 flex flex-col gap-4 overflow-y-auto">
+                  {recentSongs.map((song: any, index: number) => (
+                    <RecentSongs key={index} song={song} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

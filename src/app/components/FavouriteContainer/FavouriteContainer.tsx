@@ -26,8 +26,8 @@ const FavouriteContainer = ({ title }: Favourites) => {
   }, [contentLoading]);
 
   return (
-    <div className="flex flex-col gap-4 bg-green-600 h-auto rounded-lg p-4">
-      <div className="flex h-20 w-full">
+    <div className="flex flex-col gap-4 bg-green-600 h-full w-full rounded-lg p-4">
+      <div className="flex h-32 w-full">
         <div className="flex-1 flex-col gap-4 p-2">
           <p className="text-xl font-semibold">{title}</p>
           <p className="font-semibold">

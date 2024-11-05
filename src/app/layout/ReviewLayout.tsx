@@ -11,7 +11,7 @@ const ReviewLayout = () => {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-center">
+    <div className="flex max-h-screen max-w-screen h-screen w-screen ">
       <UserContainer handleOptionChange={handleOptionChange} />
       <ReviewContentContainer optionIndex={option} />
     </div>
