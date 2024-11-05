@@ -27,9 +27,6 @@ const FavouriteSong = ({ content }: Props) => {
   const minutes = Math.floor(durationInSeconds / 60);
   const seconds = Math.round(durationInSeconds % 60);
 
-  console.log(content);
-
-
   return (
     <div className="h-auto bg-black hover:bg-opacity-80 text-white flex align-center p-6 rounded-lg">
       <a className="flex-1 flex items-center justify-center gap-6 p-4" href={content.artist_href}>
