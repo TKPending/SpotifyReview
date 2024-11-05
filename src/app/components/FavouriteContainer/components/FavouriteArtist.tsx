@@ -1,4 +1,5 @@
 import { FavouriteArtistType } from "@/app/types/FavouritesType";
+import "@/app/styles/imageShadowStyle.css";
 
 type Props = {
   content: FavouriteArtistType;
@@ -21,7 +22,7 @@ const FavouriteArtist = ({ content }: Props) => {
   return (
     <a
       href={content.artistHref}
-      className="h-full p-8 rounded-lg text-white text-xl flex bg-black hover:bg-opacity-80"
+      className="h-full p-8 rounded-lg text-white text-xl flex bg-black hover:opacity-80"
     >
       <div className="flex flex-col gap-4 flex-1 p-4">
         <div className="flex flex-col items-start">
@@ -38,7 +39,7 @@ const FavouriteArtist = ({ content }: Props) => {
           ))}
         </div>
       </div>
-      <img src={content.image} className="h-32 w-32 rounde-lg" />
+      <img src={content.image} className="h-32 w-32 rounded-lg image-shadow" />
     </a>
   );
 };

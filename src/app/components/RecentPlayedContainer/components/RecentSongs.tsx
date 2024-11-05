@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
-
 import { useRef, useState } from "react";
+import "@/app/styles/imageShadowStyle.css";
 
 type Props = {
   song: any;
@@ -25,7 +25,7 @@ const RecentSongs = ({ song }: Props) => {
   return (
     <div className="flex hover:opacity-80 gap-4 bg-black text-white h-auto px-8 py-4 rounded-xl text-center">
       <a href={song.aritst_href} className="flex w-1/3 gap-6 items-center justify-center">
-        <img src={song.image} className="h-32 w-32 rounded-lg" />
+        <img src={song.image} className="h-32 w-32 rounded-lg image-shadow" />
         <p className="flex-wrap w-20">{song.artist}</p>
       </a>
 
@@ -46,7 +46,7 @@ const RecentSongs = ({ song }: Props) => {
         <audio ref={audioRef} src={song.song_preview}></audio>
 
         {song.album_name && (
-          <p className="text-xs"><span className="text-green-600 font-semibold">Album:</span> {song.album_name}</p>
+          <p className="text-xs"><span className="text-green-600">Album:</span> {song.album_name}</p>
         )}
       </div>
 

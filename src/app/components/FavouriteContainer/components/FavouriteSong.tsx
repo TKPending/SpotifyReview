@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FavouriteSongType } from "@/app/types/FavouritesType";
-
+import "@/app/styles/imageShadowStyle.css";
 import { useRef, useState } from "react";
 
 type Props = {
@@ -56,7 +56,7 @@ const FavouriteSong = ({ content }: Props) => {
       </div>
 
       <div className="flex flex-1 justify-end">
-        <img src={content.song_image} className="h-32 w-32 rounded-lg" />
+        <img src={content.song_image} className="h-32 w-32 rounded-lg shadow-2xl image-shadow" />
       </div>
     </div>
   );
