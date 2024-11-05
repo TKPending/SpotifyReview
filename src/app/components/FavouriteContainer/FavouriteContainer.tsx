@@ -26,13 +26,13 @@ const FavouriteContainer = ({ title }: Favourites) => {
   }, [contentLoading]);
 
   return (
-    <div className="flex flex-col gap-4 bg-green-600 h-auto rounded-lg p-4">
-      <div className="flex h-20 w-full">
-        <div className="flex-1 flex-col gap-4 p-2">
-          <p className="text-xl font-semibold">{title}</p>
-          <p className="font-semibold">
-            Your top 10 favourite{" "}
-            {title === "Favourite Artists" ? "artists" : "songs"} of the month
+    <div className="flex flex-col gap-4 bg-green-600 h-full w-full rounded-lg p-4">
+      <div className="flex h-32 w-full">
+        <div className="flex flex-1 flex-col gap-2 p-4">
+          <p className="text-3xl font-semibold text-black">{title}</p>
+          <p className="font-semibold text-gray-300">
+            Your Top 10 Favourite{" "}
+            {title === "Favourite Artists" ? "Artists" : "Songs"} Of The Month
           </p>
         </div>
 
@@ -49,7 +49,7 @@ const FavouriteContainer = ({ title }: Favourites) => {
         </div>
       </div>
 
-      <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4">
+      <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4 p-4">
         {contentLoading && (
           <div className="h-full w-full flex items-center justify-center">
             <p className="text-black text-4xl font-semibold">
