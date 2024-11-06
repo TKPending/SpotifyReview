@@ -4,6 +4,7 @@ import {
   formatFavouriteArtists,
   formatRecentlyPlayed,
 } from "./spotifyFormat";
+import { FavouriteSongType } from "../types/FavouritesType";
 
 const userEndpoint: string = "https://api.spotify.com/v1/me";
 const favouriteEndpoint: string = "https://api.spotify.com/v1/me/top/";
@@ -39,9 +40,11 @@ class SpotifyClient {
     const user = await this.getSpotify(userEndpoint);
 
     if (user) {
+      const userAvatar: string = user.images[0] ? user.images[0].url : "user.png";
       return {
         user: user.display_name,
         url: user.external_urls,
+        userAvatar,
       };
     }
 
@@ -54,7 +57,7 @@ class SpotifyClient {
     );
 
     if (favouriteSongs) {
-      const formattedSongs = formatFavouriteSongs(favouriteSongs);
+      const formattedSongs: FavouriteSongType = formatFavouriteSongs(favouriteSongs);
       await this.getArtistImage(formattedSongs);
 
       return formattedSongs;

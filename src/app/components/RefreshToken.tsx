@@ -26,7 +26,7 @@ const RefreshToken = ({setRefreshToken}: Props) => {
     }
 
     return (
-        <div onClick={handleRefreshToken} className="text-red-200 cursor-pointer flex items-center justify-center">
+        <div onClick={handleRefreshToken} className="hover:scale-105 transition duration-200 text-red-200 cursor-pointer flex items-center justify-center">
             <p className="hover:bg-opacity-80 p-4 bg-black rounded-lg">RE-AUTHORISE</p>
         </div>
     )

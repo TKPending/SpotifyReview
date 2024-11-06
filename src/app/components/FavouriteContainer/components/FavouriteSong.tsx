@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
-
+import { FavouriteSongType } from "@/app/types/FavouritesType";
+import "@/app/styles/imageShadowStyle.css";
 import { useRef, useState } from "react";
 
 type Props = {
-  content: any;
+  content: FavouriteSongType;
 };
 
 const FavouriteSong = ({ content }: Props) => {
@@ -26,12 +27,11 @@ const FavouriteSong = ({ content }: Props) => {
   const minutes = Math.floor(durationInSeconds / 60);
   const seconds = Math.round(durationInSeconds % 60);
 
-
   return (
-    <div className="h-auto bg-black hover:bg-opacity-80 text-white flex align-center p-6 rounded-lg">
-      <a className="flex-1 flex items-center justify-center gap-6 p-4" href={content.artist_href}>
+    <div className="h-auto bg-black hover:opacity-80 text-white flex align-center p-6 rounded-lg">
+      <a className="flex items-center gap-4 flex-1" href={content.artist_href}>
+        <img src={content.artist_image} className="h-28 w-28 rounded-lg"/>
         <p className="text-xl font-semibold">{content.artist}</p>
-        <img src={content.artist_image} className="h-20 w-20 rounded-full"/>
       </a>
 
       {/* <p>{content.song_duration}</p> */}
@@ -42,8 +42,8 @@ const FavouriteSong = ({ content }: Props) => {
         </a>
         <button
           onClick={handleTogglePlay}
-          className={`flex items-center justify-center p-2 rounded-lg cursor-pointer h-8 w-8 text-green-500 hover:bg-green-300 ${
-            isPlaying ? "bg-green-300" : ""
+          className={`flex items-center justify-center p-2 rounded-full cursor-pointer h-8 w-8 text-green-500 bg-green-300 bg-opacity-60 transition duration-400  ${
+            isPlaying ? "bg-white bg-opacity-80 rounded-lg transition duration-400" : ""
           }`}
         >
           {isPlaying ? (
@@ -56,7 +56,7 @@ const FavouriteSong = ({ content }: Props) => {
       </div>
 
       <div className="flex flex-1 justify-end">
-        <img src={content.song_image} className="h-32 w-32 rounded-lg" />
+        <img src={content.song_image} className="h-32 w-32 rounded-lg shadow-2xl image-shadow" />
       </div>
     </div>
   );

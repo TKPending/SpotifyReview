@@ -3,6 +3,7 @@ import FavouriteArtist from "./components/FavouriteArtist";
 import FavouriteSong from "./components/FavouriteSong";
 import UpdateFavourite from "./components/UpdateFavourite";
 import RefreshToken from "../RefreshToken";
+import Fetching from "./components/Fetching";
 
 type Favourites = {
   title: string;
@@ -26,41 +27,29 @@ const FavouriteContainer = ({ title }: Favourites) => {
   }, [contentLoading]);
 
   return (
-    <div className="flex flex-col gap-4 bg-green-600 h-auto rounded-lg p-4">
-      <div className="flex h-20 w-full">
-        <div className="flex-1 flex-col gap-4 p-2">
-          <p className="text-xl font-semibold">{title}</p>
-          <p className="font-semibold">
-            Your top 10 favourite{" "}
-            {title === "Favourite Artists" ? "artists" : "songs"} of the month
+    <div className="flex flex-col gap-4 bg-green-600 h-full w-full rounded-lg p-4">
+      <div className="flex h-32 w-full">
+        <div className="flex flex-1 flex-col gap-2 p-4">
+          <p className="text-3xl font-semibold text-black">{title}</p>
+          <p className="font-semibold text-gray-300">
+            Your Top 10 Favourite{" "}
+            {title === "Favourite Artists" ? "Artists" : "Songs"} Of The Month
           </p>
         </div>
 
         <div className="flex-1">
-          {!error ? (
-            <UpdateFavourite
-              section={title}
-              setContentLoading={setContentLoading}
-              setError={setError}
-            />
-          ) : (
-            <RefreshToken setRefreshToken={setRefreshToken} />
-          )}
+          {error && <RefreshToken setRefreshToken={setRefreshToken} />}
         </div>
       </div>
 
-      <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4">
-        {contentLoading && (
-          <div className="h-full w-full flex items-center justify-center">
-            <p className="text-black text-4xl font-semibold">
-              Fetching Favourites....
-            </p>
-          </div>
-        )}
+      <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4 p-4">
+        {contentLoading && <Fetching />}
 
         {!refreshToken && (
           <div className="h-full w-full flex items-center justify-center">
-            <p className="text-3xl font-semibold">This page will refresh in 3s. Press update to see your favourites</p>
+            <p className="text-3xl font-semibold">
+              This page will refresh in 3s. Press update to see your favourites
+            </p>
           </div>
         )}
 
