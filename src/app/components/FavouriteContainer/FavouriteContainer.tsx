@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import FavouriteArtist from "./components/FavouriteArtist";
 import FavouriteSong from "./components/FavouriteSong";
-import UpdateFavourite from "./components/UpdateFavourite";
 import RefreshToken from "../RefreshToken";
 import Fetching from "./components/Fetching";
 
