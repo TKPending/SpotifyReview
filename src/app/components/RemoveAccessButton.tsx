@@ -26,7 +26,7 @@ const RemoveAccessButton = () => {
 
   return (
     <div
-      className="flex items-center justify-center absolute top-5 right-10"
+      className="flex hidden sm:flex items-center justify-center absolute top-5 right-10"
     >
       <p onClick={confirmRemoveAccess} className="text-white font-semibold p-4 rounded-lg bg-green-600 hover:bg-green-800 transition duration-200 hover:cursor-pointer">
         Remove Access

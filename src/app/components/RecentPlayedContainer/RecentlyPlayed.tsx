@@ -22,16 +22,16 @@ const RecentlyPlayed = () => {
   }, []);
 
   return (
-    <div className="bg-green-600 py-4 h-full w-full flex gap-4 p-4 rounded-xl overflow-hidden">
-      <div className="flex flex-col gap-4 w-full ">
-        <div className="flex h-20 items-center px-4">
+    <div className="bg-green-600 sm:py-4 h-full w-full flex max-h-screen gap-4 p-2 sm:p-4 rounded-xl overflow-hidden">
+      <div className="flex flex-col gap-4 w-full">
+        <div className="flex h-20 justify-center sm:justify-start items-center px-4">
           <div className="flex flex-col gap-2 p-4">
-            <p className="font-semibold text-3xl text-black">Recently Played Songs</p>
+            <p className="font-semibold text-xl sm:text-3xl text-black">Recently Played Songs</p>
             <p className="font-semibold text-gray-300">
               40 Of Your Most Recently Played Songs
             </p>
           </div>
-          <div className="flex flex-1 items-center justify-end">
+          <div className="flex hidden sm:flex flex-1 items-center justify-end">
             {!error ? (
               <RefreshSongs setRefresh={setRefresh} setError={setError} />
             ) : (
