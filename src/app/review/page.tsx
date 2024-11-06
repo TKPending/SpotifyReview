@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import SpotifyClient from "@/app/util/SpotifyClient";
-import Header from "../components/Header";
+import { getSessionStorage, setSessionStorage, removeSessionStorage } from "../util/sessionStorageHelper";
 import LoadingTransitionPage from "@/app/page/LoadingTransitionPage";
 import ReviewLayout from "@/app/layout/ReviewLayout";
 
@@ -24,13 +24,13 @@ const ReviewPage = () => {
   useEffect(() => {
     let accessToken;
     if (typeof window !== "undefined") {
-      accessToken = sessionStorage.getItem("access_token") || "";
+      accessToken = getSessionStorage("access_token") || "";
     }
 
     if (!accessToken) {
       if (typeof window !== "undefined") {
         itemsToRemove.forEach((item: string) => {
-          sessionStorage.removeItem(item);
+          removeSessionStorage(item);
         })
       }
       router.push("/");
@@ -59,20 +59,20 @@ const ReviewPage = () => {
 
         if (typeof window !== "undefined") {
           itemsToAdd.forEach((item) => {
-            sessionStorage.setItem(item.name, JSON.stringify(item.value));
+            setSessionStorage(item.name, JSON.stringify(item.value));
           })
 
           setPageLoading(false);
-          sessionStorage.setItem("review_stored", "stored");
+          setSessionStorage("review_stored", "stored");
         }        
       } catch (error) {
         // TODO: Need to do error handing
         if (typeof window !== "undefined") { 
           itemsToRemove.forEach((item:string) => {
-            sessionStorage.removeItem(item);
+            removeSessionStorage(item);
           });
   
-          sessionStorage.setItem("review_stored", "");
+          setSessionStorage("review_stored", "");
   
         }
         setError(true);
@@ -82,7 +82,7 @@ const ReviewPage = () => {
 
     let stored; 
     if (typeof window !== "undefined") { 
-      stored = sessionStorage.getItem("review_stored"); 
+      stored = getSessionStorage("review_stored"); 
     }
 
     if (!stored) {
