@@ -45,6 +45,8 @@ const ReviewPage = () => {
         const favouriteArtists = await SpotifyClient.getFavouriteArtists();
         const recentlyPlayed = await SpotifyClient.getRecentlyPlayed();
 
+        console.log(favouriteArtists);
+
         if (user && user.error) throw new Error(user.error);
         if (favouriteSongs && favouriteSongs.error) throw new Error(favouriteSongs.error);
         if (favouriteArtists && favouriteArtists.error) throw new Error(favouriteArtists.error);
