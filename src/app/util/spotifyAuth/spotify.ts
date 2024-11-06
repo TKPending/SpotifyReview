@@ -11,26 +11,27 @@ const authUrl: URL = new URL("https://accounts.spotify.com/authorize");
 
 export const spotifyVerifier = async () => {
   const codeVerifier: string = generateRandomString(64);
-
   const hashedCode: ArrayBuffer = await sha256(codeVerifier);
   const codeChallenge: string = base64encode(hashedCode);
 
+  // Store the code_verifier for later retrieval
   if (typeof window !== "undefined") {
     setSessionStorage("code_verifier", codeVerifier);
   }
 
-  const params: Record<string, string> = {
+  const params = new URLSearchParams({
     response_type: "code",
     client_id: clientId,
     scope,
     code_challenge_method: "S256",
     code_challenge: codeChallenge,
     redirect_uri: redirectUri,
-  };
+  });
 
-  authUrl.search = new URLSearchParams(params).toString();
-  location.href = authUrl.toString();
+  authUrl.search = params.toString();
+  window.location.href = authUrl.toString(); // Redirect to Spotify authorization
 };
+
 
 interface Payload {
   method: string;
@@ -40,63 +41,28 @@ interface Payload {
   body: URLSearchParams;
 }
 
-export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
-  let codeVerifier: string;
-
-  if (typeof window !== "undefined") {
-    codeVerifier = getSessionStorage("code_verifier") || "";
-
-    if (codeVerifier == "") {
-      console.log("Problem setting up verifier");
-      return; // TODO: Error handling
-    }
-  } else {
-    return;
-  }
-
-  const urlParams: URLSearchParams = new URLSearchParams(
-    window.location.search
-  );
-  const code: string = urlParams.get("code") || "";
-
-  if (code == "") {
-    console.log("Problem getting code");
-    return; // TODO: Error handling
-  }
-
-  const payload: Payload = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      client_id: clientId,
-      grant_type: "authorization_code",
-      code,
-      redirect_uri: redirectUri,
-      code_verifier: codeVerifier,
-    }),
-  };
-
+export const spotifyAccessToken = async (code: string, codeVerifier: string): Promise<void> => {
   try {
-    const body = await fetch(tokenEndpoint, payload);
-    const response = await body.json();
+    const response = await fetch("/api/spotify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, codeVerifier }),
+    });
+    const result = await response.json();
+    console.log(result);
 
-    if (response.access_token && response.refresh_token) {
-      setSessionStorage("access_token", response.access_token);
-      setSessionStorage("refresh_token", response.refresh_token);
-      return true;
+    if (result.success) {
+      const item = result.data;
+      setSessionStorage("access_token", item.access_token);
+      setSessionStorage("refresh_token", item.refresh_token);
     } else {
-      return;
+      console.error("Error:", result.error);
     }
-
-    // TODO: Error handling
   } catch (error) {
-    console.log("Problem fetching access token");
-    console.error(error);
-    // TODO: Handle error
+    console.error("Error fetching access token:", error);
   }
 };
+
 
 export const spotifyRefreshToken = async (): Promise<boolean | undefined> => {
   let refreshToken: string;

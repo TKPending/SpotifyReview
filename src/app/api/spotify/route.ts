@@ -1,33 +1,51 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
+import { NextResponse } from "next/server";
+import { getSessionStorage } from "@/app/util/sessionStorageHelper"; // Only use on client side
 
-export interface NextResponse<T = any> {
-  status: number;
-  data: T | null;
-  error?: AxiosError<any> | undefined;
-}
+export async function POST(request: Request) {
+  const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
+  const tokenEndpoint = process.env.NEXT_PUBLIC_SPOTIFY_TOKEN_ENDPOINT || "";
+  const redirectUri = "http://localhost:3000";
 
-export async function GET<T>(
-  accessToken: any,
-  url: string,
-): Promise<any> {
+  const { code, codeVerifier } = await request.json();
+
+  if (!code || !codeVerifier) {
+    return NextResponse.json(
+      { error: "Authorization code or verifier not found" },
+      { status: 400 }
+    );
+  }
+
+  const payload = new URLSearchParams({
+    client_id: clientId,
+    grant_type: "authorization_code",
+    code,
+    redirect_uri: redirectUri,
+    code_verifier: codeVerifier,
+  });
+
   try {
-    const response = await axios({
-      method: "get",
-      url,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+    const response = await fetch(tokenEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: payload,
     });
 
-    return {
-      status: response.status, 
-      data: response.data,
-    };
+    const data = await response.json();
+
+    if (data.access_token && data.refresh_token) {
+      // Return tokens directly instead of setting in session storage server-side
+      return NextResponse.json({ success: true, data }, { status: 200 });
+    } else {
+      return NextResponse.json(
+        { error: "Invalid token response" },
+        { status: 500 }
+      );
+    }
   } catch (error) {
-    return {
-      status: (error as AxiosError).response?.status || 500,
-      data: null,
-      error: error as AxiosError<any>,
-    };
+    console.error("Error fetching access token:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch access token" },
+      { status: 500 }
+    );
   }
 }

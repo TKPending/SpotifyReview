@@ -1,33 +1,35 @@
-"use client";
+"use client"
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import "@/app/styles/animatedBackgroundStyle.css";
 import AnimatedBackground from "./components/AnimationContainer/AnimatedBackground";
 import AuthoriseAccess from "./components/AuthoriseAccess";
-import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
 import Header from "./components/Header";
 import LoadingTransitionPage from "./page/LoadingTransitionPage";
-import { getSessionStorage } from "./util/sessionStorageHelper";
+import { getSessionStorage, setSessionStorage } from "./util/sessionStorageHelper";
+import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
 
 export default function Home() {
-  const [accessToken, setAccessToken] = useState<string | null | undefined>(
-    null
-  );
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const fetchAccessToken = async () => {
-      await spotifyAccessToken();
-      let token;
+      // Retrieve code from URL
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
 
-      if (typeof window !== "undefined") {
-        token = getSessionStorage("access_token");
-      }
-      if (token) {
-        setAccessToken(token);
-      } else {
-        console.log("Access token not found");
+      if (code) {
+        const codeVerifier = getSessionStorage("code_verifier") || ""
+        await spotifyAccessToken(code, codeVerifier);
+        const token = getSessionStorage("access_token");
+
+        if (token) {
+          setAccessToken(token);
+        } else {
+          console.error("Access token not found");
+        }
       }
     };
 
