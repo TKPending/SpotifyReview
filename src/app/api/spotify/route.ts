@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { getSessionStorage } from "@/app/util/sessionStorageHelper"; // Only use on client side
 
 export async function POST(request: Request) {
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";

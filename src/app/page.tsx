@@ -41,7 +41,7 @@ export default function Home() {
   }, [accessToken, router]);
 
   return (
-    <div className="h-screen w-full text-white flex flex-col justify-center items-center gap-8">
+    <div className="bg-black h-screen w-full text-white flex flex-col justify-center items-center gap-8">
       <AnimatedBackground />
       <Header destination="/help" text="Need Help?" />
       <h1 className="text-4xl font-bold mb-2">
