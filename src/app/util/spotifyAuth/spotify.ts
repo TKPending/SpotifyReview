@@ -2,7 +2,7 @@ import { generateRandomString, sha256, base64encode } from "./spotifyAuthUtil";
 import { getSessionStorage, setSessionStorage } from "../sessionStorageHelper";
 
 const clientId: string = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
-const redirectUri: string = process.env.NEXT_PUBLIC_HOST || "";
+const redirectUri: string = "https://spotify-review.vercel.app"
 
 const scope: string = process.env.NEXT_PUBLIC_SPOTIFY_SCOPE || "";
 const authUrl: URL = new URL("https://accounts.spotify.com/authorize");
