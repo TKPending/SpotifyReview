@@ -1,22 +1,27 @@
 export const Questions = [
   {
-    question: "Reason for Spotify Review",
+    question: "Disclaimer",
     answer:
-      "The Spotify Review platform allows users to gain insights into their Spotify usage, including their favorite songs, artists, and playlists. It provides a comprehensive overview of their listening habits, helping users discover new music and understand their preferences better.",
+      "This project is a personal creation by Tony Koke, developed independently of Spotify. Information displayed on this site is fetched directly from Spotify's API but is never stored on external servers—all data remains in your local storage.",
   },
   {
-    question: "How to use platform",
+    question: "About the Project",
     answer:
-      "To use the Spotify Review platform, simply visit the website and log in with your Spotify account. Once logged in, you'll have access to various features such as viewing your top tracks, artists, and genres, as well as personalized recommendations based on your listening history.",
+      "This was one of my early projects, which I later revisited to enhance. Initially a static site, it’s now a dynamic application designed to offer easy, streamlined access to insights about my Spotify listening habits. The goal was to provide an intuitive way to answer common questions about what I'm listening to and to share that with others.",
   },
   {
-    question: "Details on the authentication",
+    question: "How Authorization Works",
     answer:
-      "Authentication on Spotify Review is done securely through Spotify's OAuth authentication protocol. When you log in, you'll be redirected to the Spotify website to grant access to your account. This ensures that your account credentials are never shared with third-party applications and that your privacy and security are maintained.",
+      "When you click 'Authorize,' you’re redirected to Spotify’s site to grant this application permission to access your Spotify data. With this authorization, the site displays your Spotify profile, favorite artists, top songs, and recently played tracks. Importantly, this data is only accessed on your device and stored in your session storage. I do not have access to or store any of this information externally.",
   },
   {
-    question: "More information",
+    question: "Purpose",
     answer:
-      "For more information about Spotify Review, including FAQs, troubleshooting tips, and contact details for support, please visit our Help Center. Our team is available to assist you with any questions or concerns you may have about the platform.",
+      "I built this project to explore and present my Spotify listening data—favorite artists, top songs, and recent plays. It also provided a valuable opportunity to work with APIs and present data in a clear, user-friendly format.",
+  },
+  {
+    question: "Removing Access",
+    answer:
+      "If you choose to remove access, this will delete the access token from session storage, effectively revoking this site’s permission to access your Spotify data.",
   },
 ];

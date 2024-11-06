@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import FavouriteContainer from "../components/FavouriteContainer/FavouriteContainer";
 import SpotifyClient from "@/app/util/SpotifyClient";
-import RecentlyPlayed from "../components/RecentPlayedContainer/RecentlyPlayed";
 import Header from "../components/Header";
 import LoadingTransitionPage from "@/app/page/LoadingTransitionPage";
+import ReviewLayout from "@/app/layout/ReviewLayout";
 
 interface Content {
   user: any;
@@ -14,6 +13,8 @@ interface Content {
   favouriteArtists: any;
   recentlyPlayed: any;
 }
+
+const itemsToRemove: string[] = ["review_stored", "access_token", "code_verifier", "refresh_token"];
 
 const ReviewPage = () => {
   const router = useRouter();
@@ -28,10 +29,9 @@ const ReviewPage = () => {
 
     if (!accessToken) {
       if (typeof window !== "undefined") {
-        sessionStorage.removeItem("review_stored");
-        sessionStorage.removeItem("access_token");
-        sessionStorage.removeItem("code_verifier");
-        sessionStorage.removeItem("refresh_token");
+        itemsToRemove.forEach((item: string) => {
+          sessionStorage.removeItem(item);
+        })
       }
       router.push("/");
     }
@@ -50,22 +50,27 @@ const ReviewPage = () => {
         if (favouriteArtists && favouriteArtists.error) throw new Error(favouriteArtists.error);
         if (recentlyPlayed && recentlyPlayed.error) throw new Error(recentlyPlayed.error);
 
+        const itemsToAdd = [
+          {name: "user", value: user},
+          {name: "favouriteSongs", value: favouriteSongs},
+          {name: "favouriteArtists", value: favouriteArtists},
+          {name: "recentlyPlayed", value: recentlyPlayed},
+        ]
+
         if (typeof window !== "undefined") {
-          sessionStorage.setItem("user", JSON.stringify(user));
-          sessionStorage.setItem("favouriteSongs",JSON.stringify(favouriteSongs));
-          sessionStorage.setItem("favouriteArtists",JSON.stringify(favouriteArtists));
-          sessionStorage.setItem("recentlyPlayed",JSON.stringify(recentlyPlayed));
+          itemsToAdd.forEach((item) => {
+            sessionStorage.setItem(item.name, JSON.stringify(item.value));
+          })
 
           setPageLoading(false);
           sessionStorage.setItem("review_stored", "stored");
         }        
       } catch (error) {
-        // Need to do error handing
+        // TODO: Need to do error handing
         if (typeof window !== "undefined") { 
-          sessionStorage.removeItem("user");
-          sessionStorage.removeItem("favouriteSongs");
-          sessionStorage.removeItem("favouriteArtists");
-          sessionStorage.removeItem("recentlyPlayed");
+          itemsToRemove.forEach((item:string) => {
+            sessionStorage.removeItem(item);
+          });
   
           sessionStorage.setItem("review_stored", "");
   
@@ -88,23 +93,12 @@ const ReviewPage = () => {
   }, []);
 
   return (
-    <div className="pt-20 flex flex-col items-center gap-12 overflow-y-auto h-auto w-screen px-16 py-4">
-      <Header destination="/" text="Need help?" />
+    <div className="max-h-screen h-screen w-screen">
       {pageLoading ? (
         <LoadingTransitionPage />
       ) : (
-        <div className="flex gap-40 justify-around mx-auto justify-center mt-8 w-full h-auto">
-          <div className="w-full">
-            <FavouriteContainer title="Favourite Artists" />
-          </div>
-
-          <div className="w-full">
-            <FavouriteContainer title="Favourite Songs" />
-          </div>
-        </div>
+        <ReviewLayout />
       )}
-
-      <RecentlyPlayed />
     </div>
   );
 };
