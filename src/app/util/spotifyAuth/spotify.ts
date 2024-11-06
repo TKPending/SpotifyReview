@@ -2,9 +2,7 @@ import { generateRandomString, sha256, base64encode } from "./spotifyAuthUtil";
 import { getSessionStorage, setSessionStorage } from "../sessionStorageHelper";
 
 const clientId: string = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
-const tokenEndpoint: string =
-  process.env.NEXT_PUBLIC_SPOTIFY_TOKEN_ENDPOINT || "";
-const redirectUri: string = "http://localhost:3000";
+const redirectUri: string = process.env.NEXT_PUBLIC_HOST || "http://localhost:3000";
 
 const scope: string = process.env.NEXT_PUBLIC_SPOTIFY_SCOPE || "";
 const authUrl: URL = new URL("https://accounts.spotify.com/authorize");
