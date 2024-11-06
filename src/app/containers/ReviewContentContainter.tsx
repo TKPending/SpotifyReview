@@ -1,5 +1,6 @@
 import FavouriteContainer from "../components/FavouriteContainer/FavouriteContainer";
 import RecentlyPlayed from "../components/RecentPlayedContainer/RecentlyPlayed";
+import RemoveAccessButton from "../components/RemoveAccessButton";
 
 type Props = {
     optionIndex: number;
@@ -24,7 +25,8 @@ const ReviewContentContainer = ({ optionIndex }: Props) => {
     }
 
     return (
-        <div className="w-4/5 flex items-center justify-center">
+        <div className="w-4/5 flex items-center justify-center ">
+            <RemoveAccessButton />
             <div className="w-full h-full flex items-center justify-center">
                 <div className="w-[90%] h-3/4">{content}</div>
             </div>
