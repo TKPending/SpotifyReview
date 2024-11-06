@@ -4,6 +4,7 @@ import {
   formatFavouriteArtists,
   formatRecentlyPlayed,
 } from "./spotifyFormat";
+import { getSessionStorage } from "./sessionStorageHelper";
 
 const userEndpoint: string = "https://api.spotify.com/v1/me";
 const favouriteEndpoint: string = "https://api.spotify.com/v1/me/top/";
@@ -13,11 +14,11 @@ const artistEndpoint: string = "https://api.spotify.com/v1/artists/";
 
 class SpotifyClient {
   private accessToken: string | null =
-    sessionStorage.getItem("access_token") ?? "";
+    getSessionStorage("access_token") ?? "";
 
   constructor() {
     if (typeof window !== "undefined") {
-      this.accessToken = sessionStorage.getItem("access_token") ?? "";
+      this.accessToken = getSessionStorage("access_token") ?? "";
     }
   }
 

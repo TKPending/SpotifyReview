@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Fetching from "../FavouriteContainer/components/Fetching";
 import RefreshSongs from "./components/RefreshSongs";
 import RefreshToken from "../RefreshToken";
+import { getSessionStorage } from "@/app/util/sessionStorageHelper";
 
 const RecentlyPlayed = () => {
   const [refresh, setRefresh] = useState<boolean>(true);
@@ -10,7 +11,7 @@ const RecentlyPlayed = () => {
   let recentSongs;
 
   if (typeof window !== "undefined") {
-    const recentSongsStr = sessionStorage.getItem("recentlyPlayed");
+    const recentSongsStr = getSessionStorage("recentlyPlayed");
     recentSongs = recentSongsStr && JSON.parse(recentSongsStr);
   }
 

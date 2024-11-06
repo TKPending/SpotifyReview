@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getSessionStorage } from "../util/sessionStorageHelper";
 
 type Props = {
   activeOption: number;
@@ -18,7 +19,7 @@ const UserContainer = ({ handleOptionChange, activeOption }: Props) => {
   const defaultAvatar = "public/user.png";
 
   useEffect(() => {
-    const user = sessionStorage.getItem("user");
+    const user = getSessionStorage("user");
     const userParsed = user ? JSON.parse(user) : null;
     
     const avatar = userParsed?.userAvatar || defaultAvatar;

@@ -3,6 +3,7 @@ import FavouriteArtist from "./components/FavouriteArtist";
 import FavouriteSong from "./components/FavouriteSong";
 import RefreshToken from "../RefreshToken";
 import Fetching from "./components/Fetching";
+import { getSessionStorage } from "@/app/util/sessionStorageHelper";
 
 type Favourites = {
   title: string;
@@ -14,8 +15,8 @@ const FavouriteContainer = ({ title }: Favourites) => {
   const [refreshToken, setRefreshToken] = useState<boolean>(true);
   const favouriteStr =
     title == "Favourite Artists"
-      ? sessionStorage.getItem("favouriteArtists")
-      : sessionStorage.getItem("favouriteSongs");
+      ? getSessionStorage("favouriteArtists")
+      : getSessionStorage("favouriteSongs");
 
   const favourites = favouriteStr ? JSON.parse(favouriteStr) : [];
 

@@ -8,6 +8,7 @@ import AuthoriseAccess from "./components/AuthoriseAccess";
 import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
 import Header from "./components/Header";
 import LoadingTransitionPage from "./page/LoadingTransitionPage";
+import { getSessionStorage } from "./util/sessionStorageHelper";
 
 export default function Home() {
   const [accessToken, setAccessToken] = useState<string | null | undefined>(
@@ -21,7 +22,7 @@ export default function Home() {
       let token;
 
       if (typeof window !== "undefined") {
-        token = sessionStorage.getItem("access_token");
+        token = getSessionStorage("access_token");
       }
       if (token) {
         setAccessToken(token);

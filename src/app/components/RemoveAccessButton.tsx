@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { removeSessionStorage } from "../util/sessionStorageHelper";
 
 const RemoveAccessButton = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const RemoveAccessButton = () => {
         const itemsToRemove: string[] = ["review_stored", "access_token", "code_verifier", "refresh_token", "user", "favouriteSongs", "favouriteArtists", "recentlyPlayed", "review_stored"];
 
         itemsToRemove.forEach((item: string) => {
-            sessionStorage.removeItem(item);
+            removeSessionStorage(item);
         });
 
         router.push("/");

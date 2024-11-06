@@ -1,3 +1,4 @@
+import { setSessionStorage } from "@/app/util/sessionStorageHelper";
 import SpotifyClient from "@/app/util/SpotifyClient";
 import { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
@@ -16,7 +17,7 @@ const RefreshSongs = ({ setRefresh, setError }: Props) => {
     if (fetchedRecentSongs && fetchedRecentSongs.error) setError(true);
 
     if (typeof window !== "undefined") {
-      sessionStorage.setItem(
+      setSessionStorage(
         "recentlyPlayed",
         JSON.stringify(fetchedRecentSongs)
       );

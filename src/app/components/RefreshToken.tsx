@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { spotifyRefreshToken } from "../util/spotifyAuth/spotify";
 import { useRouter } from "next/navigation";
+import { removeSessionStorage } from "../util/sessionStorageHelper";
 
 type Props = {
     setRefreshToken: Dispatch<SetStateAction<boolean>>;
@@ -13,8 +14,8 @@ const RefreshToken = ({setRefreshToken}: Props) => {
         setRefreshToken(false);
         const refreshedToken = await spotifyRefreshToken();
         if (!refreshedToken) {
-            sessionStorage.removeItem('access_token');
-            sessionStorage.removeItem('refresh_token');
+            removeSessionStorage('access_token');
+            removeSessionStorage('refresh_token');
             router.push("/");
             return;
         };

@@ -1,4 +1,5 @@
 import { generateRandomString, sha256, base64encode } from "./spotifyAuthUtil";
+import { getSessionStorage, setSessionStorage } from "../sessionStorageHelper";
 
 const clientId: string = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
 const tokenEndpoint: string =
@@ -15,7 +16,7 @@ export const spotifyVerifier = async () => {
   const codeChallenge: string = base64encode(hashedCode);
 
   if (typeof window !== "undefined") {
-    sessionStorage.setItem("code_verifier", codeVerifier);
+    setSessionStorage("code_verifier", codeVerifier);
   }
 
   const params: Record<string, string> = {
@@ -43,7 +44,7 @@ export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
   let codeVerifier: string;
 
   if (typeof window !== "undefined") {
-    codeVerifier = sessionStorage.getItem("code_verifier") || "";
+    codeVerifier = getSessionStorage("code_verifier") || "";
 
     if (codeVerifier == "") {
       console.log("Problem setting up verifier");
@@ -82,8 +83,8 @@ export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
     const response = await body.json();
 
     if (response.access_token && response.refresh_token) {
-      sessionStorage.setItem("access_token", response.access_token);
-      sessionStorage.setItem("refresh_token", response.refresh_token);
+      setSessionStorage("access_token", response.access_token);
+      setSessionStorage("refresh_token", response.refresh_token);
       return true;
     } else {
       return;
@@ -100,7 +101,7 @@ export const spotifyAccessToken = async (): Promise<boolean | undefined> => {
 export const spotifyRefreshToken = async (): Promise<boolean | undefined> => {
   let refreshToken: string;
   if (typeof window !== "undefined") {
-    refreshToken = sessionStorage.getItem('refresh_token') || "";
+    refreshToken = getSessionStorage('refresh_token') || "";
   } else {
     return;
   }
@@ -131,8 +132,8 @@ export const spotifyRefreshToken = async (): Promise<boolean | undefined> => {
     if (response.access_token && response.refresh_token) {
     
       if (typeof window !== "undefined") {
-        sessionStorage.setItem('access_token', response.access_token);
-        sessionStorage.setItem('refresh_token', response.refresh_token);
+        setSessionStorage('access_token', response.access_token);
+        setSessionStorage('refresh_token', response.refresh_token);
     }
       return true;
     }
