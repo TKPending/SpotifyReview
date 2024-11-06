@@ -14,6 +14,8 @@ interface Content {
   recentlyPlayed: any;
 }
 
+const itemsToRemove: string[] = ["review_stored", "access_token", "code_verifier", "refresh_token"];
+
 const ReviewPage = () => {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState<boolean>(true);
@@ -27,10 +29,9 @@ const ReviewPage = () => {
 
     if (!accessToken) {
       if (typeof window !== "undefined") {
-        sessionStorage.removeItem("review_stored");
-        sessionStorage.removeItem("access_token");
-        sessionStorage.removeItem("code_verifier");
-        sessionStorage.removeItem("refresh_token");
+        itemsToRemove.forEach((item: string) => {
+          sessionStorage.removeItem(item);
+        })
       }
       router.push("/");
     }
@@ -49,11 +50,17 @@ const ReviewPage = () => {
         if (favouriteArtists && favouriteArtists.error) throw new Error(favouriteArtists.error);
         if (recentlyPlayed && recentlyPlayed.error) throw new Error(recentlyPlayed.error);
 
+        const itemsToAdd = [
+          {name: "user", value: user},
+          {name: "favouriteSongs", value: favouriteSongs},
+          {name: "favouriteArtists", value: favouriteArtists},
+          {name: "recentlyPlayed", value: recentlyPlayed},
+        ]
+
         if (typeof window !== "undefined") {
-          sessionStorage.setItem("user", JSON.stringify(user));
-          sessionStorage.setItem("favouriteSongs",JSON.stringify(favouriteSongs));
-          sessionStorage.setItem("favouriteArtists",JSON.stringify(favouriteArtists));
-          sessionStorage.setItem("recentlyPlayed",JSON.stringify(recentlyPlayed));
+          itemsToAdd.forEach((item) => {
+            sessionStorage.setItem(item.name, JSON.stringify(item.value));
+          })
 
           setPageLoading(false);
           sessionStorage.setItem("review_stored", "stored");
@@ -61,10 +68,9 @@ const ReviewPage = () => {
       } catch (error) {
         // TODO: Need to do error handing
         if (typeof window !== "undefined") { 
-          sessionStorage.removeItem("user");
-          sessionStorage.removeItem("favouriteSongs");
-          sessionStorage.removeItem("favouriteArtists");
-          sessionStorage.removeItem("recentlyPlayed");
+          itemsToRemove.forEach((item:string) => {
+            sessionStorage.removeItem(item);
+          });
   
           sessionStorage.setItem("review_stored", "");
   
