@@ -44,7 +44,7 @@ export default function Home() {
     <div className="bg-black h-screen w-full text-white flex flex-col justify-center items-center gap-8">
       <AnimatedBackground />
       <Header destination="/help" text="Need Help?" />
-      <h1 className="text-4xl font-bold mb-2">
+      <h1 className="text-4xl font-bold mb-2 text-center">
         Welcome to <span className="text-green-600">Spotify</span> Review
       </h1>
       <div className="flex flex-col gap-2 text-center text-xl">
