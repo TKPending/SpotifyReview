@@ -3,7 +3,7 @@ import AnimatedBackground from "../components/AnimationContainer/AnimatedBackgro
 
 const LoadingTransitionPage = () => {
   return (
-    <div className="bg-black h-screen w-screen flex gap-2 items-center justify-center">
+    <div className="h-screen w-screen flex gap-2 items-center justify-center">
       <AnimatedBackground />
       <p className="loading-text">Loading Review</p>
       <div className="flex flex-row gap-2">

@@ -2,12 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import "@/app/styles/animatedBackgroundStyle.css";
 import AnimatedBackground from "./components/AnimationContainer/AnimatedBackground";
 import AuthoriseAccess from "./components/AuthoriseAccess";
-import Header from "./components/Header";
-import LoadingTransitionPage from "./page/LoadingTransitionPage";
-import { getSessionStorage, setSessionStorage } from "./util/sessionStorageHelper";
+import { getSessionStorage } from "./util/sessionStorageHelper";
 import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
 
 export default function Home() {
@@ -16,7 +13,6 @@ export default function Home() {
 
   useEffect(() => {
     const fetchAccessToken = async () => {
-      // Retrieve code from URL
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
 
@@ -41,15 +37,14 @@ export default function Home() {
   }, [accessToken, router]);
 
   return (
-    <div className="bg-black h-screen w-full text-white flex flex-col justify-center items-center gap-8">
+    <div className="h-full w-full text-white flex flex-col justify-center items-center gap-8">
       <AnimatedBackground />
-      <Header destination="/help" text="Need Help?" />
       <h1 className="text-4xl font-bold mb-2">
         Welcome to <span className="text-green-600">Spotify</span> Review
       </h1>
       <div className="flex flex-col gap-2 text-center text-xl">
         <p>
-          Click on <span className="text-green-600">Authorize Access</span> to
+          Click on <span className="text-green-600">Authorise Access</span> to
           continue.
         </p>
         <p>

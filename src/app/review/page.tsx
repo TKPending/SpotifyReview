@@ -6,6 +6,7 @@ import SpotifyClient from "@/app/util/SpotifyClient";
 import { getSessionStorage, setSessionStorage, removeSessionStorage } from "../util/sessionStorageHelper";
 import LoadingTransitionPage from "@/app/page/LoadingTransitionPage";
 import ReviewLayout from "@/app/layout/ReviewLayout";
+import AnimatedBackground from "../components/AnimationContainer/AnimatedBackground";
 
 interface Content {
   user: any;
@@ -94,6 +95,7 @@ const ReviewPage = () => {
 
   return (
     <div className="max-h-screen h-screen w-screen">
+      <AnimatedBackground />
       {pageLoading ? (
         <LoadingTransitionPage />
       ) : (
