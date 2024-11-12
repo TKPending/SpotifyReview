@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import PageFooter from "./containers/PageFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} h-screen w-screen max-h-screen max-w-screen overscroll-none`}>
           {children}
+          <PageFooter />
       </body>
     </html>
   );
