@@ -18,8 +18,8 @@ const HelpPage = () => {
 
       <div className="flex flex-col gap-8 pt-[8%] align-center h-screen w-screen">
         <div className="flex flex-col items-center justify-center w-full gap-4">
-          <img className="h-32 w-32 rounded-full bg-white" />
-          <p className="font-semibold text-2xl text-white">Test</p>
+          <img className="h-32 w-32 rounded-ful" src="/emojiCon.png" />
+          <p className="font-semibold text-2xl text-white">Tony's FAQ</p>
         </div>
 
         <div className="flex flex-col gap-4 items-center justify-cetner w-full h-600px overscroll-y-auto">
