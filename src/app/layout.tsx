@@ -18,10 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} h-screen w-screen max-h-screen max-w-screen overscroll-none`}>
-        <div className="w-full h-[92%]">
           {children}
-        </div>
-          <PageFooter />
+          <PageFooter /> 
       </body>
     </html>
   );
