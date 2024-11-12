@@ -94,7 +94,7 @@ const ReviewPage = () => {
   }, []);
 
   return (
-    <div className="max-h-screen h-screen w-screen">
+    <div className="max-h-screen h-screen w-screen overflow-hidden">
       <AnimatedBackground />
       {pageLoading ? (
         <LoadingTransitionPage />
