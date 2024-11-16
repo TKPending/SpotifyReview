@@ -37,7 +37,7 @@ export default function Home() {
   }, [accessToken, router]);
 
   return (
-    <div className="h-full w-full text-white flex flex-col justify-center items-center gap-8">
+    <div className="h-full w-full text-white flex flex-col justify-center items-center gap-8 bg-black z-10">
       <AnimatedBackground />
       <h1 className="text-4xl font-bold mb-2 text-center">
         Welcome to <span className="text-green-600">Spotify</span> Review
