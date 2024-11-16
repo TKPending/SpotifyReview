@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import AnimatedBackground from "./components/AnimationContainer/AnimatedBackground";
 import AuthoriseAccess from "./components/AuthoriseAccess";
 import { getSessionStorage } from "./util/sessionStorageHelper";
 import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
@@ -38,7 +37,6 @@ export default function Home() {
 
   return (
     <div className="h-full w-full text-white flex flex-col justify-center items-center gap-8">
-      <AnimatedBackground />
       <h1 className="text-4xl font-bold mb-2 text-center">
         Welcome to <span className="text-green-600">Spotify</span> Review
       </h1>
