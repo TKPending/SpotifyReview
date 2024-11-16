@@ -1,3 +1,5 @@
+import "@/app/styles/animatedBackgroundStyle.css";
+
 const AnimatedBackground = () => {
   return (
     <div className="area">

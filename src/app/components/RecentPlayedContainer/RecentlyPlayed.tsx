@@ -22,15 +22,18 @@ const RecentlyPlayed = () => {
   }, []);
 
   return (
-    <div className="bg-green-600 sm:py-4 h-full w-full flex max-h-screen gap-4 p-2 sm:p-4 rounded-xl overflow-hidden">
-      <div className="flex flex-col gap-4 w-full">
-        <div className="flex h-20 justify-center sm:justify-start items-center px-4">
+    <div className="bg-green-600 sm:py-4 h-[92%] sm:h-full w-full flex max-h-screen p-2 sm:p-4 rounded-xl overflow-hidden">
+      <div className="flex flex-col lg:gap-4 w-full">
+
+        <div className="flex h-auto lg:h-20 justify-center sm:justify-start items-center px-4">
+
           <div className="flex flex-col gap-2 p-4">
-            <p className="font-semibold text-xl sm:text-3xl text-black">Recently Played Songs</p>
-            <p className="font-semibold text-gray-300">
+            <p className="font-semibold text-center lg:text-left text-xl sm:text-3xl text-black">Recently Played Songs</p>
+            <p className="text-center lg:text-left font-semibold text-gray-300">
               40 Of Your Most Recently Played Songs
             </p>
           </div>
+
           <div className="flex hidden sm:flex flex-1 items-center justify-end">
             {!error ? (
               <RefreshSongs setRefresh={setRefresh} setError={setError} />
@@ -50,7 +53,7 @@ const RecentlyPlayed = () => {
           )}
         </div>
 
-        <div className="h-full w-full p-4 overflow-hidden">
+        <div className="h-full w-full lg:p-4 overflow-hidden">
           {recentSongs && !recentSongs.error && (
             <div className="h-full w-full">
               {refresh && !error && <Fetching />}

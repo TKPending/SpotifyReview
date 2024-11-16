@@ -12,7 +12,7 @@ const ReviewLayout = () => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row max-h-screen max-w-screen h-screen w-screen">
+    <div className="flex flex-col sm:flex-row max-h-screen max-w-screen h-screen w-screen overscroll-none gap-2">
       <UserContainer handleOptionChange={handleOptionChange} activeOption={option} />
       <ReviewContentContainer optionIndex={option} />
     </div>

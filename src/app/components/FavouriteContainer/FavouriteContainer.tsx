@@ -27,11 +27,11 @@ const FavouriteContainer = ({ title }: Favourites) => {
   }, [contentLoading]);
 
   return (
-    <div className="flex flex-col gap-4 bg-green-600 h-full w-full rounded-lg p-2 sm:p-4">
-      <div className="flex h-32 w-full">
+    <div className="flex flex-col gap-0 lg:gap-4 bg-green-600 h-full w-full rounded-lg p-2 sm:p-4">
+      <div className="flex h-auto lg:h-32 w-full">
         <div className="flex sm:flex-1 flex-col gap-2 sm:p-4 w-full ">
-          <p className="text-3xl font-semibold text-black">{title}</p>
-          <p className="font-semibold text-gray-300 w-full">
+          <p className="text-center lg:text-left text-xl lg:text-3xl font-semibold text-black">{title}</p>
+          <p className="text-center lg:text-left font-semibold text-gray-300 w-full">
             Your Top 10 Favourite{" "}
             {title === "Favourite Artists" ? "Artists" : "Songs"} Of The Month
           </p>
@@ -42,7 +42,7 @@ const FavouriteContainer = ({ title }: Favourites) => {
         </div>
       </div>
 
-      <div className="h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4 p-4">
+      <div className="h-[750px] sm:h-[600px] overflow-y-auto overscroll-y-auto flex flex-col gap-4 p-4 overscroll-none">
         {contentLoading && <Fetching />}
 
         {!refreshToken && (
