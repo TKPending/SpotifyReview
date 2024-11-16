@@ -29,14 +29,14 @@ const FavouriteSong = ({ content }: Props) => {
 
   return (
     <div className="h-auto bg-black hover:opacity-80 text-white flex align-center p-6 rounded-lg text-center sm:text-left">
-      <a className="flex items-center gap-4 flex-1" href={content.artist_href}>
+      <a className="hidden md:flex items-center gap-4 flex-1" href={content.artist_href}>
         <img src={content.artist_image} className="h-28 w-28 hidden sm:flex rounded-lg shadow-2xl image-shadow"/>
         <p className="text-base sm:text-xl font-semibold">{content.artist}</p>
       </a>
 
       <div className="flex flex-1 flex-col gap-4 items-center justify-center sm:ml-2">
         <a href={content.song_href} className="flex flex-col items-center font-semibold">
-          <p className="text-base text-green-600">{content.song_name}</p>
+          <p className="text-base text-green-600 text-center">{content.song_name}</p>
           <p className="text-xs">{minutes + ":" + (seconds < 10 ? "0" : "") + seconds}</p>
         </a>
         <button
