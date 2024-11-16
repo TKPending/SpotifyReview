@@ -3,8 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
   const tokenEndpoint = process.env.NEXT_PUBLIC_SPOTIFY_TOKEN_ENDPOINT || "";
-  // const redirectUri = "https://spotify-review.vercel.app";
-  const redirectUri = "http://localhost:3000";
+  const redirectUri = "https://spotify-review.vercel.app";
 
   const { code, codeVerifier } = await request.json();
 

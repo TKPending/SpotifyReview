@@ -2,8 +2,7 @@ import { generateRandomString, sha256, base64encode } from "./spotifyAuthUtil";
 import { getSessionStorage, setSessionStorage } from "../sessionStorageHelper";
 
 const clientId: string = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
-// const redirectUri: string = "https://spotify-review.vercel.app"
-const redirectUri = "http://localhost:3000";
+const redirectUri: string = "https://spotify-review.vercel.app"
 
 
 const scope: string = process.env.NEXT_PUBLIC_SPOTIFY_SCOPE || "";
