@@ -30,7 +30,7 @@ const UserContainer = ({ handleOptionChange, activeOption }: Props) => {
 
   return (
     <div className="flex flex-col justify-start sm:items-center lg:gap-4 w-full sm:w-1/5 mt-[4%] lg:mt-[5%] sm:mt-[4%]">
-      <div className="flex lg:flex-col items-center justify-center gap-4">
+      <div className="flex sm:flex-col items-center justify-center gap-4">
         <img 
           src={userAvatar} 
           className="h-20 w-20 lg:h-32 lg:w-32 rounded-full " 
