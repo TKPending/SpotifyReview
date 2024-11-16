@@ -30,7 +30,7 @@ const FavouriteSong = ({ content }: Props) => {
   return (
     <div className="h-auto bg-black hover:opacity-80 text-white flex align-center p-6 rounded-lg text-center sm:text-left">
       <a className="flex items-center gap-4 flex-1" href={content.artist_href}>
-        <img src={content.artist_image} className="h-28 w-28 hidden sm:flex rounded-lg"/>
+        <img src={content.artist_image} className="h-28 w-28 hidden sm:flex rounded-lg shadow-2xl image-shadow"/>
         <p className="text-base sm:text-xl font-semibold">{content.artist}</p>
       </a>
 
