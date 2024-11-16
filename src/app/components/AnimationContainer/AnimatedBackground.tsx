@@ -1,12 +1,8 @@
 import "@/app/styles/animatedBackgroundStyle.css";
 
-type Props = {
-  children: React.ReactNode;
-}
-
-const AnimatedBackground = ({ children }: Props) => {
+const AnimatedBackground = () => {
   return (
-    <div className="area bg-black">
+    <div className="area">
       <ul className="circles">
         <li></li>
         <li></li>
@@ -19,7 +15,6 @@ const AnimatedBackground = ({ children }: Props) => {
         <li></li>
         <li></li>
       </ul>
-      {children}
     </div>
   );
 };
