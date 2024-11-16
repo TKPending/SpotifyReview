@@ -2,7 +2,7 @@ import "@/app/styles/animatedBackgroundStyle.css";
 
 const AnimatedBackground = () => {
   return (
-    <div className="area z-20">
+    <div className="area bg-black">
       <ul className="circles">
         <li></li>
         <li></li>
