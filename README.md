@@ -1,3 +1,3 @@
 # Spotify Review
 
-Basic platform which gets information on your favourite artists and songs of the month. Along with displaying your most recently played songs.
+An application which gathers information on your favoruite artists and songs of the month. Whilst also displaying your most recently played songs. This project was created with Next.js, Tailwind and Axios.
