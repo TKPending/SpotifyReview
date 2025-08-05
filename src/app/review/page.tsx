@@ -81,7 +81,6 @@ const ReviewPage = () => {
           itemsToRemove.forEach((item: string) => {
             removeSessionStorage(item);
           });
-
           setSessionStorage("review_stored", "");
         }
         setError(true);

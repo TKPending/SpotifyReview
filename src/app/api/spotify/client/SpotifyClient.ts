@@ -4,8 +4,8 @@ import { formatFavouriteArtists } from "./utils/formatFavouriteArtists";
 import { formatRecentlyPlayed } from "./utils/formatRecentlyPlayed";
 
 const userEndpoint: string = "https://api.spotify.com/v1/me";
-const favouriteEndpoint: string = "https://api.spotify.com/v1/me/top/";
-const recentlyPlayedEndpoint: string =
+const favouriteEP: string = "https://api.spotify.com/v1/me/top/";
+const recentlyPlayedEP: string =
   "https://api.spotify.com/v1/me/player/recently-played?limit=40";
 const artistEndpoint: string = "https://api.spotify.com/v1/artists/";
 
@@ -60,7 +60,7 @@ class SpotifyClient {
 
   public async getFavouriteSongs() {
     const favouriteSongs = await this.getSpotify(
-      `${favouriteEndpoint}tracks?time_range=short_term&limit=10`
+      `${favouriteEP}tracks?time_range=short_term&limit=10`
     );
 
     if (favouriteSongs) {
@@ -74,7 +74,7 @@ class SpotifyClient {
 
   public async getFavouriteArtists() {
     const favouriteArtists = await this.getSpotify(
-      `${favouriteEndpoint}artists?time_range=short_term&limit=10`
+      `${favouriteEP}artists?time_range=short_term&limit=10`
     );
 
     if (favouriteArtists) {
@@ -85,7 +85,7 @@ class SpotifyClient {
   }
 
   public async getRecentlyPlayed() {
-    const recentlyPlayed = await this.getSpotify(recentlyPlayedEndpoint);
+    const recentlyPlayed = await this.getSpotify(recentlyPlayedEP);
 
     if (recentlyPlayed) {
       return formatRecentlyPlayed(recentlyPlayed);

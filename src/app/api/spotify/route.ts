@@ -26,8 +26,6 @@ export async function POST(request: Request) {
 
     const data = await response.json();
 
-    console.log({ data });
-
     if (data.access_token && data.refresh_token) {
       return NextResponse.json({ success: true, data }, { status: 200 });
     } else {
@@ -37,7 +35,6 @@ export async function POST(request: Request) {
       );
     }
   } catch (error) {
-    console.error("Error fetching access token:", error);
     return NextResponse.json(
       { error: "Failed to fetch access token" },
       { status: 500 }

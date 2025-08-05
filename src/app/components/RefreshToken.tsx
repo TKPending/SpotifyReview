@@ -19,7 +19,6 @@ const RefreshToken = ({ setRefreshToken }: Props) => {
       router.push("/");
       return;
     }
-
     setTimeout(() => {
       setRefreshToken(true);
       window.location.reload();
