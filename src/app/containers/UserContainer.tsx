@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getSessionStorage } from "../util/sessionStorageHelper";
+import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
 
 type Props = {
   activeOption: number;
@@ -21,7 +21,7 @@ const UserContainer = ({ handleOptionChange, activeOption }: Props) => {
   useEffect(() => {
     const user = getSessionStorage("user");
     const userParsed = user ? JSON.parse(user) : null;
-    
+
     const avatar = userParsed?.userAvatar || defaultAvatar;
     const name: string = userParsed?.user || "Undefined";
     setUserAvatar(avatar);
@@ -31,10 +31,10 @@ const UserContainer = ({ handleOptionChange, activeOption }: Props) => {
   return (
     <div className="flex flex-col justify-start sm:items-center lg:gap-4 w-full sm:w-1/5 mt-[4%] lg:mt-[5%] sm:mt-[4%]">
       <div className="flex sm:flex-col items-center justify-center gap-4">
-        <img 
-          src={userAvatar} 
-          className="h-20 w-20 lg:h-32 lg:w-32 rounded-full " 
-          alt="User Avatar" 
+        <img
+          src={userAvatar}
+          className="h-20 w-20 lg:h-32 lg:w-32 rounded-full "
+          alt="User Avatar"
         />
         <p className="text-xl text-gray-300 font-semibold">{username}</p>
       </div>
@@ -44,7 +44,9 @@ const UserContainer = ({ handleOptionChange, activeOption }: Props) => {
           <div key={index} className="mt-6 text-center">
             <p
               onClick={() => handleOptionChange(index)}
-              className={`${activeOption === index && "text-white"} text-base lg:text-xl font-semibold transition duration-200 cursor-pointer text-green-600 hover:text-gray-300 hover:text-underline`}
+              className={`${
+                activeOption === index && "text-white"
+              } text-base lg:text-xl font-semibold transition duration-200 cursor-pointer text-green-600 hover:text-gray-300 hover:text-underline`}
             >
               {option}
             </p>

@@ -1,5 +1,5 @@
-import { setSessionStorage } from "@/app/util/sessionStorageHelper";
-import SpotifyClient from "@/app/util/SpotifyClient";
+import { setSessionStorage } from "@/app/util/sessionStorage/setSessionStorage";
+import SpotifyClient from "@/app/api/spotify/client/SpotifyClient";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, SetStateAction } from "react";

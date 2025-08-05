@@ -3,7 +3,7 @@ import FavouriteArtist from "./components/FavouriteArtist";
 import FavouriteSong from "./components/FavouriteSong";
 import RefreshToken from "../RefreshToken";
 import Fetching from "./components/Fetching";
-import { getSessionStorage } from "@/app/util/sessionStorageHelper";
+import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
 
 type Favourites = {
   title: string;
@@ -30,7 +30,9 @@ const FavouriteContainer = ({ title }: Favourites) => {
     <div className="flex flex-col gap-0 lg:gap-4 bg-green-600 h-full w-full rounded-lg p-2 sm:p-4">
       <div className="flex h-auto lg:h-32 w-full">
         <div className="flex sm:flex-1 flex-col gap-2 sm:p-4 w-full ">
-          <p className="text-center lg:text-left text-xl lg:text-3xl font-semibold text-black">{title}</p>
+          <p className="text-center lg:text-left text-xl lg:text-3xl font-semibold text-black">
+            {title}
+          </p>
           <p className="text-center lg:text-left font-semibold text-gray-300 w-full">
             Your Top 10 Favourite{" "}
             {title === "Favourite Artists" ? "Artists" : "Songs"} Of The Month

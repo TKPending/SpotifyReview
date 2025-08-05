@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import AuthoriseAccess from "./components/AuthoriseAccess";
-import { getSessionStorage } from "./util/sessionStorageHelper";
-import { spotifyAccessToken } from "./util/spotifyAuth/spotify";
+import { getSessionStorage } from "./util/sessionStorage/getSessionStorage";
+import { getSpotifyAccessToken } from "./api/spotify/auth/getSpotifyAccessToken";
 
 export default function Home() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -16,8 +16,8 @@ export default function Home() {
       const code = params.get("code");
 
       if (code) {
-        const codeVerifier = getSessionStorage("code_verifier") || ""
-        await spotifyAccessToken(code, codeVerifier);
+        const codeVerifier = getSessionStorage("code_verifier") || "";
+        await getSpotifyAccessToken(code, codeVerifier);
         const token = getSessionStorage("access_token");
 
         if (token) {

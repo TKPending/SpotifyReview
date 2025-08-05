@@ -1,21 +1,22 @@
-// SpotifyClient.ts
-import { getSessionStorage } from "./sessionStorageHelper";
-import { formatFavouriteSongs, formatFavouriteArtists, formatRecentlyPlayed } from "./spotifyFormat";
+import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
+import { formatFavouriteSongs } from "./utils/formatFavouriteSongs";
+import { formatFavouriteArtists } from "./utils/formatFavouriteArtists";
+import { formatRecentlyPlayed } from "./utils/formatRecentlyPlayed";
 
 const userEndpoint: string = "https://api.spotify.com/v1/me";
 const favouriteEndpoint: string = "https://api.spotify.com/v1/me/top/";
-const recentlyPlayedEndpoint: string = "https://api.spotify.com/v1/me/player/recently-played?limit=40";
+const recentlyPlayedEndpoint: string =
+  "https://api.spotify.com/v1/me/player/recently-played?limit=40";
 const artistEndpoint: string = "https://api.spotify.com/v1/artists/";
 
 class SpotifyClient {
-  private accessToken: string | null =
-  getSessionStorage("access_token") ?? "";
+  private accessToken: string | null = getSessionStorage("access_token") ?? "";
 
-constructor() {
-  if (typeof window !== "undefined") {
-    this.accessToken = getSessionStorage("access_token") ?? "";
+  constructor() {
+    if (typeof window !== "undefined") {
+      this.accessToken = getSessionStorage("access_token") ?? "";
+    }
   }
-}
 
   private async getSpotify(url: string): Promise<any | null> {
     if (!this.accessToken) {
@@ -58,7 +59,9 @@ constructor() {
   }
 
   public async getFavouriteSongs() {
-    const favouriteSongs = await this.getSpotify(`${favouriteEndpoint}tracks?time_range=short_term&limit=10`);
+    const favouriteSongs = await this.getSpotify(
+      `${favouriteEndpoint}tracks?time_range=short_term&limit=10`
+    );
 
     if (favouriteSongs) {
       const formattedSongs = formatFavouriteSongs(favouriteSongs);
@@ -70,7 +73,9 @@ constructor() {
   }
 
   public async getFavouriteArtists() {
-    const favouriteArtists = await this.getSpotify(`${favouriteEndpoint}artists?time_range=short_term&limit=10`);
+    const favouriteArtists = await this.getSpotify(
+      `${favouriteEndpoint}artists?time_range=short_term&limit=10`
+    );
 
     if (favouriteArtists) {
       return formatFavouriteArtists(favouriteArtists);
@@ -86,7 +91,9 @@ constructor() {
       return formatRecentlyPlayed(recentlyPlayed);
     }
 
-    return { error: "Problem getting recently played tracks. Check user details" };
+    return {
+      error: "Problem getting recently played tracks. Check user details",
+    };
   }
 
   private async getArtistImage(artists: any): Promise<void> {

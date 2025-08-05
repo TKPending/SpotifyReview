@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Fetching from "../FavouriteContainer/components/Fetching";
 import RefreshSongs from "./components/RefreshSongs";
 import RefreshToken from "../RefreshToken";
-import { getSessionStorage } from "@/app/util/sessionStorageHelper";
+import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
 
 const RecentlyPlayed = () => {
   const [refresh, setRefresh] = useState<boolean>(true);
@@ -24,11 +24,11 @@ const RecentlyPlayed = () => {
   return (
     <div className="bg-green-600 sm:py-4 h-[92%] sm:h-full w-full flex max-h-screen p-2 sm:p-4 rounded-xl overflow-hidden">
       <div className="flex flex-col lg:gap-4 w-full">
-
         <div className="flex h-auto lg:h-20 justify-center sm:justify-start items-center px-4">
-
           <div className="flex flex-col gap-2 p-4">
-            <p className="font-semibold text-center lg:text-left text-xl sm:text-3xl text-black">Recently Played Songs</p>
+            <p className="font-semibold text-center lg:text-left text-xl sm:text-3xl text-black">
+              Recently Played Songs
+            </p>
             <p className="text-center lg:text-left font-semibold text-gray-300">
               40 Of Your Most Recently Played Songs
             </p>

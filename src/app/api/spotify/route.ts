@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
+import { DEPLOYMENT } from "@/app/util/deployment";
 
 export async function POST(request: Request) {
-  const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "";
-  const tokenEndpoint = process.env.NEXT_PUBLIC_SPOTIFY_TOKEN_ENDPOINT || "";
-  const redirectUri = "https://spotify-review.vercel.app";
-
   const { code, codeVerifier } = await request.json();
 
   if (!code || !codeVerifier) {
@@ -14,25 +11,24 @@ export async function POST(request: Request) {
     );
   }
 
-  const payload = new URLSearchParams({
-    client_id: clientId,
-    grant_type: "authorization_code",
-    code,
-    redirect_uri: redirectUri,
-    code_verifier: codeVerifier,
-  });
-
   try {
-    const response = await fetch(tokenEndpoint, {
+    const response = await fetch(DEPLOYMENT.tokenEndpoint, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: payload,
+      body: new URLSearchParams({
+        client_id: DEPLOYMENT.clientId,
+        grant_type: "authorization_code",
+        code,
+        redirect_uri: DEPLOYMENT.local.redirectURILanding,
+        code_verifier: codeVerifier,
+      }),
     });
 
     const data = await response.json();
 
+    console.log({ data });
+
     if (data.access_token && data.refresh_token) {
-      // Return tokens directly instead of setting in session storage server-side
       return NextResponse.json({ success: true, data }, { status: 200 });
     } else {
       return NextResponse.json(

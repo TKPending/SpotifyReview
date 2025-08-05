@@ -1,12 +1,8 @@
 "use client";
 
-import {
-  spotifyAccessToken,
-  spotifyVerifier,
-} from "../util/spotifyAuth/spotify";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { spotifyVerifier } from "@/app/api/spotify/auth/spotifyVerifier";
 
 const AuthoriseAccess = () => {
   const router: AppRouterInstance = useRouter();
