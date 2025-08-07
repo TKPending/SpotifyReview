@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
+import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
+import RefreshToken from "@/app/components/RefreshToken";
+import Fetching from "../../../components/Fetching";
 import FavouriteArtist from "./components/FavouriteArtist";
 import FavouriteSong from "./components/FavouriteSong";
-import RefreshToken from "../RefreshToken";
-import Fetching from "./components/Fetching";
-import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
 
 type Favourites = {
   title: string;

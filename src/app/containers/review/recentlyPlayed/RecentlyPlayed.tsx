@@ -1,9 +1,9 @@
-import RecentSongs from "./components/RecentSongs";
 import { useEffect, useState } from "react";
-import Fetching from "../FavouriteContainer/components/Fetching";
-import RefreshSongs from "./components/RefreshSongs";
-import RefreshToken from "../RefreshToken";
 import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
+import RefreshSongs from "./components/RefreshSongs";
+import RefreshToken from "@/app/components/RefreshToken";
+import Fetching from "../../../components/Fetching";
+import RecentSongs from "./components/RecentSongs";
 
 const RecentlyPlayed = () => {
   const [refresh, setRefresh] = useState<boolean>(true);

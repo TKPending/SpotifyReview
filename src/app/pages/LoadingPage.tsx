@@ -1,6 +1,6 @@
 import "@/app/styles/loadingTextStyle.css";
 
-const LoadingTransitionPage = () => {
+const LoadingPage = () => {
   return (
     <div className="h-screen w-screen flex gap-2 items-center justify-center">
       <p className="loading-text">Loading Review</p>
@@ -13,4 +13,4 @@ const LoadingTransitionPage = () => {
   );
 };
 
-export default LoadingTransitionPage;
+export default LoadingPage;
