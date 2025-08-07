@@ -18,7 +18,7 @@ const NavigationOptions = ({ activeOption, handleOptionChange }: Props) => {
             onClick={() => handleOptionChange(index)}
             className={`${
               activeOption === index && "text-white"
-            } text-base lg:text-xl font-semibold transition duration-200 cursor-pointer text-green-600 hover:text-gray-300 hover:text-underline`}
+            } text-base lg:text-xl font-semibold cursor-pointer text-green-600 hover:text-green-700 transition duration-300 `}
           >
             {option}
           </p>
