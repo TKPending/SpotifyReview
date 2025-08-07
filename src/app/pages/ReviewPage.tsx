@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Navigation from "@/app/containers/navigation/Navigation";
 import ReviewContentContainer from "@/app/containers/review/ReviewContentContainer";
-import RemoveAccessButton from "@/app/components/RemoveAccessButton";
+import RemoveAccessButton from "@/app/containers/access/components/RemoveAccessButton";
+import RemoveAccessModal from "@/app/containers/modal/RemoveAccessModal";
 
 const ReviewPage = () => {
   const [option, setOption] = useState<number>(0);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleOptionChange = (optionIndex: number) => {
     setTimeout(() => {
@@ -12,9 +14,14 @@ const ReviewPage = () => {
     }, 100);
   };
 
+  const handleShowModal = (decision: boolean) => {
+    setShowModal(decision);
+  };
+
   return (
     <div className="flex flex-col sm:flex-row max-h-screen max-w-screen h-screen w-screen overscroll-none gap-2">
-      <RemoveAccessButton />
+      {showModal && <RemoveAccessModal handleShowModal={handleShowModal} />}
+      <RemoveAccessButton handleShowModal={handleShowModal} />
 
       <Navigation
         handleOptionChange={handleOptionChange}
