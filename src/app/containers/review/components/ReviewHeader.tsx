@@ -1,5 +1,5 @@
 import RefreshSongsButton from "./RefreshSongsButton";
-import RefreshToken from "@/app/components/RefreshToken";
+import RefreshToken from "@/app/containers/access/components/RefreshTokenButton";
 
 type Props = {
   title: string;

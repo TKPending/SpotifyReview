@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import AuthoriseAccess from "@/app/components/AuthoriseAccess";
 import { fetchAccessToken } from "@/app/api/spotify/data/fetchAccessToken";
+import AuthoriseAccessContainer from "@/app/containers/access/AuthoriseAccessContainer";
 
 export const LandingPage = () => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -34,7 +34,7 @@ export const LandingPage = () => {
         </p>
       </div>
 
-      <AuthoriseAccess />
+      <AuthoriseAccessContainer />
     </div>
   );
 };

@@ -9,8 +9,9 @@ const RemoveAccessButton = ({ handleShowModal }: Props) => {
     <div className="absolute right-4 top-10">
       <Button
         text={"Remove Access"}
+        textStyle=""
         className={
-          "text-white text-xs font-semibold p-2 rounded-lg bg-green-600 hover:bg-green-800 transition duration-200 hover:cursor-pointer"
+          "text-white text-xs font-semibold p-2 bg-green-600 hover:bg-green-800 "
         }
         onClick={() => handleShowModal(true)}
       />

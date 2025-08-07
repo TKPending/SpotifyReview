@@ -55,7 +55,8 @@ const RemoveAccessModal = ({ handleShowModal }: Props) => {
             <Button
               key={index}
               text={option}
-              className={`p-2 rounded-lg text-white transition hover:bg-opacity-80 duration-300 cursor-pointer ${
+              textStyle=""
+              className={`text-white  ${
                 index === CONFIRM ? confirmStyle : cancelStyle
               }`}
               onClick={() => handleRemoveAccess(index)}

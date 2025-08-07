@@ -1,13 +1,14 @@
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
-import { spotifyRefreshToken } from "../api/spotify/auth/spotifyRefreshToken";
+import Button from "@/app/components/Button";
+import { spotifyRefreshToken } from "@/app/api/spotify/auth/spotifyRefreshToken";
 import { removeSessionStorage } from "@/app/util/sessionStorage/removeSessionStorage";
 
 type Props = {
   setRefreshToken: Dispatch<SetStateAction<boolean>>;
 };
 
-const RefreshToken = ({ setRefreshToken }: Props) => {
+const RefreshTokenButton = ({ setRefreshToken }: Props) => {
   const router = useRouter();
 
   const handleRefreshToken = async () => {
@@ -26,15 +27,13 @@ const RefreshToken = ({ setRefreshToken }: Props) => {
   };
 
   return (
-    <div
+    <Button
+      text="RE-AUTHORISE"
+      textStyle=""
+      className="text-red-200"
       onClick={handleRefreshToken}
-      className="hover:scale-105 transition duration-200 text-red-200 cursor-pointer flex items-center justify-center"
-    >
-      <p className="hover:bg-opacity-80 p-4 bg-black rounded-lg">
-        RE-AUTHORISE
-      </p>
-    </div>
+    />
   );
 };
 
-export default RefreshToken;
+export default RefreshTokenButton;
