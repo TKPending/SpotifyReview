@@ -4,23 +4,16 @@ import ReviewHeader from "./components/ReviewHeader";
 import ReviewArtists from "./container/ReviewArtists";
 import ReviewSongs from "./container/ReviewSongs";
 import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
+import { ReviewInterface } from "@/app/types/ReviewTypes";
 
 type Props = {
   selectedOption: number;
 };
 
-interface ReviewInterface {
-  title: string;
-  description: string;
-  content: any[];
-}
-
 const FAVOURITE_ARTISTS = 0;
 const FAVOURITE_SONGS = 1;
-const RECENTLY_PLAYED = 2;
 
 const ReviewContentContainer = ({ selectedOption }: Props) => {
-  const [content, setContent] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [review, setReview] = useState<ReviewInterface | null>(null);
 
@@ -43,7 +36,6 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
     setIsLoading(true);
 
     const newContent = getContentFromStorage();
-    setContent(newContent);
 
     setTimeout(() => {
       let newReview: ReviewInterface;
