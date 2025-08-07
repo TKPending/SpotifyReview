@@ -1,3 +1,5 @@
+import SongPlayerButton from "../components/SongPlayerButton";
+
 type Props = {
   song: any;
 };

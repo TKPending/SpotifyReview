@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UserContainer from "@/app/containers/UserContainer";
+import Navigation from "@/app/containers/navigation/Navigation";
 import ReviewContentContainer from "@/app/containers/review/ReviewContentContainer";
 import RemoveAccessButton from "@/app/components/RemoveAccessButton";
 
@@ -16,7 +16,7 @@ const ReviewPage = () => {
     <div className="flex flex-col sm:flex-row max-h-screen max-w-screen h-screen w-screen overscroll-none gap-2">
       <RemoveAccessButton />
 
-      <UserContainer
+      <Navigation
         handleOptionChange={handleOptionChange}
         activeOption={option}
       />

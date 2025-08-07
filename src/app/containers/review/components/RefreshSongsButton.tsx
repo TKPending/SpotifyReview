@@ -10,7 +10,7 @@ type Props = {
   setError: Dispatch<SetStateAction<boolean>>;
 };
 
-const RefreshSongs = ({ setRefresh, setError }: Props) => {
+const RefreshSongsButton = ({ setRefresh, setError }: Props) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const handleRefresh = async () => {
     setRefresh(true);
@@ -55,4 +55,4 @@ const RefreshSongs = ({ setRefresh, setError }: Props) => {
   );
 };
 
-export default RefreshSongs;
+export default RefreshSongsButton;
