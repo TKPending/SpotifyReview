@@ -3,8 +3,13 @@ import Fetching from "@/app/components/Fetching";
 import ReviewHeader from "./components/ReviewHeader";
 import ReviewArtists from "./container/ReviewArtists";
 import ReviewSongs from "./container/ReviewSongs";
-import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
-import { ReviewInterface } from "@/app/types/ReviewTypes";
+import { getContentFromStorage } from "@/app/util/sessionStorage/getContentFromStorage";
+import {
+  ArtistType,
+  FavSongType,
+  RecentSongType,
+  ReviewInterface,
+} from "@/app/types/ReviewTypes";
 
 type Props = {
   selectedOption: number;
@@ -17,25 +22,10 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [review, setReview] = useState<ReviewInterface | null>(null);
 
-  const getContentFromStorage = () => {
-    if (selectedOption === FAVOURITE_ARTISTS) {
-      const artists = getSessionStorage("favouriteArtists");
-      return artists ? JSON.parse(artists) : [];
-    }
-
-    if (selectedOption === FAVOURITE_SONGS) {
-      const songs = getSessionStorage("favouriteSongs");
-      return songs ? JSON.parse(songs) : [];
-    }
-
-    const recents = getSessionStorage("recentlyPlayed");
-    return recents ? JSON.parse(recents) : [];
-  };
-
   useEffect(() => {
     setIsLoading(true);
 
-    const newContent = getContentFromStorage();
+    const newContent = getContentFromStorage(selectedOption);
 
     setTimeout(() => {
       let newReview: ReviewInterface;
@@ -84,15 +74,20 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
               description={review.description}
               contentType={selectedOption}
             />
-            {review.content.map((item: any, index: number) => (
-              <div key={index}>
-                {selectedOption === FAVOURITE_ARTISTS ? (
-                  <ReviewArtists artist={item} />
-                ) : (
-                  <ReviewSongs song={item} />
-                )}
-              </div>
-            ))}
+            {review.content.map(
+              (
+                item: ArtistType | RecentSongType | FavSongType,
+                index: number
+              ) => (
+                <div key={index}>
+                  {selectedOption === FAVOURITE_ARTISTS ? (
+                    <ReviewArtists artist={item as ArtistType} />
+                  ) : (
+                    <ReviewSongs song={item as RecentSongType | FavSongType} />
+                  )}
+                </div>
+              )
+            )}
           </div>
         )}
       </div>

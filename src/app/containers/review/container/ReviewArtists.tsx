@@ -1,10 +1,10 @@
+import { ArtistType } from "@/app/types/ReviewTypes";
+
 type Props = {
-  artist: any;
+  artist: ArtistType;
 };
 
 const ReviewArtists = ({ artist }: Props) => {
-  console.log(artist);
-
   return (
     <div>
       <p>{artist.artist}</p>
