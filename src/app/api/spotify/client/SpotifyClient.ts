@@ -65,7 +65,7 @@ class SpotifyClient {
     return { error: "Problem getting user details. Check user details" };
   }
 
-  public async getFavouriteSongs(): Promise<FavSongType | ErrorType> {
+  public async getFavouriteSongs(): Promise<FavSongType[] | ErrorType> {
     const favouriteSongs = await this.getSpotify(
       `${favouriteEP}tracks?time_range=short_term&limit=10`
     );
@@ -79,7 +79,7 @@ class SpotifyClient {
     return { error: "Problem getting favourite tracks. Check user details" };
   }
 
-  public async getFavouriteArtists(): Promise<ArtistType | ErrorType> {
+  public async getFavouriteArtists(): Promise<ArtistType[] | ErrorType> {
     const favouriteArtists = await this.getSpotify(
       `${favouriteEP}artists?time_range=short_term&limit=10`
     );
@@ -91,7 +91,7 @@ class SpotifyClient {
     return { error: "Problem getting favourite artists. Check user details" };
   }
 
-  public async getRecentlyPlayed(): Promise<RecentSongType | ErrorType> {
+  public async getRecentlyPlayed(): Promise<RecentSongType[] | ErrorType> {
     const recentlyPlayed = await this.getSpotify(recentlyPlayedEP);
 
     if (recentlyPlayed) {
@@ -105,10 +105,11 @@ class SpotifyClient {
 
   private async getArtistImage(artists: any): Promise<void> {
     for (const artist of artists) {
-      const artistId = artist.artist_id;
+      const artistId = artist.artistID;
+
       const artistObj = await this.getSpotify(`${artistEndpoint}${artistId}`);
       const artistImage = artistObj?.images?.[0]?.url || "default_artist.png";
-      artist.artist_image = artistImage;
+      artist.image = artistImage;
     }
   }
 }

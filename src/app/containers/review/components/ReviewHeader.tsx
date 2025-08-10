@@ -5,13 +5,27 @@ type Props = {
   title: string;
   description: string;
   contentType: number;
+  handleRefresh: () => void;
 };
 
-const ReviewHeader = ({ title, description, contentType }: Props) => {
+const RECENTLY_PLAYED: number = 2;
+
+const ReviewHeader = ({
+  title,
+  description,
+  contentType,
+  handleRefresh,
+}: Props) => {
   return (
-    <div>
-      <p>{title}</p>
-      <p>{description}</p>
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-3xl">{title}</p>
+        <p className="text-lg">{description}</p>
+      </div>
+
+      {contentType === RECENTLY_PLAYED && (
+        <RefreshSongsButton onClick={handleRefresh} />
+      )}
     </div>
   );
 };

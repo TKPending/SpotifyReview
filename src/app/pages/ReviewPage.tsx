@@ -9,9 +9,7 @@ const ReviewPage = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleOptionChange = (optionIndex: number) => {
-    setTimeout(() => {
-      setOption(optionIndex);
-    }, 100);
+    setOption(optionIndex);
   };
 
   const handleShowModal = (decision: boolean) => {

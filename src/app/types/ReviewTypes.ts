@@ -2,7 +2,7 @@ export interface ArtistType {
   artist: string;
   artistHref: string;
   followers: number;
-  genre: string;
+  genre: string[];
   image: string;
 }
 

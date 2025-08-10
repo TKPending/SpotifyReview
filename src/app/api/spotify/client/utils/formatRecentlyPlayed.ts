@@ -1,7 +1,7 @@
 import { RecentSongType } from "@/app/types/ReviewTypes";
 import { convertTimePlayed } from "@/app/util/convertTimePlayed";
 
-export const formatRecentlyPlayed = (recentlyPlayed: any): RecentSongType => {
+export const formatRecentlyPlayed = (recentlyPlayed: any): RecentSongType[] => {
   const recentSongs: any = [];
 
   for (const song of recentlyPlayed.items) {

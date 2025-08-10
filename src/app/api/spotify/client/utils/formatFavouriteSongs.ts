@@ -1,4 +1,6 @@
-export const formatFavouriteSongs = (favouriteSongs: any) => {
+import { FavSongType } from "@/app/types/ReviewTypes";
+
+export const formatFavouriteSongs = (favouriteSongs: any): FavSongType[] => {
   const songs: any = [];
 
   for (const song of favouriteSongs.items) {
