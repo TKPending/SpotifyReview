@@ -16,7 +16,11 @@ const ArtistHeader = ({ artist, followers, genres }: Props) => {
           Followers: {readableFollowersNumber(followers)}
         </p>
       </div>
-      <Tags tags={genres} />
+
+      <div className="flex flex-col gap-2">
+        <p className="text-xs">Genre:</p>
+        <Tags tags={genres} />
+      </div>
     </div>
   );
 };

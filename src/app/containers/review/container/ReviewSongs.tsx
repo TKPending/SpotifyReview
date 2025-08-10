@@ -1,8 +1,8 @@
-import { FavSongType, RecentSongType } from "@/app/types/ReviewTypes";
+import { SongType } from "@/app/types/ReviewTypes";
 import SongPlayerButton from "../components/SongPlayerButton";
 
 type Props = {
-  song: RecentSongType | FavSongType;
+  song: SongType;
 };
 
 const ReviewSongs = ({ song }: Props) => {

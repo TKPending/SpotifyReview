@@ -6,27 +6,17 @@ export interface ArtistType {
   image: string;
 }
 
-export interface FavSongType {
+export interface SongType {
   artist: string;
-  artist_href: string;
-  artist_id: string;
-  artist_image: string;
-  song_duration: number;
-  song_href: string;
-  song_image: string;
-  song_name: string;
-  song_preview: string;
-}
-
-export interface RecentSongType {
-  timePlayed: string;
-  artist: string;
-  artishHref: string;
-  albumName: string;
+  artistHref: string;
   songName: string;
   songHref: string;
-  image: string;
+  songImage: string;
   songPreviewUrl: string;
+  songDuration: number;
+  artistId?: string;
+  timePlayed?: string;
+  albumName?: string;
 }
 
 export interface UserDetailType {
@@ -38,7 +28,7 @@ export interface UserDetailType {
 export interface ReviewInterface {
   title: string;
   description: string;
-  content: RecentSongType[] | FavSongType[] | ArtistType[];
+  content: ArtistType[] | SongType[];
 }
 
 export interface ErrorType {

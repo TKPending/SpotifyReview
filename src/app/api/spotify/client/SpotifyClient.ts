@@ -1,12 +1,10 @@
 import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
-import { formatFavouriteSongs } from "./utils/formatFavouriteSongs";
 import { formatFavouriteArtists } from "./utils/formatFavouriteArtists";
-import { formatRecentlyPlayed } from "./utils/formatRecentlyPlayed";
+import { formatSongs } from "./utils/formatSongs";
 import {
   ArtistType,
   ErrorType,
-  FavSongType,
-  RecentSongType,
+  SongType,
   UserDetailType,
 } from "@/app/types/ReviewTypes";
 
@@ -65,13 +63,13 @@ class SpotifyClient {
     return { error: "Problem getting user details. Check user details" };
   }
 
-  public async getFavouriteSongs(): Promise<FavSongType[] | ErrorType> {
+  public async getFavouriteSongs(): Promise<SongType[] | ErrorType> {
     const favouriteSongs = await this.getSpotify(
       `${favouriteEP}tracks?time_range=short_term&limit=10`
     );
 
     if (favouriteSongs) {
-      const formattedSongs = formatFavouriteSongs(favouriteSongs);
+      const formattedSongs = formatSongs(favouriteSongs, "favourite");
       await this.getArtistImage(formattedSongs);
       return formattedSongs;
     }
@@ -91,11 +89,11 @@ class SpotifyClient {
     return { error: "Problem getting favourite artists. Check user details" };
   }
 
-  public async getRecentlyPlayed(): Promise<RecentSongType[] | ErrorType> {
+  public async getRecentlyPlayed(): Promise<SongType[] | ErrorType> {
     const recentlyPlayed = await this.getSpotify(recentlyPlayedEP);
 
     if (recentlyPlayed) {
-      return formatRecentlyPlayed(recentlyPlayed);
+      return formatSongs(recentlyPlayed, "recent");
     }
 
     return {

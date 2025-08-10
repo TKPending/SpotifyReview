@@ -6,11 +6,10 @@ import ReviewSongs from "./container/ReviewSongs";
 import { getContentFromStorage } from "@/app/util/sessionStorage/getContentFromStorage";
 import SpotifyClient from "@/app/api/spotify/client/SpotifyClient";
 import {
-  ArtistType,
-  ErrorType,
-  FavSongType,
-  RecentSongType,
   ReviewInterface,
+  ArtistType,
+  SongType,
+  ErrorType,
 } from "@/app/types/ReviewTypes";
 import { setSessionStorage } from "@/app/util/sessionStorage/setSessionStorage";
 import { isErrorType } from "@/app/util/isErrorType";
@@ -34,7 +33,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
     setIsFetching(true);
     setIsError(false);
 
-    const fetchedRecentSongs: RecentSongType[] | ErrorType =
+    const fetchedRecentSongs: SongType[] | ErrorType =
       await SpotifyClient.getRecentlyPlayed();
 
     if (isErrorType(fetchedRecentSongs)) {
@@ -108,10 +107,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
             />
             <div className="flex flex-col gap-4 overflow-y-auto">
               {review.content.map(
-                (
-                  item: ArtistType | RecentSongType | FavSongType,
-                  index: number
-                ) => (
+                (item: ArtistType | SongType, index: number) => (
                   <div key={index}>
                     {selectedOption === FAVOURITE_ARTISTS ? (
                       <ReviewArtists
@@ -119,9 +115,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
                         artistItem={item as ArtistType}
                       />
                     ) : (
-                      <ReviewSongs
-                        song={item as RecentSongType | FavSongType}
-                      />
+                      <ReviewSongs song={item as SongType} />
                     )}
                   </div>
                 )
