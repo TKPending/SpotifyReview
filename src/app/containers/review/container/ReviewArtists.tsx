@@ -1,23 +1,27 @@
+import ArtistDetails from "@/app/containers/review/components/artist/ArtistDetails";
+import Ranking from "../components/Ranking";
 import { ArtistType } from "@/app/types/ReviewTypes";
-import ArtistImage from "@/app/containers/review/components/artist/ArtistImage";
-import ArtistHeader from "@/app/containers/review/components/artist/ArtistHeader";
 
 type Props = {
+  ranking: number;
   artistItem: ArtistType;
 };
 
-const ReviewArtists = ({ artistItem }: Props) => {
+const ReviewArtists = ({ ranking, artistItem }: Props) => {
   const { artist, artistHref, followers, genre, image } = artistItem;
 
   return (
     <a href={artistHref}>
-      <div className="bg-black h-auto w-full rounded-lg p-4">
+      <div className="flex items-center justify-between bg-black h-auto w-full rounded-lg p-4 px-8">
         {/* Artist */}
-        <div className="flex gap-4">
-          <ArtistImage imageUrl={image} />
+        <ArtistDetails
+          image={image}
+          artist={artist}
+          followers={followers}
+          genre={genre}
+        />
 
-          <ArtistHeader artist={artist} followers={followers} genres={genre} />
-        </div>
+        <Ranking ranking={ranking} />
       </div>
     </a>
   );
