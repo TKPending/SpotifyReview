@@ -12,7 +12,7 @@ const ReviewArtists = ({ ranking, artistItem }: Props) => {
 
   return (
     <a href={artistHref}>
-      <div className="flex items-center justify-between bg-black h-auto w-full rounded-lg p-4 px-8">
+      <div className="relative flex items-center justify-between bg-black h-auto w-full rounded-lg p-4 px-6">
         {/* Artist */}
         <ArtistDetails
           image={image}

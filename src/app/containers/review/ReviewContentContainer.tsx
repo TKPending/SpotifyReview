@@ -115,7 +115,13 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
                         artistItem={item as ArtistType}
                       />
                     ) : (
-                      <ReviewSongs song={item as SongType} />
+                      <ReviewSongs
+                        ranking={index + 1}
+                        type={
+                          selectedOption === FAVOURITE_SONGS ? "song" : "recent"
+                        }
+                        song={item as SongType}
+                      />
                     )}
                   </div>
                 )

@@ -1,4 +1,4 @@
-import ArtistImage from "@/app/containers/review/components/artist/ArtistImage";
+import ReviewItemImage from "@/app/containers/review/components/ReviewItemImage";
 import ArtistHeader from "@/app/containers/review/components/artist/ArtistHeader";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 const ArtistDetails = ({ image, artist, followers, genre }: Props) => {
   return (
     <div className="flex gap-4">
-      <ArtistImage imageUrl={image} />
+      <ReviewItemImage imageUrl={image} />
 
       <ArtistHeader artist={artist} followers={followers} genres={genre} />
     </div>

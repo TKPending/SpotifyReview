@@ -4,8 +4,8 @@ type Props = {
 
 const Ranking = ({ ranking }: Props) => {
   return (
-    <div className="w-12 h-12 flex items-center justify-center bg-green-600 rounded-lg">
-      <p className="text-white text-3xl">{ranking}</p>
+    <div className="absolute top-5 right-5 p-2 px-4 flex items-center justify-center">
+      <p className="text-green-600 font-semibold text-xl">{ranking}</p>
     </div>
   );
 };

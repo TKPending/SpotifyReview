@@ -1,8 +1,12 @@
 export const convertTimePlayed = (timestamp: string) => {
   const date = new Date(timestamp);
 
-  const hours = date.getHours().toString().padStart(2, "0");
+  let hours = date.getHours();
   const minutes = date.getMinutes().toString().padStart(2, "0");
 
-  return `${hours}:${minutes}`;
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  if (hours === 0) hours = 12; // convert '0' to '12'
+
+  return `${hours}:${minutes} ${ampm}`;
 };
