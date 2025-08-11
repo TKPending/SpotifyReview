@@ -16,7 +16,7 @@ const SongPlayerDetails = ({ songHref, duration, timePlayed }: Props) => {
 
       <SongPlayerButton previewAudio={songHref} />
 
-      {timePlayed && <p className="text-white">{timePlayed} AM</p>}
+      {timePlayed && <p className="text-white">{timePlayed}</p>}
     </div>
   );
 };

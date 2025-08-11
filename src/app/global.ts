@@ -8,9 +8,9 @@ export enum GlobalValues {
   MIN_ARTISTS = 10,
   MAX_ARTISTS = 20,
   MIN_SONGS = 10,
-  MAX_SONGS = 10,
-  MIN_RECENT = 40,
-  MAX_RECENT = 100,
+  MAX_SONGS = 20,
+  MIN_RECENT = 20,
+  MAX_RECENT = 50,
 }
 
 export const sessionItemsToRemove: string[] = [

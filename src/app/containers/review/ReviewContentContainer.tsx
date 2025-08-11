@@ -15,7 +15,10 @@ import { setSessionStorage } from "@/app/util/sessionStorage/setSessionStorage";
 import { isErrorType } from "@/app/util/isErrorType";
 import ReviewError from "@/app/components/ReviewError";
 import SeeMoreButton from "./components/buttons/SeeMoreButton";
-import { Favourites } from "@/app/global";
+import { Favourites, GlobalValues } from "@/app/global";
+import { fetchFavouriteArtists } from "@/app/api/spotify/data/util/fetchFavouriteArtists";
+import { fetchFavouriteSongs } from "@/app/api/spotify/data/util/fetchFavouriteSongs";
+import { fetchRecentlyPlayed } from "@/app/api/spotify/data/util/fetchRecentlyPlayed";
 
 type Props = {
   selectedOption: number;
@@ -26,7 +29,13 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
   const [review, setReview] = useState<ReviewInterface | null>(null);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [isSeeMoreVisible, setIsSeeMoreVisible] = useState<boolean>(false);
+  const [seeMoreVisible, setSeeMoreVisible] = useState<Record<number, boolean>>(
+    {
+      [Favourites.ARTISTS]: true,
+      [Favourites.SONGS]: true,
+      [Favourites.RECENT]: true,
+    }
+  );
 
   const handleRefreshSongs = async () => {
     setIsLoading(true);
@@ -50,18 +59,34 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
     setIsFetching(false);
   };
 
-  const handleSeeMore = () => {
-    // Fetch more content
-    // For Artists and Songs, max is 20 items
-    // Hide button after 20 items
-    // For Recent, max is 100 items
+  const handleSeeMore = async () => {
+    setIsLoading(true);
+    setIsFetching(true);
+    switch (selectedOption) {
+      case Favourites.ARTISTS:
+        await fetchFavouriteArtists(GlobalValues.MAX_ARTISTS);
+        break;
+      case Favourites.SONGS:
+        await fetchFavouriteSongs(GlobalValues.MAX_SONGS);
+        break;
+      case Favourites.RECENT:
+        await fetchRecentlyPlayed(GlobalValues.MAX_RECENT);
+        break;
+      default:
+        console.warn("Unknown option selected");
+    }
+
+    setSeeMoreVisible((prev) => ({ ...prev, [selectedOption]: false }));
+    setIsLoading(false);
+    setIsFetching(false);
   };
 
   useEffect(() => {
     setReview(null);
     setIsLoading(true);
 
-    const newContent = getContentFromStorage(selectedOption);
+    const newContent: ArtistType[] | SongType[] =
+      getContentFromStorage(selectedOption);
 
     setTimeout(() => {
       let newReview: ReviewInterface;
@@ -136,7 +161,11 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
                 )
               )}
 
-              {isSeeMoreVisible && <SeeMoreButton onClick={handleSeeMore} />}
+              {seeMoreVisible[selectedOption] &&
+                review.content.length !== GlobalValues.MAX_SONGS &&
+                review.content.length !== GlobalValues.MAX_RECENT && (
+                  <SeeMoreButton onClick={handleSeeMore} />
+                )}
             </div>
           </div>
         )}
