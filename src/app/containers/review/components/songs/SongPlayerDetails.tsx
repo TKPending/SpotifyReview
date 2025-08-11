@@ -9,14 +9,14 @@ type Props = {
 
 const SongPlayerDetails = ({ songHref, duration, timePlayed }: Props) => {
   return (
-    <div className="flex flex-col sm:w-1/3 gap-2 items-center justify-center">
-      <p className="text-white text-xs">
+    <div className="flex flex-col sm:w-1/3 gap-2 text-center items-center justify-center">
+      {/* <p className="text-white text-xs">
         Duration: {formatSongDuration(duration)}
-      </p>
+      </p> */}
 
       <SongPlayerButton previewAudio={songHref} />
 
-      {timePlayed && <p className="text-white">{timePlayed}</p>}
+      {timePlayed && <p className="text-white text-xs">{timePlayed}</p>}
     </div>
   );
 };

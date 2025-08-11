@@ -19,7 +19,7 @@ const SongDetails = ({ image, artist, songName, albumName, song }: Props) => {
       <div className="flex flex-col justify-between gap-1">
         <div className="flex flex-col gap-2">
           <p className="text-white text-2xl font-semibold">{artist}</p>
-          <p className="text-green-600 font-semibold text-xl">{songName}</p>
+          <p className="text-green-600 font-semibold text-[18px]">{songName}</p>
         </div>
         {albumName && (
           <div className="flex gap-1 items-center font-semibold">

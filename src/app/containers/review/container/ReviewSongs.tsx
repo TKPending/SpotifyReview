@@ -25,8 +25,8 @@ const ReviewSongs = ({ song, type, ranking }: Props) => {
 
   return (
     <a href={songHref}>
-      <div className="relative flex items-center justify-between bg-black h-auto w-full rounded-lg p-4 px-8">
-        {type === "song" && <Ranking ranking={ranking} />}
+      <div className="relative grid grid-cols-[1fr_auto_auto] items-center bg-black hover:bg-opacity-90 h-auto w-full rounded-lg p-4 pr-6 gap-4">
+        {/* Song Details (takes up remaining space) */}
         <SongDetails
           artist={artist}
           image={songImage}
@@ -35,11 +35,21 @@ const ReviewSongs = ({ song, type, ranking }: Props) => {
           song={type === "song"}
         />
 
-        <SongPlayerDetails
-          songHref={songPreviewUrl}
-          duration={songDuration}
-          timePlayed={timePlayed}
-        />
+        {/* Player Details (fixed width) */}
+        <div className="w-[200px] flex justify-end">
+          <SongPlayerDetails
+            songHref={songPreviewUrl}
+            duration={songDuration}
+            timePlayed={timePlayed}
+          />
+        </div>
+
+        {/* Ranking (fixed width) */}
+        {type === "song" && (
+          <div className="w-[50px] flex justify-end">
+            <Ranking ranking={ranking} />
+          </div>
+        )}
       </div>
     </a>
   );

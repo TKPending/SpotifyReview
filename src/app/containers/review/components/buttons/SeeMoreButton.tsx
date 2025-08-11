@@ -8,8 +8,8 @@ const SeeMoreButton = ({ onClick }: Props) => {
   return (
     <Button
       text="See More"
-      textStyle="text-blue-600"
-      className="bg-white h-12 w-40 mt-4 hover:bg-blue-50 hover:shadow-lg"
+      textStyle="text-green-600 font-semibold text-xl"
+      className="bg-black h-16 w-40 mt-4 hover:bg-blue-50 hover:shadow-lg"
       onClick={onClick}
     />
   );

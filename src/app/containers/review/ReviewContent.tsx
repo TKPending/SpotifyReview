@@ -27,12 +27,20 @@ const ReviewContent = ({
   handleSeeMore,
 }: Props) => {
   const { MAX_SONGS, MAX_RECENT } = GlobalValues;
+  const { ARTISTS, SONGS } = Favourites;
+  const fetchingText =
+    selectedOption === ARTISTS
+      ? "Fetching Artists"
+      : selectedOption === SONGS
+      ? "Fetching Songs"
+      : "Fetching Recently Played";
 
   return (
     <div className="w-full sm:w-4/5 flex items-center justify-center">
       <div className="bg-green-600 h-3/4 w-[80%] rounded-lg shadow-xs shadow-gray-300 p-6 overflow-hidden">
-        {isLoading && <Fetching />}
+        {isLoading && <Fetching fetchText={fetchingText} />}
         {isError && <ReviewError text="There is an error" />}
+
         {!isLoading && review && (
           <div className="h-full flex flex-col gap-4">
             <ReviewHeader
@@ -65,11 +73,13 @@ const ReviewContent = ({
                 )
               )}
 
-              {seeMoreVisible[selectedOption] &&
-                review.content.length !== MAX_SONGS &&
-                review.content.length !== MAX_RECENT && (
-                  <SeeMoreButton onClick={handleSeeMore} />
-                )}
+              <div className="w-full h-auto flex items-center justify-center">
+                {seeMoreVisible[selectedOption] &&
+                  review.content.length !== MAX_SONGS &&
+                  review.content.length !== MAX_RECENT && (
+                    <SeeMoreButton onClick={handleSeeMore} />
+                  )}
+              </div>
             </div>
           </div>
         )}
