@@ -31,6 +31,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
       [Favourites.RECENT]: true,
     }
   );
+  const { MAX_ARTISTS, MAX_SONGS, MAX_RECENT } = GlobalValues;
 
   const handleRefreshSongs = async () => {
     setIsLoading(true);
@@ -47,6 +48,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
       );
       setIsError(true);
     } else {
+      // Possible error with Spotify API Token
       setSessionStorage("recentlyPlayed", JSON.stringify(fetchedRecentSongs));
     }
 
@@ -59,13 +61,13 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
     setIsFetching(true);
     switch (selectedOption) {
       case Favourites.ARTISTS:
-        await fetchFavouriteArtists(GlobalValues.MAX_ARTISTS);
+        await fetchFavouriteArtists(MAX_ARTISTS);
         break;
       case Favourites.SONGS:
-        await fetchFavouriteSongs(GlobalValues.MAX_SONGS);
+        await fetchFavouriteSongs(MAX_SONGS);
         break;
       case Favourites.RECENT:
-        await fetchRecentlyPlayed(GlobalValues.MAX_RECENT);
+        await fetchRecentlyPlayed(MAX_RECENT);
         break;
       default:
         console.warn("Unknown option selected");

@@ -26,6 +26,8 @@ const ReviewContent = ({
   handleRefreshSongs,
   handleSeeMore,
 }: Props) => {
+  const { MAX_SONGS, MAX_RECENT } = GlobalValues;
+
   return (
     <div className="w-full sm:w-4/5 flex items-center justify-center">
       <div className="bg-green-600 h-3/4 w-[80%] rounded-lg shadow-xs shadow-gray-300 p-6 overflow-hidden">
@@ -64,8 +66,8 @@ const ReviewContent = ({
               )}
 
               {seeMoreVisible[selectedOption] &&
-                review.content.length !== GlobalValues.MAX_SONGS &&
-                review.content.length !== GlobalValues.MAX_RECENT && (
+                review.content.length !== MAX_SONGS &&
+                review.content.length !== MAX_RECENT && (
                   <SeeMoreButton onClick={handleSeeMore} />
                 )}
             </div>

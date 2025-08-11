@@ -13,15 +13,17 @@ export const fetchUserData = async (
   setPageLoading: Dispatch<SetStateAction<boolean>>,
   setError: Dispatch<SetStateAction<boolean>>
 ) => {
+  const { MIN_ARTISTS, MIN_SONGS, MIN_RECENT } = GlobalValues;
+
   try {
     const user = await fetchUserDetails();
     if (isErrorType(user)) {
       throw new Error("Failed to fetch user details");
     }
 
-    await fetchFavouriteArtists(GlobalValues.MIN_ARTISTS);
-    await fetchFavouriteSongs(GlobalValues.MIN_SONGS);
-    await fetchRecentlyPlayed(GlobalValues.MIN_RECENT);
+    await fetchFavouriteArtists(MIN_ARTISTS);
+    await fetchFavouriteSongs(MIN_SONGS);
+    await fetchRecentlyPlayed(MIN_RECENT);
 
     setPageLoading(false);
     setSessionStorage("review_stored", "stored");

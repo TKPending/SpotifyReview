@@ -11,6 +11,8 @@ export enum GlobalValues {
   MAX_SONGS = 20,
   MIN_RECENT = 20,
   MAX_RECENT = 50,
+  CONFIRM = 0,
+  CANCEL = 1,
 }
 
 export const sessionItemsToRemove: string[] = [
