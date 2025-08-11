@@ -8,6 +8,7 @@ import AuthoriseAccessContainer from "@/app/containers/access/AuthoriseAccessCon
 export const LandingPage = () => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const router = useRouter();
+  const keyWordsStyle: string = "text-green-600 font-semibold";
 
   useEffect(() => {
     if (!accessToken) {
@@ -18,19 +19,22 @@ export const LandingPage = () => {
   }, [accessToken, router]);
 
   return (
-    <div className="h-full w-full text-white flex flex-col justify-center items-center gap-8">
-      <h1 className="text-4xl font-bold mb-2 text-center">
+    <div className="h-full w-full text-white flex flex-col justify-center items-center gap-16">
+      <h1 className="text-6xl font-bold mb-2 text-center">
         Welcome to <span className="text-green-600">Spotify</span> Review
       </h1>
-      <div className="flex flex-col gap-2 text-center text-xl">
-        <p>
-          Click on <span className="text-green-600">Authorise Access</span> to
-          continue.
-        </p>
+      <div className="flex flex-col gap-4 text-center text-2xl">
         <p>
           Get insights on your favorite{" "}
-          <span className="text-green-600">artists</span> and{" "}
-          <span className="text-green-600">songs</span>.
+          <span className={`${keyWordsStyle}`}>Artists</span> and{" "}
+          <span className={`${keyWordsStyle}`}>Songs</span>, along with your
+          most <span className={`${keyWordsStyle}`}>Recently Played Songs</span>
+          .
+        </p>
+        <p>
+          To get started you need to click on{" "}
+          <span className={`${keyWordsStyle}`}>Authorise Access</span> to
+          continue.
         </p>
       </div>
 

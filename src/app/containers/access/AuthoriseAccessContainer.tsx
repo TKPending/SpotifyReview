@@ -18,7 +18,7 @@ const AuthoriseAccessContainer = () => {
   return (
     <Button
       text="Authorise Access"
-      textStyle=""
+      textStyle="font-semibold"
       className="bg-green-600 h-12 w-40 mt-20 hover:bg-green-500 hover:shadow-2xl"
       onClick={handleAuthorisation}
     />
