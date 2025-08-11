@@ -1,4 +1,4 @@
-import RefreshSongsButton from "./RefreshSongsButton";
+import RefreshSongsButton from "./buttons/RefreshSongsButton";
 import RefreshToken from "@/app/containers/access/components/RefreshTokenButton";
 
 type Props = {

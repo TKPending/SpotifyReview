@@ -1,11 +1,9 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
 import { removeSessionStorage } from "@/app/util/sessionStorage/removeSessionStorage";
+import { sessionItemsToRemove } from "@/app/global";
 
-export const removeUserAccess = (
-  router: AppRouterInstance,
-  itemsToRemove: string[]
-) => {
+export const removeUserAccess = (router: AppRouterInstance) => {
   let accessToken;
   if (typeof window !== "undefined") {
     accessToken = getSessionStorage("access_token") || "";
@@ -13,7 +11,7 @@ export const removeUserAccess = (
 
   if (!accessToken) {
     if (typeof window !== "undefined") {
-      itemsToRemove.forEach((item: string) => {
+      sessionItemsToRemove.forEach((item: string) => {
         removeSessionStorage(item);
       });
     }

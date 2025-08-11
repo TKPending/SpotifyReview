@@ -39,7 +39,7 @@ const RemoveAccessModal = ({ handleShowModal }: Props) => {
   };
 
   return (
-    <div className="h-screen w-screen absolute left-0 top-0 flex items-center justify-center bg-black bg-opacity-40">
+    <div className="z-50 h-screen w-screen absolute left-0 top-0 flex items-center justify-center bg-black bg-opacity-40">
       <div className="bg-green-600 h-auto w-auto flex flex-col items-center justify-center gap-12 p-4">
         <div className="text-center flex flex-col gap-2">
           <p>Are you sure you want to remove access?</p>

@@ -6,20 +6,13 @@ import { fetchUserData } from "@/app/api/spotify/data/fetchUserData";
 import { removeUserAccess } from "@/app/api/spotify/data/removeUserAccess";
 import ReviewPage from "@/app/pages/ReviewPage";
 
-const itemsToRemove: string[] = [
-  "review_stored",
-  "access_token",
-  "code_verifier",
-  "refresh_token",
-];
-
 const TransitionPage = () => {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    removeUserAccess(router, itemsToRemove);
+    removeUserAccess(router);
   }, [error]);
 
   useEffect(() => {
@@ -29,7 +22,7 @@ const TransitionPage = () => {
     }
 
     if (!stored) {
-      fetchUserData(itemsToRemove, setPageLoading, setError);
+      fetchUserData(setPageLoading, setError);
     } else {
       setPageLoading(false);
     }

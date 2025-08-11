@@ -11,7 +11,7 @@ import {
 const userEndpoint: string = "https://api.spotify.com/v1/me";
 const favouriteEP: string = "https://api.spotify.com/v1/me/top/";
 const recentlyPlayedEP: string =
-  "https://api.spotify.com/v1/me/player/recently-played?limit=40";
+  "https://api.spotify.com/v1/me/player/recently-played?limit=";
 const artistEndpoint: string = "https://api.spotify.com/v1/artists/";
 
 class SpotifyClient {
@@ -63,9 +63,11 @@ class SpotifyClient {
     return { error: "Problem getting user details. Check user details" };
   }
 
-  public async getFavouriteSongs(): Promise<SongType[] | ErrorType> {
+  public async getFavouriteSongs(
+    limit: number
+  ): Promise<SongType[] | ErrorType> {
     const favouriteSongs = await this.getSpotify(
-      `${favouriteEP}tracks?time_range=short_term&limit=10`
+      `${favouriteEP}tracks?time_range=short_term&limit=${limit}`
     );
 
     if (favouriteSongs) {
@@ -77,9 +79,11 @@ class SpotifyClient {
     return { error: "Problem getting favourite tracks. Check user details" };
   }
 
-  public async getFavouriteArtists(): Promise<ArtistType[] | ErrorType> {
+  public async getFavouriteArtists(
+    limit: number
+  ): Promise<ArtistType[] | ErrorType> {
     const favouriteArtists = await this.getSpotify(
-      `${favouriteEP}artists?time_range=short_term&limit=10`
+      `${favouriteEP}artists?time_range=short_term&limit=${limit}`
     );
 
     if (favouriteArtists) {
@@ -89,8 +93,10 @@ class SpotifyClient {
     return { error: "Problem getting favourite artists. Check user details" };
   }
 
-  public async getRecentlyPlayed(): Promise<SongType[] | ErrorType> {
-    const recentlyPlayed = await this.getSpotify(recentlyPlayedEP);
+  public async getRecentlyPlayed(
+    limit: number
+  ): Promise<SongType[] | ErrorType> {
+    const recentlyPlayed = await this.getSpotify(recentlyPlayedEP + limit);
 
     if (recentlyPlayed) {
       return formatSongs(recentlyPlayed, "recent");

@@ -14,19 +14,19 @@ import {
 import { setSessionStorage } from "@/app/util/sessionStorage/setSessionStorage";
 import { isErrorType } from "@/app/util/isErrorType";
 import ReviewError from "@/app/components/ReviewError";
+import SeeMoreButton from "./components/buttons/SeeMoreButton";
+import { Favourites } from "@/app/global";
 
 type Props = {
   selectedOption: number;
 };
-
-const FAVOURITE_ARTISTS = 0;
-const FAVOURITE_SONGS = 1;
 
 const ReviewContentContainer = ({ selectedOption }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [review, setReview] = useState<ReviewInterface | null>(null);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [isSeeMoreVisible, setIsSeeMoreVisible] = useState<boolean>(false);
 
   const handleRefreshSongs = async () => {
     setIsLoading(true);
@@ -34,7 +34,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
     setIsError(false);
 
     const fetchedRecentSongs: SongType[] | ErrorType =
-      await SpotifyClient.getRecentlyPlayed();
+      await SpotifyClient.getRecentlyPlayed(40);
 
     if (isErrorType(fetchedRecentSongs)) {
       console.error(
@@ -50,6 +50,13 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
     setIsFetching(false);
   };
 
+  const handleSeeMore = () => {
+    // Fetch more content
+    // For Artists and Songs, max is 20 items
+    // Hide button after 20 items
+    // For Recent, max is 100 items
+  };
+
   useEffect(() => {
     setReview(null);
     setIsLoading(true);
@@ -60,7 +67,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
       let newReview: ReviewInterface;
 
       switch (selectedOption) {
-        case FAVOURITE_ARTISTS:
+        case Favourites.ARTISTS:
           newReview = {
             title: "Your Favourite Artists",
             description:
@@ -69,7 +76,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
           };
           break;
 
-        case FAVOURITE_SONGS:
+        case Favourites.SONGS:
           newReview = {
             title: "Your Favourite Songs",
             description:
@@ -109,7 +116,7 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
               {review.content.map(
                 (item: ArtistType | SongType, index: number) => (
                   <div key={index}>
-                    {selectedOption === FAVOURITE_ARTISTS ? (
+                    {selectedOption === Favourites.ARTISTS ? (
                       <ReviewArtists
                         ranking={index + 1}
                         artistItem={item as ArtistType}
@@ -118,7 +125,9 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
                       <ReviewSongs
                         ranking={index + 1}
                         type={
-                          selectedOption === FAVOURITE_SONGS ? "song" : "recent"
+                          selectedOption === Favourites.SONGS
+                            ? "song"
+                            : "recent"
                         }
                         song={item as SongType}
                       />
@@ -126,6 +135,8 @@ const ReviewContentContainer = ({ selectedOption }: Props) => {
                   </div>
                 )
               )}
+
+              {isSeeMoreVisible && <SeeMoreButton onClick={handleSeeMore} />}
             </div>
           </div>
         )}
