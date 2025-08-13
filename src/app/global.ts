@@ -21,3 +21,9 @@ export const sessionItemsToRemove: string[] = [
   "code_verifier",
   "refresh_token",
 ];
+
+export const Periods = {
+  ONE_MONTH: "< 1 Month",
+  SIX_MONTHS: "< 6 Months",
+  ONE_YEAR: "< 1 Year",
+};

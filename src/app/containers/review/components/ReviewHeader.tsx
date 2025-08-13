@@ -1,6 +1,7 @@
 import { Favourites } from "@/app/global";
 import RefreshSongsButton from "./buttons/RefreshSongsButton";
 import RefreshToken from "@/app/containers/access/components/RefreshTokenButton";
+import ReviewPeriod from "@/app/containers/review/container/ReviewPeriod";
 
 type Props = {
   title: string;
@@ -22,6 +23,7 @@ const ReviewHeader = ({
       <div>
         <p className="text-3xl text-white font-semibold">{title}</p>
         <p className="text-lg">{description}</p>
+        <ReviewPeriod />
       </div>
 
       {contentType === RECENT && <RefreshSongsButton onClick={handleRefresh} />}
