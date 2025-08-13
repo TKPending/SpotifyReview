@@ -35,7 +35,7 @@ const RemoveAccessModal = ({ handleShowModal }: Props) => {
   };
 
   return (
-    <div className="z-50 h-screen w-screen absolute left-0 top-0 flex items-center justify-center bg-black bg-opacity-40">
+    <div className="z-50 h-screen w-screen max-h-screen max-w-screen absolute left-0 top-0 flex items-center justify-center bg-black bg-opacity-40">
       <div className="bg-green-600 text-white font-semibold h-[375px] w-[600px] flex flex-col items-center justify-center gap-12 p-4">
         <ModalText />
         <ModalButtons handleRemoveAccess={handleRemoveAccess} />

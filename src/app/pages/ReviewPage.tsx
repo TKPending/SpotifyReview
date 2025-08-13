@@ -24,8 +24,9 @@ const ReviewPage = () => {
       </div>
 
       <Navigation
-        handleOptionChange={handleOptionChange}
         activeOption={option}
+        handleOptionChange={handleOptionChange}
+        handleShowModal={handleShowModal}
       />
       <ReviewContentContainer selectedOption={option} />
     </div>

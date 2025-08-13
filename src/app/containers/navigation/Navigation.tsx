@@ -6,9 +6,14 @@ import UserProfile from "./components/UserProfile";
 type Props = {
   activeOption: number;
   handleOptionChange: (option: number) => void;
+  handleShowModal: (decision: boolean) => void;
 };
 
-const Navigation = ({ handleOptionChange, activeOption }: Props) => {
+const Navigation = ({
+  activeOption,
+  handleOptionChange,
+  handleShowModal,
+}: Props) => {
   const [userAvatar, setUserAvatar] = useState<string>("");
   const [username, setUsername] = useState<string>("");
 
@@ -26,7 +31,11 @@ const Navigation = ({ handleOptionChange, activeOption }: Props) => {
 
   return (
     <div className="flex flex-col justify-start sm:items-center lg:gap-4 w-full sm:w-1/5 mt-[4%] lg:mt-[5%] sm:mt-[4%]">
-      <UserProfile userAvatar={userAvatar} username={username} />
+      <UserProfile
+        userAvatar={userAvatar}
+        username={username}
+        handleShowModal={handleShowModal}
+      />
 
       <NavigationOptions
         activeOption={activeOption}

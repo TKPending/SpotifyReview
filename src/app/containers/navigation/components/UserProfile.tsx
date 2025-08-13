@@ -3,12 +3,10 @@ import RemoveAccessButton from "../../access/components/RemoveAccessButton";
 type Props = {
   userAvatar: string;
   username: string;
+  handleShowModal: (decision: boolean) => void;
 };
 
-const UserProfile = ({ userAvatar, username }: Props) => {
-  const test = () => {
-    //
-  };
+const UserProfile = ({ userAvatar, username, handleShowModal }: Props) => {
   return (
     <div className="flex sm:flex-col items-center justify-between px-8 md:px-0 md:justify-center gap-4">
       <div className="p-1 bg-green-600 rounded-full">
@@ -19,7 +17,7 @@ const UserProfile = ({ userAvatar, username }: Props) => {
         />
       </div>
       <p className="text-xl text-white font-semibold">{username}</p>
-      <RemoveAccessButton handleShowModal={test} />
+      <RemoveAccessButton handleShowModal={handleShowModal} />
     </div>
   );
 };
