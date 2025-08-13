@@ -19,7 +19,9 @@ const ReviewPage = () => {
   return (
     <div className="flex flex-col sm:flex-row max-h-screen max-w-screen h-screen w-screen overscroll-none gap-2">
       {showModal && <RemoveAccessModal handleShowModal={handleShowModal} />}
-      <RemoveAccessButton handleShowModal={handleShowModal} />
+      <div className="hidden md:flex">
+        <RemoveAccessButton handleShowModal={handleShowModal} />
+      </div>
 
       <Navigation
         handleOptionChange={handleOptionChange}

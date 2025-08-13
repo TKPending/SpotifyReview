@@ -1,9 +1,8 @@
+import { GlobalValues } from "@/app/global";
 import { useRouter } from "next/navigation";
-import { removeSessionStorage } from "@/app/util/sessionStorage/removeSessionStorage";
-import Button from "@/app/components/Button";
 import ModalButtons from "./components/ModalButtons";
 import ModalText from "./components/ModalText";
-import { GlobalValues } from "@/app/global";
+import { removeSessionStorage } from "@/app/util/sessionStorage/removeSessionStorage";
 
 type Props = {
   handleShowModal: (decision: boolean) => void;

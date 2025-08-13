@@ -6,7 +6,7 @@ type Props = {
 
 const RemoveAccessButton = ({ handleShowModal }: Props) => {
   return (
-    <div className="absolute right-10 top-10">
+    <div className="relative md:absolute md:right-10 md:top-10">
       <Button
         text={"Remove Access"}
         textStyle=""
