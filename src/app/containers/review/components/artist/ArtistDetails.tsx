@@ -11,7 +11,7 @@ type Props = {
 const ArtistDetails = ({ image, artist, followers, genre }: Props) => {
   return (
     <div className="flex gap-4">
-      <ReviewItemImage imageUrl={image} />
+      <ReviewItemImage imageUrl={image} className="h-16 w-16 md:h-40 md:w-40" />
 
       <ArtistHeader artist={artist} followers={followers} genres={genre} />
     </div>
