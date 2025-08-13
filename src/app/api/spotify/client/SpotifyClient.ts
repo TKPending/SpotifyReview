@@ -63,10 +63,11 @@ class SpotifyClient {
   }
 
   public async getFavouriteSongs(
-    limit: number
+    limit: number,
+    period: string = "short_term"
   ): Promise<SongType[] | ErrorType> {
     const favouriteSongs = await this.getSpotify(
-      `${favouriteEP}tracks?time_range=short_term&limit=${limit}`
+      `${favouriteEP}tracks?time_range=${period}&limit=${limit}`
     );
 
     if (favouriteSongs) {
@@ -82,10 +83,11 @@ class SpotifyClient {
   }
 
   public async getFavouriteArtists(
-    limit: number
+    limit: number,
+    period: string = "short_term"
   ): Promise<ArtistType[] | ErrorType> {
     const favouriteArtists = await this.getSpotify(
-      `${favouriteEP}artists?time_range=short_term&limit=${limit}`
+      `${favouriteEP}artists?time_range=${period}&limit=${limit}`
     );
 
     if (favouriteArtists) {

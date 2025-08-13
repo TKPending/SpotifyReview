@@ -7,6 +7,8 @@ type Props = {
   title: string;
   description: string;
   contentType: number;
+  selectedPeriod: "short" | "medium" | "long";
+  onPeriodChange: (period: "short" | "medium" | "long") => void;
   handleRefresh: () => void;
 };
 
@@ -14,6 +16,8 @@ const ReviewHeader = ({
   title,
   description,
   contentType,
+  selectedPeriod,
+  onPeriodChange,
   handleRefresh,
 }: Props) => {
   const { RECENT } = Favourites;
@@ -23,7 +27,12 @@ const ReviewHeader = ({
       <div>
         <p className="text-3xl text-white font-semibold">{title}</p>
         <p className="text-lg">{description}</p>
-        <ReviewPeriod />
+        {contentType !== RECENT && (
+          <ReviewPeriod
+            selectedPeriod={selectedPeriod} // ⬅ Pass down
+            onPeriodChange={onPeriodChange}
+          />
+        )}
       </div>
 
       {contentType === RECENT && <RefreshSongsButton onClick={handleRefresh} />}

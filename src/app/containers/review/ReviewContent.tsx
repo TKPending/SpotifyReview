@@ -12,6 +12,8 @@ type Props = {
   isError: boolean;
   review: ReviewInterface | null;
   selectedOption: number;
+  selectedPeriod: "short" | "medium" | "long";
+  onPeriodChange: (period: "short" | "medium" | "long") => void;
   seeMoreVisible: Record<number, boolean>;
   handleRefreshSongs: () => void;
   handleSeeMore: () => void;
@@ -22,6 +24,8 @@ const ReviewContent = ({
   isError,
   review,
   selectedOption,
+  selectedPeriod,
+  onPeriodChange,
   seeMoreVisible,
   handleRefreshSongs,
   handleSeeMore,
@@ -47,6 +51,8 @@ const ReviewContent = ({
               title={review.title}
               description={review.description}
               contentType={selectedOption}
+              selectedPeriod={selectedPeriod}
+              onPeriodChange={onPeriodChange}
               handleRefresh={handleRefreshSongs}
             />
             <div className="flex flex-col gap-4 overflow-y-auto">

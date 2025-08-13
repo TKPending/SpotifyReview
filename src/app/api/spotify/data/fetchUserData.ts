@@ -21,9 +21,24 @@ export const fetchUserData = async (
       throw new Error("Failed to fetch user details");
     }
 
-    await fetchFavouriteArtists(MIN_ARTISTS);
-    await fetchFavouriteSongs(MIN_SONGS);
-    await fetchRecentlyPlayed(MIN_RECENT);
+    // await fetchFavouriteArtists(MIN_ARTISTS);
+    // await fetchFavouriteSongs(MIN_SONGS);
+    // await fetchRecentlyPlayed(MIN_RECENT);
+    const [favouriteArtists, favouriteSongs, recentlyPlayed] =
+      await Promise.all([
+        fetchFavouriteArtists(MIN_ARTISTS),
+        fetchFavouriteSongs(MIN_SONGS),
+        fetchRecentlyPlayed(MIN_RECENT),
+      ]);
+
+    setSessionStorage(
+      "spotifyData",
+      JSON.stringify({
+        favouriteArtists,
+        favouriteSongs,
+        recentlyPlayed,
+      })
+    );
 
     setPageLoading(false);
     setSessionStorage("review_stored", "stored");
