@@ -40,7 +40,7 @@ const ReviewContent = ({
       : "Fetching Recently Played";
 
   return (
-    <div className="w-full sm:w-4/5 flex items-center justify-center">
+    <div className="h-full w-full sm:w-4/5 flex md:items-center justify-center">
       <div className="bg-green-600 h-3/4 w-[80%] rounded-lg shadow-xs shadow-gray-300 p-6 overflow-hidden">
         {isLoading && <Fetching fetchText={fetchingText} />}
         {isError && <ReviewError text="There is an error" />}
