@@ -9,5 +9,4 @@ export const fetchFavouriteSongs = async (limit: number) => {
   }
 
   setSessionStorage("favouriteSongs", JSON.stringify(favouriteSongs));
-  console.log("Favourite songs fetched and stored in session storage.");
 };

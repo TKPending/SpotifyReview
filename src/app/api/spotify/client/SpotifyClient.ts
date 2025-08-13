@@ -37,7 +37,6 @@ class SpotifyClient {
       });
 
       if (!response.ok) {
-        console.error(`Error fetching from ${url}:`, response.statusText);
         return null;
       }
 
@@ -71,7 +70,10 @@ class SpotifyClient {
     );
 
     if (favouriteSongs) {
-      const formattedSongs = formatSongs(favouriteSongs, "favourite");
+      const formattedSongs: SongType[] = formatSongs(
+        favouriteSongs,
+        "favourite"
+      );
       await this.getArtistImage(formattedSongs);
       return formattedSongs;
     }
@@ -111,8 +113,10 @@ class SpotifyClient {
     for (const artist of artists) {
       const artistId = artist.artistID;
 
+      if (!artistId) continue;
+
       const artistObj = await this.getSpotify(`${artistEndpoint}${artistId}`);
-      const artistImage = artistObj?.images?.[0]?.url || "default_artist.png";
+      const artistImage = artistObj?.images?.[0]?.url || "";
       artist.image = artistImage;
     }
   }

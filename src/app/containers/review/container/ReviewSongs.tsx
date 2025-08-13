@@ -26,7 +26,6 @@ const ReviewSongs = ({ song, type, ranking }: Props) => {
   return (
     <a href={songHref}>
       <div className="relative grid grid-cols-[1fr_auto_auto] items-center bg-black hover:bg-opacity-90 h-auto w-full rounded-lg p-4 pr-6 gap-4">
-        {/* Song Details (takes up remaining space) */}
         <SongDetails
           artist={artist}
           image={songImage}
@@ -35,7 +34,6 @@ const ReviewSongs = ({ song, type, ranking }: Props) => {
           song={type === "song"}
         />
 
-        {/* Player Details (fixed width) */}
         <div className="w-[200px] flex justify-end">
           <SongPlayerDetails
             songHref={songPreviewUrl}
@@ -44,7 +42,6 @@ const ReviewSongs = ({ song, type, ranking }: Props) => {
           />
         </div>
 
-        {/* Ranking (fixed width) */}
         {type === "song" && (
           <div className="w-[50px] flex justify-end">
             <Ranking ranking={ranking} />

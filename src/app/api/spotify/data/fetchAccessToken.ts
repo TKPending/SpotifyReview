@@ -15,8 +15,6 @@ export const fetchAccessToken = async (
 
     if (token) {
       setAccessToken(token);
-    } else {
-      console.error("Access token not found");
     }
   }
 };

@@ -9,5 +9,4 @@ export const fetchRecentlyPlayed = async (limit: number) => {
   }
 
   setSessionStorage("recentlyPlayed", JSON.stringify(recentlyPlayed));
-  console.log("Recently played songs fetched and stored in session storage.");
 };

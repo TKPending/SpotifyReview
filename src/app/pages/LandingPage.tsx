@@ -1,19 +1,29 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchAccessToken } from "@/app/api/spotify/data/fetchAccessToken";
 import AuthoriseAccessContainer from "@/app/containers/access/AuthoriseAccessContainer";
+import { getSessionStorage } from "../util/sessionStorage/getSessionStorage";
 
 export const LandingPage = () => {
-  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(
+    getSessionStorage("access_token")
+  );
   const router = useRouter();
   const keyWordsStyle: string = "text-green-600 font-semibold";
 
+  const calledRef = useRef(false);
+
   useEffect(() => {
-    if (!accessToken) {
+    if (!accessToken && !calledRef.current) {
+      calledRef.current = true;
       fetchAccessToken(setAccessToken);
-    } else {
+    }
+  }, [accessToken]);
+
+  useEffect(() => {
+    if (accessToken) {
       router.push("/review");
     }
   }, [accessToken, router]);

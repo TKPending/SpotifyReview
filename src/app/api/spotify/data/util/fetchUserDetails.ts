@@ -9,5 +9,4 @@ export const fetchUserDetails = async () => {
   }
 
   setSessionStorage("user", JSON.stringify(user));
-  console.log("User details fetched and stored in session storage.");
 };

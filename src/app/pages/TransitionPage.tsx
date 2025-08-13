@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { getSessionStorage } from "@/app/util/sessionStorage/getSessionStorage";
 import LoadingPage from "@/app/pages/LoadingPage";
@@ -10,23 +10,30 @@ const TransitionPage = () => {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const calledRef = useRef(false);
 
   useEffect(() => {
-    removeUserAccess(router);
-  }, [error]);
+    if (!calledRef.current) {
+      calledRef.current = true;
 
-  useEffect(() => {
-    let stored;
-    if (typeof window !== "undefined") {
-      stored = getSessionStorage("review_stored");
-    }
+      let stored;
+      if (typeof window !== "undefined") {
+        stored = getSessionStorage("review_stored");
+      }
 
-    if (!stored) {
-      fetchUserData(setPageLoading, setError);
-    } else {
-      setPageLoading(false);
+      if (!stored) {
+        fetchUserData(setPageLoading, setError);
+      } else {
+        setPageLoading(false);
+      }
     }
   }, []);
+
+  useEffect(() => {
+    if (error) {
+      removeUserAccess(router);
+    }
+  }, [error, router]);
 
   return (
     <div className="max-h-screen h-screen w-screen overflow-hidden">
