@@ -13,7 +13,7 @@ const RefreshSongsButton = ({ onClick }: Props) => {
     >
       <FontAwesomeIcon
         icon={faArrowsRotate}
-        className="hover:text-green-600 hover:scale-105 transition duration-200 font-semibold p-4 bg-black rounded-lg"
+        className="hover:text-green-600 hover:scale-105 transition duration-200 font-semibold p-2 md:p-4 bg-black rounded-lg"
       />
     </div>
   );

@@ -16,7 +16,7 @@ const ReviewPeriod = ({ selectedPeriod, onPeriodChange }: Props) => {
   const periods = [ONE_MONTH, SIX_MONTHS, ONE_YEAR];
 
   return (
-    <div className="my-4 flex gap-2 items-center">
+    <div className="my-2 md:my-4 flex gap-4 md:gap-2 items-center">
       {periods.map((label, i) => {
         const key = periodMap[label];
         const active = selectedPeriod === key;
