@@ -21,10 +21,8 @@ const RemoveAccessModal = ({ handleShowModal }: Props) => {
         "code_verifier",
         "refresh_token",
         "user",
-        "favouriteSongs",
-        "favouriteArtists",
-        "recentlyPlayed",
-        "review_stored",
+        "spotifyData",
+        "spotifyCache",
       ];
 
       itemsToRemove.forEach((item: string) => {
