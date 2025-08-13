@@ -5,7 +5,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
-    <div className="absolute bottom-10 left-0 w-full flex items-center justify-between px-[8%] bg-opacity-0">
+    <div className="absolute bottom-1 md:bottom-10 left-0 w-full flex items-center justify-between px-[8%] bg-opacity-0">
       <p className="text-white text-xs">Created by Tony K.</p>
       <a href="https://github.com/TKPending/SpotifyReview" target="_blank">
         <FontAwesomeIcon

@@ -46,7 +46,7 @@ const ReviewContent = ({
         {isError && <ReviewError text="There is an error" />}
 
         {!isLoading && review && (
-          <div className="h-full flex flex-col gap-4">
+          <div className="h-full flex flex-col gap-2 md:gap-4">
             <ReviewHeader
               title={review.title}
               description={review.description}

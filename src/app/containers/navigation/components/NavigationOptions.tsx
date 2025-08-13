@@ -1,4 +1,4 @@
-import { Mic, Music, History } from "lucide-react"; // Or any icon library of your choice
+import { Mic, Music, History } from "lucide-react";
 
 type Props = {
   activeOption: number;
@@ -13,7 +13,7 @@ const NavigationOptions = ({ activeOption, handleOptionChange }: Props) => {
   ];
 
   return (
-    <div className="px-4 h-auto lg:mt-8 w-full flex flex-row sm:flex-col items-center justify-center gap-2">
+    <div className="px-4 h-auto lg:mt-8 w-full flex flex-row sm:flex-col items-center justify-center gap-8 md:gap-2">
       {userOptions.map((option, index) => (
         <div key={index} className="mt-6 text-center">
           <button
@@ -23,7 +23,7 @@ const NavigationOptions = ({ activeOption, handleOptionChange }: Props) => {
             } hover:text-green-700 transition duration-300 flex flex-col items-center gap-1`}
           >
             {option.icon}
-            <span className="text-base lg:text-xl font-semibold">
+            <span className="text-[12px] md:text-base lg:text-xl font-semibold">
               {option.label}
             </span>
           </button>

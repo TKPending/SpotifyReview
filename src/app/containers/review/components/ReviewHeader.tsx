@@ -26,7 +26,7 @@ const ReviewHeader = ({
     <div className="flex items-center justify-between">
       <div className="flex flex-col items-center justify-center md:items-start">
         <p className="text-xl md:text-3xl text-white font-semibold">{title}</p>
-        <p className="text-base md:text-lg text-center">{description}</p>
+        <p className="text-[14px] md:text-lg text-center">{description}</p>
         {contentType !== RECENT && (
           <ReviewPeriod
             selectedPeriod={selectedPeriod} // ⬅ Pass down
