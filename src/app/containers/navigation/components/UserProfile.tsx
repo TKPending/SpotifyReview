@@ -1,4 +1,4 @@
-import RemoveAccessButton from "../../access/components/RemoveAccessButton";
+import RemoveAccessButton from "@/app/containers/access/components/RemoveAccessButton";
 
 type Props = {
   userAvatar: string;
