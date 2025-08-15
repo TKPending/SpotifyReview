@@ -19,7 +19,7 @@ export async function POST(request: Request) {
         client_id: DEPLOYMENT.clientId,
         grant_type: "authorization_code",
         code,
-        redirect_uri: DEPLOYMENT.local.redirectURILanding,
+        redirect_uri: DEPLOYMENT.live.redirectURILanding,
         code_verifier: codeVerifier,
       }),
     });

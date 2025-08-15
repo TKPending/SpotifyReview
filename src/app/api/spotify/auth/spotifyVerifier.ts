@@ -21,7 +21,7 @@ export const spotifyVerifier = async () => {
     scope: DEPLOYMENT.scope,
     code_challenge_method: "S256",
     code_challenge: codeChallenge,
-    redirect_uri: DEPLOYMENT.local.redirectURILanding,
+    redirect_uri: DEPLOYMENT.live.redirectURILanding,
   });
 
   authUrl.search = params.toString();
