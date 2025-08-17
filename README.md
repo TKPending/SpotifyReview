@@ -5,6 +5,9 @@ This is a **Spotify integration project**, built with **React** and **TypeScript
 The app focuses on clean state management, strong typing, and smooth integration with the Spotify Web API.
 
 
+---
+### Preview
+
 
 ---
 
@@ -14,7 +17,6 @@ The app focuses on clean state management, strong typing, and smooth integration
 - **TypeScript:** Ensures type safety and maintainability across the codebase.
 - **Redux Toolkit:** Handles Spotify authentication tokens and user data reliably.
 - **Spotify Web API:** Provides access to user data such as top tracks, artists, and playback history.
-- 
 
 ---
 
