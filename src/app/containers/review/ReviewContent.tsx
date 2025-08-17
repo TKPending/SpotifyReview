@@ -41,7 +41,7 @@ const ReviewContent = ({
 
   return (
     <div className="h-full w-full sm:w-4/5 flex md:items-center justify-center">
-      <div className="bg-green-600 h-3/4 w-[80%] rounded-lg shadow-xs shadow-gray-300 p-4 md:p-6 overflow-hidden">
+      <div className="bg-green-600 h-3/4 w-[90%] md:w-[80%] rounded-lg shadow-xs shadow-gray-300 p-4 md:p-6 overflow-hidden">
         {isLoading && <Fetching fetchText={fetchingText} />}
         {isError && <ReviewError text="There is an error" />}
 
