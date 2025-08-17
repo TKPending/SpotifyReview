@@ -29,11 +29,11 @@ export const LandingPage = () => {
   }, [accessToken, router]);
 
   return (
-    <div className="h-full w-full text-white flex flex-col justify-center items-center gap-16 px-4 py-4">
+    <div className="max-h-screen max-w-screen h-full w-full text-white flex flex-col justify-center items-center gap-16 px-4 py-4">
       <h1 className="text-4xl md:text-6xl font-bold mb-2 text-center">
         Welcome to <span className="text-green-600">Spotify</span> Review
       </h1>
-      <div className="flex flex-col gap-16 md:gap-4 text-center text-base md:text-2xl">
+      <div className="flex flex-col gap-16 text-center text-base md:text-2xl">
         <p>
           Get insights on your favorite{" "}
           <span className={`${keyWordsStyle}`}>Artists</span> and{" "}
