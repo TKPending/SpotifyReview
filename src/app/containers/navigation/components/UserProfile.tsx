@@ -12,11 +12,13 @@ const UserProfile = ({ userAvatar, username, handleShowModal }: Props) => {
       <div className="p-1 bg-green-600 rounded-full">
         <img
           src={userAvatar}
-          className="h-20 w-20 lg:h-32 lg:w-32 rounded-full "
+          className="h-12 w-12 md:h-20 md:w-20 lg:h-32 lg:w-32 rounded-full "
           alt="User Avatar"
         />
       </div>
-      <p className="text-xl text-white font-semibold">{username}</p>
+      <p className="text-base md:text-xl text-white font-semibold">
+        {username}
+      </p>
       <RemoveAccessButton handleShowModal={handleShowModal} />
     </div>
   );

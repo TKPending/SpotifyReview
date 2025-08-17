@@ -15,7 +15,7 @@ const NavigationOptions = ({ activeOption, handleOptionChange }: Props) => {
   return (
     <div className="px-4 h-auto lg:mt-8 w-full flex flex-row sm:flex-col items-center justify-center gap-8 md:gap-2">
       {userOptions.map((option, index) => (
-        <div key={index} className="mt-6 text-center">
+        <div key={index} className="mt-2 md:mt-6 text-center">
           <button
             onClick={() => handleOptionChange(index)}
             className={`${
