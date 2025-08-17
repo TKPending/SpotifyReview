@@ -21,9 +21,6 @@ export const fetchUserData = async (
       throw new Error("Failed to fetch user details");
     }
 
-    // await fetchFavouriteArtists(MIN_ARTISTS);
-    // await fetchFavouriteSongs(MIN_SONGS);
-    // await fetchRecentlyPlayed(MIN_RECENT);
     const [favouriteArtists, favouriteSongs, recentlyPlayed] =
       await Promise.all([
         fetchFavouriteArtists(MIN_ARTISTS),
