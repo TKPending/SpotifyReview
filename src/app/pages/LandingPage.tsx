@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { fetchAccessToken } from "@/app/api/spotify/data/fetchAccessToken";
 import AuthoriseAccessContainer from "@/app/containers/access/AuthoriseAccessContainer";
+import Footer from "@/app/components/Footer";
 import { getSessionStorage } from "../util/sessionStorage/getSessionStorage";
 
 export const LandingPage = () => {
@@ -49,6 +50,7 @@ export const LandingPage = () => {
       </div>
 
       <AuthoriseAccessContainer />
+      <Footer />
     </div>
   );
 };
